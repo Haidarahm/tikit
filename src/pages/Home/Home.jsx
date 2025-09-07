@@ -5,7 +5,7 @@ function Home() {
   return (
     <div>
       <div className="text-lg text-black">
-        <SVGComponent />
+       Haidar
       </div>
     </div>
   );
