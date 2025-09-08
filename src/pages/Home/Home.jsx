@@ -22,7 +22,7 @@ function Home() {
           autoSpeed={0.5}
           autoIntensity={2.2}
           takeoverDuration={0.25}
-          autoResumeDelay={0}
+          autoResumeDelay={1000}
           autoRampDuration={0.6}
           sideBias={0.8}
           emitCount={5}
@@ -31,8 +31,25 @@ function Home() {
       </div>
 
       {/* Foreground content */}
-      <div className="relative z-10 flex items-center justify-center h-full">
-        Haidar Ibrahim
+      <div className="relative mx-auto z-10 h-[calc(100vh-64px)] mt-[164px] w-6/7 flex flex-col ">
+        <div className="title flex flex-col gap-4">
+          <h2 className="font-hero-light font-light text-[36px]">
+            Marketing Agency
+          </h2>
+          <h1 className="font-hero-light text-4xl font-bold text-[96px]">
+            ROI REBELS
+          </h1>
+        </div>
+
+        <div className="subtitle">
+          <h3 className="font-hero-light font-light text-[95px]">
+            Fueling brands
+          </h3>
+          <div className="flex gap-[170px] items-center">
+            <button className="bg-[#d9d9d946] font-hero-light font-light  rounded-full h-[50px] px-8  text-white">Learn More</button>
+            <h3 className="font-hero-light font-light text-[95px]">with influence</h3>
+          </div>
+        </div>
       </div>
     </div>
   );

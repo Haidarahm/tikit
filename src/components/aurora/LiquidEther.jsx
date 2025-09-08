@@ -9,21 +9,18 @@ export default function LiquidEther({
   iterationsViscous = 32,
   iterationsPoisson = 32,
   dt = 0.014,
-  BFECC = false,
+  BFECC = true,
   resolution = 0.5,
-  isBounce = true,
+  isBounce = false,
   colors = ["#5227FF", "#FF9FFC", "#B19EEF"],
   style = {},
   className = "",
   autoDemo = true,
   autoSpeed = 0.5,
-  autoIntensity = 1,
+  autoIntensity = 2.2,
   takeoverDuration = 0.25,
   autoResumeDelay = 1000,
-  autoRampDuration = 0.5,
-  sideBias = 0.5,
-  emitCount = 1,
-  emitRadius = 0.08,
+  autoRampDuration = 0.6,
 }) {
   const mountRef = useRef(null);
   const webglRef = useRef(null);
@@ -179,9 +176,15 @@ export default function LiquidEther({
         this.mouseMoved = true;
       }
       onDocumentMouseMove(event) {
+        const rect = this.container.getBoundingClientRect();
+        const withinX =
+          event.clientX >= rect.left && event.clientX <= rect.right;
+        const withinY =
+          event.clientY >= rect.top && event.clientY <= rect.bottom;
+        this.isHoverInside = withinX && withinY;
+        if (!this.isHoverInside) return;
         if (this.onInteract) this.onInteract();
         if (this.isAutoActive && !this.hasUserControl && !this.takeoverActive) {
-          const rect = this.container.getBoundingClientRect();
           const nx = (event.clientX - rect.left) / rect.width;
           const ny = (event.clientY - rect.top) / rect.height;
           this.takeoverFrom.copy(this.coords);
@@ -193,18 +196,16 @@ export default function LiquidEther({
           return;
         }
         this.setCoords(event.clientX, event.clientY);
-        // Update hover state based on whether pointer is within container bounds
-        const rect2 = this.container.getBoundingClientRect();
-        const withinX =
-          event.clientX >= rect2.left && event.clientX <= rect2.right;
-        const withinY =
-          event.clientY >= rect2.top && event.clientY <= rect2.bottom;
-        this.isHoverInside = withinX && withinY;
         this.hasUserControl = true;
       }
       onDocumentTouchStart(event) {
         if (event.touches.length === 1) {
           const t = event.touches[0];
+          const rect = this.container.getBoundingClientRect();
+          const withinX = t.pageX >= rect.left && t.pageX <= rect.right;
+          const withinY = t.pageY >= rect.top && t.pageY <= rect.bottom;
+          this.isHoverInside = withinX && withinY;
+          if (!this.isHoverInside) return;
           if (this.onInteract) this.onInteract();
           this.setCoords(t.pageX, t.pageY);
           this.hasUserControl = true;
@@ -213,6 +214,11 @@ export default function LiquidEther({
       onDocumentTouchMove(event) {
         if (event.touches.length === 1) {
           const t = event.touches[0];
+          const rect = this.container.getBoundingClientRect();
+          const withinX = t.pageX >= rect.left && t.pageX <= rect.right;
+          const withinY = t.pageY >= rect.top && t.pageY <= rect.bottom;
+          this.isHoverInside = withinX && withinY;
+          if (!this.isHoverInside) return;
           if (this.onInteract) this.onInteract();
           this.setCoords(t.pageX, t.pageY);
         }
@@ -601,15 +607,8 @@ export default function LiquidEther({
         this.scene.add(this.mouse);
       }
       update(props) {
-        let forceX = (Mouse.diff.x / 2) * props.mouse_force;
-        let forceY = (Mouse.diff.y / 2) * props.mouse_force;
-        // Perpendicular drift to cursor movement (rotate by +90deg)
-        const perpX = -Mouse.diff.y;
-        const perpY = Mouse.diff.x;
-        if (props.side_bias && props.side_bias !== 0) {
-          forceX += perpX * props.side_bias * props.mouse_force * 0.25;
-          forceY += perpY * props.side_bias * props.mouse_force * 0.25;
-        }
+        const forceX = (Mouse.diff.x / 2) * props.mouse_force;
+        const forceY = (Mouse.diff.y / 2) * props.mouse_force;
         const cursorSizeX = props.cursor_size * props.cellScale.x;
         const cursorSizeY = props.cursor_size * props.cellScale.y;
         const centerX = Math.min(
@@ -621,35 +620,10 @@ export default function LiquidEther({
           1 - cursorSizeY - props.cellScale.y * 2
         );
         const uniforms = this.mouse.material.uniforms;
-
-        // Emit at main center plus additional offsets around in a circle
-        const n = Math.max(1, Math.floor(props.emit_count || 1));
-        const radius = props.emit_radius || 0.0;
-        for (let i = 0; i < n; i++) {
-          let cx = centerX;
-          let cy = centerY;
-          if (i > 0 && radius > 0) {
-            const a = (i / n) * Math.PI * 2.0;
-            cx = Math.min(
-              Math.max(
-                centerX + Math.cos(a) * radius,
-                -1 + cursorSizeX + props.cellScale.x * 2
-              ),
-              1 - cursorSizeX - props.cellScale.x * 2
-            );
-            cy = Math.min(
-              Math.max(
-                centerY + Math.sin(a) * radius,
-                -1 + cursorSizeY + props.cellScale.y * 2
-              ),
-              1 - cursorSizeY - props.cellScale.y * 2
-            );
-          }
-          uniforms.force.value.set(forceX, forceY);
-          uniforms.center.value.set(cx, cy);
-          uniforms.scale.value.set(props.cursor_size, props.cursor_size);
-          super.update();
-        }
+        uniforms.force.value.set(forceX, forceY);
+        uniforms.center.value.set(centerX, centerY);
+        uniforms.scale.value.set(props.cursor_size, props.cursor_size);
+        super.update();
       }
     }
 
@@ -915,9 +889,6 @@ export default function LiquidEther({
         this.externalForce.update({
           cursor_size: this.options.cursor_size,
           mouse_force: this.options.mouse_force,
-          side_bias: this.options.side_bias || 0,
-          emit_count: this.options.emit_count || 1,
-          emit_radius: this.options.emit_radius || 0,
           cellScale: this.cellScale,
         });
         let vel = this.fbos.vel_1;
@@ -1089,9 +1060,6 @@ export default function LiquidEther({
         BFECC,
         resolution,
         isBounce,
-        side_bias: sideBias,
-        emit_count: emitCount,
-        emit_radius: emitRadius,
       });
       if (resolution !== prevRes) {
         sim.resize();
@@ -1100,16 +1068,6 @@ export default function LiquidEther({
     applyOptionsFromProps();
 
     webgl.start();
-
-    // Seed a tiny initial motion so the background is visible immediately
-    try {
-      setTimeout(() => {
-        Mouse.setNormalized(0.1, 0.1);
-        Mouse.coords_old.set(Mouse.coords.x - 0.02, Mouse.coords.y + 0.015);
-      }, 50);
-    } catch (e) {
-      void 0;
-    }
 
     // IntersectionObserver to pause rendering when not visible
     const io = new IntersectionObserver(
@@ -1198,9 +1156,6 @@ export default function LiquidEther({
       BFECC,
       resolution,
       isBounce,
-      side_bias: sideBias,
-      emit_count: emitCount,
-      emit_radius: emitRadius,
     });
     if (webgl.autoDriver) {
       webgl.autoDriver.enabled = autoDemo;

@@ -175,7 +175,7 @@ function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="fixed  left-1/2 -translate-x-1/2 w-2/3 max-w-4xl mt-4 rounded-full h-16 flex items-center px-6 py-2 z-50
+      className="fixed  left-1/2 -translate-x-1/2  w-6/7  mt-4 rounded-full h-16 flex items-center px-6 py-2 z-50
         bg-white/5 backdrop-blur-md shadow-sm text-white"
       data-aos="fade-down"
       style={{ transform: "translateY(0)" }}
