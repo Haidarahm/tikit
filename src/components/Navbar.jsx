@@ -23,7 +23,7 @@ function Navbar() {
     AOS.init({ duration: 700, once: true });
 
     // timeline: logo appears first, then nav items stagger
-    const links = () =>
+    const queryNavItems = () =>
       navRef.current ? navRef.current.querySelectorAll(".nav-item") : [];
 
     const tl = gsap.timeline();
@@ -37,7 +37,7 @@ function Navbar() {
         ease: "back.out(1.7)",
       }
     ).fromTo(
-      links(),
+      queryNavItems(),
       { y: 12, opacity: 0 },
       {
         y: 0,
@@ -48,6 +48,39 @@ function Navbar() {
       },
       "-=0.35"
     );
+
+    // underline hover animations using GSAP
+    const items = queryNavItems();
+    const enter = (underline) => {
+      gsap.to(underline, {
+        scaleX: 1,
+        transformOrigin: "left",
+        duration: 0.28,
+        ease: "power2.out",
+      });
+    };
+    const leave = (underline) => {
+      gsap.to(underline, {
+        scaleX: 0,
+        transformOrigin: "right",
+        duration: 0.26,
+        ease: "power2.in",
+      });
+    };
+    // attach listeners
+    items.forEach((el) => {
+      const underline = el.querySelector(".nav-underline");
+      if (!underline) return;
+      // set initial state
+      gsap.set(underline, { scaleX: 0, transformOrigin: "left" });
+      const onEnter = () => enter(underline);
+      const onLeave = () => leave(underline);
+      el.addEventListener("mouseenter", onEnter);
+      el.addEventListener("mouseleave", onLeave);
+      // store for cleanup
+      el._onEnter = onEnter;
+      el._onLeave = onLeave;
+    });
 
     // scroll handler: hide on scroll down, show on scroll up
     const handleScroll = () => {
@@ -96,6 +129,14 @@ function Navbar() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       tl.kill();
+      // cleanup hover listeners
+      const cleanupItems = queryNavItems();
+      cleanupItems.forEach((el) => {
+        if (el._onEnter) el.removeEventListener("mouseenter", el._onEnter);
+        if (el._onLeave) el.removeEventListener("mouseleave", el._onLeave);
+        delete el._onEnter;
+        delete el._onLeave;
+      });
     };
   }, []);
 
@@ -109,24 +150,39 @@ function Navbar() {
     >
       {/* left spacer for logo (keeps layout balanced) */}
       <div
-        className="w-18 h-full mr-4 flex items-center justify-center"
+        className="w-12 h-12 mr-4 flex items-center justify-center"
         aria-hidden
       >
-        <div ref={logoRef} className="w-22 h-full transform-gpu">
+        <div ref={logoRef} className="w-12 h-12 transform-gpu">
           <SVGComponent className="w-full h-full" />
         </div>
       </div>
 
-      {/* center links */}
       <div className="flex-1 flex justify-center">
         <div className="flex gap-6">
           {links.map(({ to, label }) => (
             <Link
               key={to}
               to={to}
-              className="nav-item uppercase font-light text-sm opacity-0 text-white hover:text-white/80"
+              className="nav-item uppercase font-light text-sm opacity-0 text-white hover:text-white/80 relative inline-block"
             >
-              {label}
+              <span className="relative inline-block">
+                {label}
+                <span
+                  className="nav-underline"
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    right: 0,
+                    bottom: -2,
+                    height: 1,
+                    backgroundColor: "currentColor",
+                    transform: "scaleX(0)",
+                    transformOrigin: "left",
+                    display: "block",
+                  }}
+                />
+              </span>
             </Link>
           ))}
         </div>
