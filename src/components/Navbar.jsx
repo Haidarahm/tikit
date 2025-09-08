@@ -102,10 +102,10 @@ function Navbar() {
     >
       {/* left spacer for logo (keeps layout balanced) */}
       <div
-        className="w-12 h-12 mr-4 flex items-center justify-center"
+        className="w-18 h-full mr-4 flex items-center justify-center"
         aria-hidden
       >
-        <div ref={logoRef} className="w-12 h-12 transform-gpu">
+        <div ref={logoRef} className="w-22 h-full transform-gpu">
           <SVGComponent className="w-full h-full" />
         </div>
       </div>

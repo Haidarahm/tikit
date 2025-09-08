@@ -22,8 +22,8 @@ const AuroraBackground = ({ className = "", style = {} }) => {
           z-index: 0; /* keep behind UI that uses higher z (navbar is z-50) */
           pointer-events: none;
           background:
-            radial-gradient(1200px 600px at 10% 20%, rgba(0,0,0,0.45), transparent 20%),
-            radial-gradient(1000px 500px at 90% 80%, rgba(0,0,10,0.35), transparent 20%);
+            radial-gradient(1400px 700px at 50% -10%, rgba(0,0,0,0.85), transparent 40%), /* top vignette */
+            radial-gradient(1400px 700px at 50% 110%, rgba(0,0,0,0.6), transparent 35%); /* bottom fade */
           will-change: transform, opacity;
         }
 
@@ -38,65 +38,69 @@ const AuroraBackground = ({ className = "", style = {} }) => {
         }
 
         .aurora-layer--A{
-          width: 1000px;
-          height: 600px;
-          left: -12%;
-          top: -18%;
+          /* bottom-left mound */
+          width: 1200px;
+          height: 700px;
+          left: -20%;
+          bottom: -28%;
           background:
-            radial-gradient(60% 60% at 30% 40%, rgba(115,151,176,0.95) 0%, rgba(115,151,176,0.35) 30%, transparent 60%),
-            radial-gradient(40% 40% at 80% 70%, rgba(53,62,131,0.22) 0%, transparent 60%);
-          animation: aurora-move-A 14s ease-in-out infinite alternate;
+            radial-gradient(70% 60% at 40% 60%, rgba(90, 104, 199, 0.95) 0%, rgba(90,104,199,0.35) 45%, transparent 75%),
+            radial-gradient(50% 40% at 75% 40%, rgba(37, 44, 120, 0.25) 0%, transparent 70%);
+          animation: aurora-move-A 20s ease-in-out infinite alternate;
         }
 
         .aurora-layer--B{
-          width: 1200px;
-          height: 700px;
-          right: -20%;
-          top: 5%;
+          /* tall right pillar */
+          width: 1100px;
+          height: 1600px;
+          right: -38%;
+          top: -12%;
           background:
-            radial-gradient(60% 60% at 20% 30%, rgba(59,68,149,0.95) 0%, rgba(59,68,149,0.25) 35%, transparent 70%),
-            radial-gradient(50% 50% at 70% 70%, rgba(115,151,176,0.12) 0%, transparent 60%);
-          animation: aurora-move-B 18s cubic-bezier(.2,.8,.2,1) infinite alternate;
-          filter: blur(72px);
-          opacity: 0.95;
+            radial-gradient(60% 80% at 30% 40%, rgba(112, 140, 204, 0.92) 0%, rgba(112,140,204,0.35) 45%, transparent 80%),
+            radial-gradient(40% 60% at 70% 60%, rgba(58, 72, 160, 0.22) 0%, transparent 75%);
+          animation: aurora-move-B 26s cubic-bezier(.2,.8,.2,1) infinite alternate;
+          filter: blur(80px);
+          opacity: 0.9;
         }
 
         .aurora-layer--C{
-          width: 900px;
-          height: 500px;
-          left: 8%;
-          bottom: -12%;
+          /* bottom-right mound */
+          width: 1100px;
+          height: 650px;
+          right: -18%;
+          bottom: -26%;
           background:
-            radial-gradient(50% 50% at 60% 40%, rgba(53,62,131,0.88) 0%, rgba(59,68,149,0.18) 40%, transparent 75%),
-            radial-gradient(30% 30% at 10% 80%, rgba(115,151,176,0.22) 0%, transparent 60%);
-          animation: aurora-move-C 12s ease-in-out infinite alternate-reverse;
-          filter: blur(56px);
-          opacity: 0.86;
+            radial-gradient(60% 55% at 50% 55%, rgba(80, 96, 188, 0.88) 0%, rgba(80,96,188,0.28) 45%, transparent 75%),
+            radial-gradient(40% 35% at 20% 70%, rgba(125,155,190,0.18) 0%, transparent 65%);
+          animation: aurora-move-C 18s ease-in-out infinite alternate-reverse;
+          filter: blur(70px);
+          opacity: 0.9;
         }
 
         .aurora-darken{
           position: absolute;
           inset: 0;
           background:
-            linear-gradient(180deg, rgba(3,6,18,0.55) 0%, rgba(2,4,12,0.72) 100%);
+            radial-gradient(1200px 800px at 50% -10%, rgba(0,0,0,0.75), transparent 50%), /* top vignette */
+            radial-gradient(1400px 900px at 50% 110%, rgba(0,0,0,0.6), transparent 45%); /* bottom vignette */
           pointer-events: none;
           mix-blend-mode: multiply;
         }
 
         @keyframes aurora-move-A{
-          0%   { transform: translate3d(-30px, 0px, 0) scale(1); }
-          50%  { transform: translate3d(30px, -18px, 0) scale(1.03); }
-          100% { transform: translate3d(-10px, 6px, 0) scale(0.98); }
+          0%   { transform: translate3d(-30px, -6px, 0) scale(1); }
+          50%  { transform: translate3d(24px, 8px, 0) scale(1.02); }
+          100% { transform: translate3d(-12px, 2px, 0) scale(0.99); }
         }
         @keyframes aurora-move-B{
-          0%   { transform: translate3d(40px, -10px, 0) scale(1); }
-          50%  { transform: translate3d(-60px, 18px, 0) scale(1.05); }
-          100% { transform: translate3d(20px, -4px, 0) scale(0.98); }
+          0%   { transform: translate3d(30px, 0px, 0) scale(1); }
+          50%  { transform: translate3d(-36px, -10px, 0) scale(1.03); }
+          100% { transform: translate3d(14px, 6px, 0) scale(0.995); }
         }
         @keyframes aurora-move-C{
-          0%   { transform: translate3d(10px, 20px, 0) scale(1); }
-          50%  { transform: translate3d(-24px, -28px, 0) scale(1.04); }
-          100% { transform: translate3d(8px, 8px, 0) scale(0.97); }
+          0%   { transform: translate3d(10px, 10px, 0) scale(1); }
+          50%  { transform: translate3d(-18px, -14px, 0) scale(1.03); }
+          100% { transform: translate3d(8px, 4px, 0) scale(0.995); }
         }
 
         @media (prefers-reduced-motion: reduce) {
