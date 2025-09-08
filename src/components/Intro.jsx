@@ -17,10 +17,10 @@ function Intro() {
   };
 
   return (
-    <div className="fixed w-full h-dvh bg-white flex justify-center items-center">
+    <div className="fixed w-full h-dvh  flex justify-center items-center">
       <video
         ref={videoRef}
-        src="/intro.mp4"
+        src="/intro-2.mp4"
         className={`h-[200px] transition-transform duration-500 ${
           scaled ? "scale-0" : "scale-100"
         }`}

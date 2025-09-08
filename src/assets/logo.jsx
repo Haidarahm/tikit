@@ -1,88 +1,46 @@
 import * as React from "react";
-import { useRef } from "react";
-import { gsap } from "gsap";
-
-const SVGComponent = (props) => {
-  const correctRef = useRef();
-
-  // Animate jump on hover
-  const handleMouseEnter = () => {
-    gsap.to(correctRef.current, {
-      scale: 1.3,
-      y: -30,
-      transformOrigin: "50% 50%",
-      duration: 0.3,
-      ease: "power2.out",
-      onComplete: () => {
-        gsap.to(correctRef.current, {
-          scale: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "bounce.out",
-        });
-      },
-    });
-  };
-
-  // Reset on mouse leave
-  const handleMouseLeave = () => {
-    gsap.to(correctRef.current, {
-      scale: 1,
-      y: 0,
-      duration: 0.3,
-      ease: "power2.out",
-      clearProps: "transform",
-    });
-  };
-
-  return (
-    <svg
-      className="h-[200px] cursor-pointer"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 572.13 172.1"
-      {...props}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <defs>
-        <style>{".cls-1{fill:#363737;}.cls-2{fill:#52c3c5;}"}</style>
-      </defs>
-      <g id="Layer_2" data-name="Layer 2">
-        <g id="Layer_1-2" data-name="Layer 1">
-          <path
-            className="cls-1"
-            d="M144.22,25.28V59.05a5.61,5.61,0,0,1-5.61,5.61h-44V166.48A5.62,5.62,0,0,1,89,172.1H55.22a5.62,5.62,0,0,1-5.61-5.62V64.66h-44A5.61,5.61,0,0,1,0,59.05V25.28a5.62,5.62,0,0,1,5.61-5.62h133A5.62,5.62,0,0,1,144.22,25.28Z"
-          />
-          <rect
-            className="cls-1"
-            x={103.39}
-            y={73.38}
-            width={152.44}
-            height={45}
-            rx={5.61}
-            transform="translate(275.49 -83.73) rotate(90)"
-          />
-          <path
-            className="cls-1"
-            d="M348.62,119.71H325.31a7.91,7.91,0,0,0-4.13,1.17l-42.15,26a7.52,7.52,0,0,1-9.34-1.16l-23.42-24a6.53,6.53,0,0,0-4.67-2H222.06a5.62,5.62,0,0,0-5.61,5.62v39.12a5.61,5.61,0,0,0,5.61,5.61H348.62a5.62,5.62,0,0,0,5.62-5.61V125.33A5.62,5.62,0,0,0,348.62,119.71Z"
-          />
-          <path
-            ref={correctRef}
-            className="cls-2"
-            d="M281.91,77.13,406.63.52a3.48,3.48,0,0,1,5.3,3V52.73A10.33,10.33,0,0,1,407,61.52L279.86,140a6.83,6.83,0,0,1-8.49-1L215,81a15.59,15.59,0,0,1-4.4-10.85V21.89A3.75,3.75,0,0,1,217,19.23l57.63,57.05A6,6,0,0,0,281.91,77.13Z"
-          />
-          <path
-            className="cls-1"
-            d="M368.39,172.1H413V82.38a6.56,6.56,0,0,0-9.84-5.68L375.79,92.52a14.84,14.84,0,0,0-7.4,12.84Z"
-          />
-          <path
-            className="cls-1"
-            d="M572.13,25.28V59.05a5.61,5.61,0,0,1-5.61,5.61h-44V166.48a5.62,5.62,0,0,1-5.61,5.62H483.13a5.62,5.62,0,0,1-5.61-5.62V64.66h-44a5.61,5.61,0,0,1-5.61-5.61V25.28a5.62,5.62,0,0,1,5.61-5.62h133A5.62,5.62,0,0,1,572.13,25.28Z"
-          />
-        </g>
+const SVGComponent = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 572.13 176.11"
+    {...props}
+  >
+    <defs>
+      <style>{".cls-1{fill:#fdfefe;}"}</style>
+    </defs>
+    <g id="Layer_2" data-name="Layer 2">
+      <g id="Layer_1-2" data-name="Layer 1">
+        <path
+          className="cls-1"
+          d="M144.22,29.29V63.06a5.61,5.61,0,0,1-5.61,5.61h-44V170.49A5.62,5.62,0,0,1,89,176.11H55.22a5.62,5.62,0,0,1-5.61-5.62V68.67h-44A5.61,5.61,0,0,1,0,63.06V29.29a5.62,5.62,0,0,1,5.61-5.62h133A5.62,5.62,0,0,1,144.22,29.29Z"
+        />
+        <rect
+          className="cls-1"
+          x={104.39}
+          y={77.39}
+          width={152.44}
+          height={45}
+          rx={5.61}
+          transform="translate(280.51 -80.72) rotate(90)"
+        />
+        <path
+          className="cls-1"
+          d="M352.62,123.73H329.31a7.82,7.82,0,0,0-4.13,1.17L283,150.9a7.53,7.53,0,0,1-9.34-1.15l-23.42-24a6.52,6.52,0,0,0-4.67-2H226.06a5.61,5.61,0,0,0-5.61,5.61v39.12a5.61,5.61,0,0,0,5.61,5.61H352.62a5.62,5.62,0,0,0,5.62-5.61V129.34A5.62,5.62,0,0,0,352.62,123.73Z"
+        />
+        <path
+          className="cls-1"
+          d="M413,3.48V52.73a10.43,10.43,0,0,1-2.55,6.85,10.06,10.06,0,0,1-2.23,1.93l-80.6,51.08L284.43,140a6.5,6.5,0,0,1-8.26-1.05L221.27,81A15.76,15.76,0,0,1,217,70.17V21.89a3.63,3.63,0,0,1,6.21-2.66L279.3,76.28a5.69,5.69,0,0,0,7.13.84L407.85.52A3.38,3.38,0,0,1,413,3.48Z"
+        />
+        <path
+          className="cls-1"
+          d="M373.28,176.11h37.34a3.39,3.39,0,0,0,3.39-3.39V84.14a5.26,5.26,0,0,0-7.89-4.55l-30,17.32a13.51,13.51,0,0,0-6.76,11.71v63.6A3.89,3.89,0,0,0,373.28,176.11Z"
+        />
+        <path
+          className="cls-1"
+          d="M572.13,29.29V63.06a5.61,5.61,0,0,1-5.61,5.61h-44V170.49a5.62,5.62,0,0,1-5.61,5.62H483.13a5.62,5.62,0,0,1-5.61-5.62V68.67h-44a5.61,5.61,0,0,1-5.61-5.61V29.29a5.62,5.62,0,0,1,5.61-5.62h133A5.62,5.62,0,0,1,572.13,29.29Z"
+        />
       </g>
-    </svg>
-  );
-};
-
+    </g>
+  </svg>
+);
 export default SVGComponent;

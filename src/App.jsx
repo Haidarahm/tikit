@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 // Lazy load the Home component to trigger Suspense
 const Home = lazy(() => import("./pages/Home/Home"));
 const Layout = () => (
-  <div className="relative">
+  <div className="relative w-full ">
     <Navbar />
     <div>
       <Outlet />
@@ -16,7 +16,7 @@ const Layout = () => (
 );
 function App() {
   return (
-    <Suspense fallback={<div>loading...</div>}>
+    <Suspense fallback={<div className="text-white">loading...</div>}>
       <Routes>
         <Route path="/" element={<Intro />} />
         <Route element={<Layout />}>

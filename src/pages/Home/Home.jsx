@@ -1,12 +1,12 @@
 import React from "react";
 import SVGComponent from "../../assets/logo";
+import AuroraBackground from "../../components/AuroraBackground";
 
 function Home() {
   return (
-    <div>
-      <div className="text-lg text-black">
-       Haidar
-      </div>
+    <div className="w-full h-screen  text-white">
+      <AuroraBackground className="w-full h-screen"/>
+      Haidar Ibrahim
     </div>
   );
 }
