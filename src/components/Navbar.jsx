@@ -154,7 +154,7 @@ function Navbar() {
         aria-hidden
       >
         <div ref={logoRef} className="w-12 h-12 transform-gpu">
-          <SVGComponent className="w-full h-full" />
+          <SVGComponent className="p-2 h-full" />
         </div>
       </div>
 
