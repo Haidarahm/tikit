@@ -12,6 +12,13 @@ function Navbar() {
   const ticking = useRef(false);
   const hidden = useRef(false);
 
+  const links = [
+    { to: "/work", label: "work" },
+    { to: "/home", label: "Home" },
+    { to: "/services", label: "Services" },
+    { to: "/contact", label: "Contact" },
+  ];
+
   useEffect(() => {
     AOS.init({ duration: 700, once: true });
 
@@ -113,30 +120,15 @@ function Navbar() {
       {/* center links */}
       <div className="flex-1 flex justify-center">
         <div className="flex gap-6">
-          <Link
-            to="/work"
-            className="nav-item opacity-0 text-white hover:text-white/80"
-          >
-            work
-          </Link>
-          <Link
-            to="/home"
-            className="nav-item opacity-0 text-white hover:text-white/80"
-          >
-            Home
-          </Link>
-          <Link
-            to="/services"
-            className="nav-item opacity-0 text-white hover:text-white/80"
-          >
-            Services
-          </Link>
-          <Link
-            to="/contact"
-            className="nav-item opacity-0 text-white hover:text-white/80"
-          >
-            Contact
-          </Link>
+          {links.map(({ to, label }) => (
+            <Link
+              key={to}
+              to={to}
+              className="nav-item uppercase font-light text-sm opacity-0 text-white hover:text-white/80"
+            >
+              {label}
+            </Link>
+          ))}
         </div>
       </div>
 
