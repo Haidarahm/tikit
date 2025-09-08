@@ -97,6 +97,9 @@ export default function LiquidEther({
         this.renderer.domElement.style.width = "100%";
         this.renderer.domElement.style.height = "100%";
         this.renderer.domElement.style.display = "block";
+        this.renderer.domElement.style.position = "absolute";
+        this.renderer.domElement.style.inset = "0";
+        this.renderer.domElement.style.pointerEvents = "none";
         this.clock = new THREE.Clock();
         this.clock.start();
       }
@@ -940,6 +943,8 @@ export default function LiquidEther({
       }
       render() {
         Common.renderer.setRenderTarget(null);
+        // Clear the backbuffer to avoid visual artifacts/glitches
+        Common.renderer.clear(true, true, true);
         Common.renderer.render(this.scene, this.camera);
       }
       update() {

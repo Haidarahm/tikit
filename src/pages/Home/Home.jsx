@@ -32,22 +32,50 @@ function Home() {
 
       {/* Foreground content */}
       <div className="relative mx-auto z-10 h-[calc(100vh-64px)] mt-[164px] w-6/7 flex flex-col ">
-        <div className="title flex flex-col gap-4">
-          <h2 className="font-hero-light font-light text-[36px]">
+        <div
+          className="title flex flex-col gap-4"
+          data-aos="fade-up"
+          data-aos-delay="0"
+        >
+          <h2
+            className="font-hero-light font-light text-[36px]"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             Marketing Agency
           </h2>
-          <h1 className="font-hero-light text-4xl font-bold text-[96px]">
+          <h1
+            className="font-hero-light text-4xl font-bold text-[96px]"
+            data-aos="fade-up"
+            data-aos-delay="250"
+          >
             ROI REBELS
           </h1>
         </div>
 
-        <div className="subtitle">
-          <h3 className="font-hero-light font-light text-[95px]">
+        <div className="subtitle" data-aos="fade-up" data-aos-delay="400">
+          <h3
+            className="font-hero-light font-light text-[95px]"
+            data-aos="fade-up"
+            data-aos-delay="450"
+          >
             Fueling brands
           </h3>
           <div className="flex gap-[170px] items-center">
-            <button className="bg-[#d9d9d946] font-hero-light font-light  rounded-full h-[50px] px-8  text-white">Learn More</button>
-            <h3 className="font-hero-light font-light text-[95px]">with influence</h3>
+            <button
+              className="bg-[#d9d9d946] font-hero-light font-light  rounded-full h-[50px] px-8  text-white"
+              data-aos="zoom-in"
+              data-aos-delay="650"
+            >
+              Learn More
+            </button>
+            <h3
+              className="font-hero-light font-light text-[95px]"
+              data-aos="fade-up"
+              data-aos-delay="550"
+            >
+              with influence
+            </h3>
           </div>
         </div>
       </div>
