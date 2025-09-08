@@ -22,8 +22,8 @@ const AuroraBackground = ({ className = "", style = {} }) => {
           z-index: 0; /* keep behind UI that uses higher z (navbar is z-50) */
           pointer-events: none;
           background:
-            radial-gradient(1400px 700px at 50% -10%, rgba(0,0,0,0.85), transparent 40%), /* top vignette */
-            radial-gradient(1400px 700px at 50% 110%, rgba(0,0,0,0.6), transparent 35%); /* bottom fade */
+            radial-gradient(1600px 800px at 50% -15%, rgba(0,0,0,0.95), transparent 45%), /* deeper top black */
+            radial-gradient(1600px 800px at 50% 110%, rgba(0,0,0,0.65), transparent 38%); /* bottom fade */
           will-change: transform, opacity;
         }
 
@@ -39,68 +39,82 @@ const AuroraBackground = ({ className = "", style = {} }) => {
 
         .aurora-layer--A{
           /* bottom-left mound */
-          width: 1200px;
-          height: 700px;
-          left: -20%;
-          bottom: -28%;
+          width: 1350px;
+          height: 820px;
+          left: -24%;
+          bottom: -34%;
           background:
-            radial-gradient(70% 60% at 40% 60%, rgba(90, 104, 199, 0.95) 0%, rgba(90,104,199,0.35) 45%, transparent 75%),
-            radial-gradient(50% 40% at 75% 40%, rgba(37, 44, 120, 0.25) 0%, transparent 70%);
-          animation: aurora-move-A 20s ease-in-out infinite alternate;
+            radial-gradient(70% 60% at 38% 68%, rgba(88, 96, 210, 0.9) 0%, rgba(88, 96, 210, 0.34) 48%, transparent 78%),
+            radial-gradient(38% 42% at 72% 42%, rgba(40, 48, 140, 0.24) 0%, transparent 74%);
+          animation: aurora-move-A 26s ease-in-out infinite alternate;
         }
 
         .aurora-layer--B{
-          /* tall right pillar */
-          width: 1100px;
-          height: 1600px;
-          right: -38%;
-          top: -12%;
+          /* tall right pillar with cyan core */
+          width: 1150px;
+          height: 1750px;
+          right: -40%;
+          top: -14%;
           background:
-            radial-gradient(60% 80% at 30% 40%, rgba(112, 140, 204, 0.92) 0%, rgba(112,140,204,0.35) 45%, transparent 80%),
-            radial-gradient(40% 60% at 70% 60%, rgba(58, 72, 160, 0.22) 0%, transparent 75%);
-          animation: aurora-move-B 26s cubic-bezier(.2,.8,.2,1) infinite alternate;
-          filter: blur(80px);
-          opacity: 0.9;
+            radial-gradient(62% 84% at 28% 42%, rgba(126, 154, 216, 0.9) 0%, rgba(126,154,216,0.36) 46%, transparent 82%),
+            radial-gradient(46% 70% at 58% 58%, rgba(134, 184, 204, 0.38) 0%, transparent 80%), /* cyan tint */
+            radial-gradient(40% 64% at 72% 66%, rgba(62, 74, 164, 0.22) 0%, transparent 78%);
+          animation: aurora-move-B 32s cubic-bezier(.2,.8,.2,1) infinite alternate;
+          filter: blur(84px);
+          opacity: 0.92;
         }
 
         .aurora-layer--C{
           /* bottom-right mound */
-          width: 1100px;
-          height: 650px;
-          right: -18%;
-          bottom: -26%;
+          width: 1180px;
+          height: 720px;
+          right: -16%;
+          bottom: -30%;
           background:
-            radial-gradient(60% 55% at 50% 55%, rgba(80, 96, 188, 0.88) 0%, rgba(80,96,188,0.28) 45%, transparent 75%),
-            radial-gradient(40% 35% at 20% 70%, rgba(125,155,190,0.18) 0%, transparent 65%);
-          animation: aurora-move-C 18s ease-in-out infinite alternate-reverse;
-          filter: blur(70px);
+            radial-gradient(62% 58% at 52% 60%, rgba(84, 100, 194, 0.88) 0%, rgba(84,100,194,0.3) 46%, transparent 78%),
+            radial-gradient(42% 40% at 24% 74%, rgba(140,170,200,0.2) 0%, transparent 70%);
+          animation: aurora-move-C 24s ease-in-out infinite alternate-reverse;
+          filter: blur(74px);
           opacity: 0.9;
+        }
+
+        /* central dark occlusion to mimic valley */
+        .aurora-occlude{
+          position: absolute;
+          left: 46%;
+          top: -6%;
+          width: 24%;
+          height: 130%;
+          background: radial-gradient(60% 90% at 50% 30%, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.0) 70%);
+          filter: blur(40px);
+          pointer-events: none;
+          mix-blend-mode: multiply;
         }
 
         .aurora-darken{
           position: absolute;
           inset: 0;
           background:
-            radial-gradient(1200px 800px at 50% -10%, rgba(0,0,0,0.75), transparent 50%), /* top vignette */
-            radial-gradient(1400px 900px at 50% 110%, rgba(0,0,0,0.6), transparent 45%); /* bottom vignette */
+            radial-gradient(1400px 900px at 50% -12%, rgba(0,0,0,0.82), transparent 52%), /* top vignette */
+            radial-gradient(1600px 1000px at 50% 110%, rgba(0,0,0,0.62), transparent 48%); /* bottom vignette */
           pointer-events: none;
           mix-blend-mode: multiply;
         }
 
         @keyframes aurora-move-A{
-          0%   { transform: translate3d(-30px, -6px, 0) scale(1); }
-          50%  { transform: translate3d(24px, 8px, 0) scale(1.02); }
-          100% { transform: translate3d(-12px, 2px, 0) scale(0.99); }
+          0%   { transform: translate3d(-26px, -4px, 0) scale(1); }
+          50%  { transform: translate3d(22px, 10px, 0) scale(1.02); }
+          100% { transform: translate3d(-10px, 4px, 0) scale(0.995); }
         }
         @keyframes aurora-move-B{
-          0%   { transform: translate3d(30px, 0px, 0) scale(1); }
-          50%  { transform: translate3d(-36px, -10px, 0) scale(1.03); }
-          100% { transform: translate3d(14px, 6px, 0) scale(0.995); }
+          0%   { transform: translate3d(26px, 0px, 0) scale(1); }
+          50%  { transform: translate3d(-34px, -10px, 0) scale(1.02); }
+          100% { transform: translate3d(12px, 8px, 0) scale(0.995); }
         }
         @keyframes aurora-move-C{
-          0%   { transform: translate3d(10px, 10px, 0) scale(1); }
-          50%  { transform: translate3d(-18px, -14px, 0) scale(1.03); }
-          100% { transform: translate3d(8px, 4px, 0) scale(0.995); }
+          0%   { transform: translate3d(12px, 8px, 0) scale(1); }
+          50%  { transform: translate3d(-16px, -12px, 0) scale(1.02); }
+          100% { transform: translate3d(10px, 6px, 0) scale(0.995); }
         }
 
         @media (prefers-reduced-motion: reduce) {
