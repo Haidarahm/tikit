@@ -49,6 +49,29 @@ function Navbar() {
       "-=0.35"
     );
 
+    // logo part hover: make only the marked path jump
+    const logoForJump = logoRef.current;
+    if (logoForJump) {
+      const jumpTarget = logoForJump.querySelector(".logo-jump");
+      if (jumpTarget) {
+        const onEnterLogoPart = () => {
+          gsap.fromTo(
+            jumpTarget,
+            { y: 0 },
+            {
+              y: -16,
+              duration: 0.24,
+              ease: "power2.out",
+              yoyo: true,
+              repeat: 1,
+            }
+          );
+        };
+        logoForJump.addEventListener("mouseenter", onEnterLogoPart);
+        logoForJump._onEnterLogoPart = onEnterLogoPart;
+      }
+    }
+
     // underline hover animations using GSAP
     const items = queryNavItems();
     const enter = (underline) => {
@@ -137,6 +160,15 @@ function Navbar() {
         delete el._onEnter;
         delete el._onLeave;
       });
+      // cleanup logo part hover
+      const logoForJump = logoRef.current;
+      if (logoForJump && logoForJump._onEnterLogoPart) {
+        logoForJump.removeEventListener(
+          "mouseenter",
+          logoForJump._onEnterLogoPart
+        );
+        delete logoForJump._onEnterLogoPart;
+      }
     };
   }, []);
 
@@ -154,7 +186,7 @@ function Navbar() {
         aria-hidden
       >
         <div ref={logoRef} className="w-12 h-12 transform-gpu">
-          <SVGComponent className="p-2 h-full" />
+          <SVGComponent className="p-2 h-full overflow-visible" />
         </div>
       </div>
 
@@ -164,7 +196,7 @@ function Navbar() {
             <Link
               key={to}
               to={to}
-              className="nav-item uppercase font-light text-sm opacity-0 text-white hover:text-white/80 relative inline-block"
+              className="nav-item uppercase font-light text-sm opacity-0 text-white relative inline-block"
             >
               <span className="relative inline-block">
                 {label}
