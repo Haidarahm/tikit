@@ -1,5 +1,6 @@
 import React from "react";
 import LiquidEther from "../../components/aurora/LiquidEther";
+import { Avatar, AvatarGroup, AvatarIcon } from "@heroui/avatar";
 
 function Hero() {
   return (
@@ -29,21 +30,21 @@ function Hero() {
       </div>
 
       {/* Foreground content */}
-      <div className="relative mx-auto z-10 h-[calc(100vh-64px)] mt-[164px] w-6/7 flex flex-col ">
+      <div className="relative mx-auto z-10 h-[calc(100vh-64px)] mt-[164px] w-6/7 flex items-center flex-col ">
         <div
-          className="title flex flex-col gap-4"
+          className="title flex flex-col gap-4 items-center "
           data-aos="fade-up"
           data-aos-delay="0"
         >
           <h2
-            className="font-hero-light font-light text-[36px]"
+            className="font-hero-light font-light text-[27px]"
             data-aos="fade-up"
             data-aos-delay="100"
           >
             Marketing Agency
           </h2>
           <h1
-            className="font-hero-light text-4xl font-bold text-[96px]"
+            className="font-hero-light text-4xl font-bold text-[64px]"
             data-aos="fade-up"
             data-aos-delay="250"
           >
@@ -53,29 +54,17 @@ function Hero() {
 
         <div className="subtitle" data-aos="fade-up" data-aos-delay="400">
           <h3
-            className="font-hero-light font-light text-[95px]"
+            className="font-hero-light font-light text-[36px]"
             data-aos="fade-up"
             data-aos-delay="450"
           >
-            Fueling brands
+            Fueling brands with influence
           </h3>
-          <div className="flex gap-[170px] items-center">
-            <button
-              className="bg-[#d9d9d946] font-hero-light font-light  rounded-full h-[50px] px-8  text-white"
-              data-aos="zoom-in"
-              data-aos-delay="650"
-            >
-              Learn More
-            </button>
-            <h3
-              className="font-hero-light font-light text-[95px]"
-              data-aos="fade-up"
-              data-aos-delay="550"
-            >
-              with influence
-            </h3>
-          </div>
         </div>
+        <div className="avatar "  data-aos="fade-up" data-aos-delay="550">
+       
+        </div>
+       
       </div>
     </div>
   );
