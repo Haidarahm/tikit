@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import Logo from "../../assets/logo";
+import { useNavigate } from "react-router-dom";
+import Logo from "../assets/logo";
 
 function LogoIntro() {
   const wrapperRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!wrapperRef.current) return;
@@ -68,6 +70,10 @@ function LogoIntro() {
         )
         // Fade strokes out for a clean final
         .to(shapes, { strokeOpacity: 0, duration: 0.4 }, "+=0.1");
+
+      tl.eventCallback("onComplete", () => {
+        navigate("/home");
+      });
     }, wrapperRef);
     return () => ctx.revert();
   }, []);

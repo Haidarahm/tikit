@@ -1,6 +1,4 @@
 import React from "react";
-import SVGComponent from "../../assets/logo";
-import AuroraBackground from "../../components/AuroraBackground";
 import LiquidEther from "../../components/aurora/LiquidEther";
 
 function Home() {
