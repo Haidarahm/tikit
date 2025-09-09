@@ -20,9 +20,9 @@ function Home() {
           isBounce={false}
           autoDemo={true}
           autoSpeed={0.5}
-          autoIntensity={2.2}
+          autoIntensity={1.2}
           takeoverDuration={0.25}
-          autoResumeDelay={1000}
+          autoResumeDelay={500}
           autoRampDuration={0.6}
           sideBias={0.8}
           emitCount={5}
