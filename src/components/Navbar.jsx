@@ -13,8 +13,8 @@ function Navbar() {
   const hidden = useRef(false);
 
   const links = [
-    { to: "/work", label: "work" },
     { to: "/home", label: "Home" },
+    { to: "/work", label: "work" },
     { to: "/services", label: "Services" },
     { to: "/contact", label: "Contact" },
   ];
@@ -175,53 +175,51 @@ function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="fixed  left-1/2 -translate-x-1/2  w-6/7  mt-4 rounded-full h-16 flex items-center px-6 py-2 z-50
-        bg-white/5 backdrop-blur-md shadow-sm text-white"
+      className="fixed top-4 inset-x-0 z-50"
       data-aos="fade-down"
       style={{ transform: "translateY(0)" }}
     >
-      {/* left spacer for logo (keeps layout balanced) */}
-      <div
-        className="w-12 h-12 mr-4 flex items-center justify-center"
-        aria-hidden
-      >
-        <div ref={logoRef} className="w-12 h-12 transform-gpu">
-          <SVGComponent className="p-2 h-full overflow-visible" />
+      <div className="w-6/7 mx-auto rounded-full h-16 flex items-center px-6 py-2 bg-white/5 backdrop-blur-md shadow-sm text-white">
+        {/* left spacer for logo (keeps layout balanced) */}
+        <div
+          className="w-12 h-12 mr-4 flex items-center justify-center"
+          aria-hidden
+        >
+          <div ref={logoRef} className="w-12 h-12 transform-gpu">
+            <SVGComponent className="p-2 h-full overflow-visible" />
+          </div>
+        </div>
+
+        <div className="flex-1 flex justify-end">
+          <div className="flex gap-6">
+            {links.map(({ to, label }) => (
+              <Link
+                key={to}
+                to={to}
+                className="nav-item uppercase font-light text-sm opacity-0 text-white relative inline-block"
+              >
+                <span className="relative inline-block ">
+                  {label}
+                  <span
+                    className="nav-underline"
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      right: 0,
+                      bottom: -2,
+                      height: 1,
+                      backgroundColor: "currentColor",
+                      transform: "scaleX(0)",
+                      transformOrigin: "left",
+                      display: "block",
+                    }}
+                  />
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className="flex-1 flex justify-center">
-        <div className="flex gap-6">
-          {links.map(({ to, label }) => (
-            <Link
-              key={to}
-              to={to}
-              className="nav-item uppercase font-light text-sm opacity-0 text-white relative inline-block"
-            >
-              <span className="relative inline-block">
-                {label}
-                <span
-                  className="nav-underline"
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    right: 0,
-                    bottom: -2,
-                    height: 1,
-                    backgroundColor: "currentColor",
-                    transform: "scaleX(0)",
-                    transformOrigin: "left",
-                    display: "block",
-                  }}
-                />
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      {/* right spacer to keep center alignment */}
-      <div className="w-12 h-12 ml-4" aria-hidden />
     </nav>
   );
 }
