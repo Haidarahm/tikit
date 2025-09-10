@@ -1,10 +1,10 @@
-import React from 'react'
-import LiquidEther from '../../components/aurora/LiquidEther'
+import React from "react";
+import LiquidEther from "../../components/aurora/LiquidEther";
 
 function Numbers() {
   return (
-    <div className='section'>
-       <div className=" pointer-events-none absolute inset-0 z-0">
+    <div className="section">
+      {/* <div className=" pointer-events-none absolute inset-0 z-0">
         <LiquidEther
           colors={["#3d4699", "#5d6fa1", "#769cb6"]}
           mouseForce={20}
@@ -25,12 +25,10 @@ function Numbers() {
           emitCount={5}
           emitRadius={0.12}
         />
-      </div>  
-      <div className='relative mx-auto h-full z-10 w-6/7 flex items-center flex-col justify-center'>
-
-      </div>
+      </div> */}
+      <div className="relative mx-auto h-full z-10 w-6/7 flex items-center flex-col justify-center"></div>
     </div>
-  )
+  );
 }
 
-export default Numbers
+export default Numbers;

@@ -37,6 +37,10 @@
   --font-hero-regular: "HeroRegular", sans-serif;
   --font-hero-bold: "HeroBold", sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 #root {
@@ -75,8 +79,16 @@ body,
   animation-delay: 1s;
 }
 
-/* Full-page snapping container */
+/* Performance optimization for scroll-triggered elements */
+.element1,
+.element2 {
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
 
+/* Full-page snapping container */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
