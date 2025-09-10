@@ -76,12 +76,7 @@ body,
 }
 
 /* Full-page snapping container */
-.snap-container {
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scroll-snap-type: y mandatory;
-}
+
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
