@@ -4,10 +4,10 @@ import Numbers from "./Numbers";
 
 function Home() {
   return (
-    <>
+    <div className="snap-container">
       <Hero />
       <Numbers />
-    </>
+    </div>
   );
 }
 

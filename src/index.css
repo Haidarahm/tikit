@@ -49,6 +49,8 @@ body,
   height: 100vh;
   color: white;
   overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* Floating animation for decorative elements */
@@ -71,6 +73,14 @@ body,
 .float-up-down-delayed {
   animation: floatUpDown 7.5s ease-in-out infinite;
   animation-delay: 1s;
+}
+
+/* Full-page snapping container */
+.snap-container {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
 }
 
 @theme inline {
@@ -119,7 +129,7 @@ body,
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary:#FFFF;
+  --primary: #ffff;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -145,5 +155,3 @@ body,
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
-
-
