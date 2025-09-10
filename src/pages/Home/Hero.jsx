@@ -36,13 +36,13 @@ function Hero() {
         <img
           src={element2}
           alt="Decorative element 1"
-          className="absolute -top-10 -left-10 w-auto h-auto max-w-[400px] max-h-[400px] opacity-60"
+          className="absolute -top-10 -left-10 w-auto h-auto max-w-[400px] max-h-[400px] "
         />
         {/* Element 2 - Top Right Corner */}
         <img
           src={element1}
           alt="Decorative element 2"
-          className="absolute top-0 right-0 w-auto h-auto max-w-[400px] max-h-[400px] opacity-60"
+          className="absolute top-0 right-0 w-auto h-auto max-w-[400px] max-h-[400px] "
         />
       </div>
       {/* Foreground content */}
