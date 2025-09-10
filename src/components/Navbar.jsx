@@ -219,8 +219,10 @@ function Navbar() {
               </Link>
             ))}
           </div>
-        </div>
+        </div><div className="w-[137px]">
         <TikitButton text="Get Quetion"/>
+        </div>
+        
       </div>
     </nav>
   );

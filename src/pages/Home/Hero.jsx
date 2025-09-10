@@ -42,7 +42,7 @@ function Hero() {
         <img
           src={element1}
           alt="Decorative element 2"
-          className="absolute top-0 right-0 w-auto h-auto max-w-[400px] max-h-[400px] float-up-down-delayed"
+          className="absolute bottom-0 right-0 w-auto h-auto max-w-[400px] max-h-[400px] float-up-down-delayed"
         />
       </div>
       {/* Foreground content */}
