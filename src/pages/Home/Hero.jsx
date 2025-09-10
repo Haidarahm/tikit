@@ -1,11 +1,14 @@
 import React from "react";
 import LiquidEther from "../../components/aurora/LiquidEther";
-import { Avatar, AvatarGroup, AvatarIcon } from "@heroui/avatar";
+import AvatarGroupDemo from "../../components/ui/AvatarGroupDemo";
+import element1 from "../../assets/elements/1.png";
+import element2 from "../../assets/elements/2.png";
 
 function Hero() {
   return (
     <div className="section">
       {/* Background layer */}
+
       <div className="pointer-events-none absolute inset-0 z-0">
         <LiquidEther
           colors={["#3d4699", "#5d6fa1", "#769cb6"]}
@@ -28,7 +31,20 @@ function Hero() {
           emitRadius={0.12}
         />
       </div>
-
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        {/* Element 1 - Top Left Corner */}
+        <img
+          src={element2}
+          alt="Decorative element 1"
+          className="absolute -top-10 -left-10 w-auto h-auto max-w-[400px] max-h-[400px] opacity-60"
+        />
+        {/* Element 2 - Top Right Corner */}
+        <img
+          src={element1}
+          alt="Decorative element 2"
+          className="absolute top-0 right-0 w-auto h-auto max-w-[400px] max-h-[400px] opacity-60"
+        />
+      </div>
       {/* Foreground content */}
       <div className="relative mx-auto z-10 h-[calc(100vh-64px)] mt-[164px] w-6/7 flex items-center flex-col ">
         <div
@@ -61,10 +77,17 @@ function Hero() {
             Fueling brands with influence
           </h3>
         </div>
-        <div className="avatar "  data-aos="fade-up" data-aos-delay="550">
-       
+        <div
+          className="avatar mt-[50px]"
+          data-aos="fade-up"
+          data-aos-delay="550"
+        >
+          <AvatarGroupDemo />
+          <div className="text text-center mt-[10px]">
+            <span className="font-bold font-hero-light">+300 Happy</span>{" "}
+            Clients
+          </div>
         </div>
-       
       </div>
     </div>
   );
