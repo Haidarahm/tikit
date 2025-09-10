@@ -46,7 +46,7 @@ const AvatarGroupDemo = () => {
   return (
     <AvatarGroup>
       {AVATARS.map((avatar, index) => (
-        <Avatar key={index} className="size-12 border-3 border-background">
+        <Avatar key={index} className="size-12 border-3 border-primary">
           <AvatarImage src={avatar.src} alt={avatar.tooltip} />
           <AvatarFallback>{avatar.fallback}</AvatarFallback>
           <AvatarGroupTooltip>{avatar.tooltip}</AvatarGroupTooltip>

@@ -46,7 +46,7 @@ function Hero() {
         />
       </div>
       {/* Foreground content */}
-      <div className="relative mx-auto z-10 h-[calc(100vh-64px)] mt-[164px] w-6/7 flex items-center flex-col ">
+      <div className="relative mx-auto h-full z-10 w-6/7 flex items-center flex-col justify-center ">
         <div
           className="title flex flex-col gap-4 items-center "
           data-aos="fade-up"

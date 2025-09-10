@@ -4,6 +4,7 @@ import SVGComponent from "../assets/logo";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { gsap } from "gsap";
+import TikitButton from "./TikitButton";
 
 function Navbar() {
   const navRef = useRef();
@@ -106,40 +107,40 @@ function Navbar() {
     });
 
     // scroll handler: hide on scroll down, show on scroll up
-    const handleScroll = () => {
-      const currentY = window.scrollY || window.pageYOffset;
+    // const handleScroll = () => {
+    //   const currentY = window.scrollY || window.pageYOffset;
 
-      // small threshold to avoid jitter
-      if (Math.abs(currentY - lastScrollY.current) < 6) {
-        ticking.current = false;
-        return;
-      }
+    //   // small threshold to avoid jitter
+    //   if (Math.abs(currentY - lastScrollY.current) < 6) {
+    //     ticking.current = false;
+    //     return;
+    //   }
 
-      if (currentY > lastScrollY.current && currentY > 80) {
-        // scrolling down -> hide
-        if (!hidden.current && navRef.current) {
-          gsap.to(navRef.current, {
-            y: -120,
-            duration: 0.28,
-            ease: "power2.out",
-          });
-          hidden.current = true;
-        }
-      } else {
-        // scrolling up -> show
-        if (hidden.current && navRef.current) {
-          gsap.to(navRef.current, {
-            y: 0,
-            duration: 0.28,
-            ease: "power2.out",
-          });
-          hidden.current = false;
-        }
-      }
+    //   if (currentY > lastScrollY.current && currentY > 80) {
+    //     // scrolling down -> hide
+    //     if (!hidden.current && navRef.current) {
+    //       gsap.to(navRef.current, {
+    //         y: -120,
+    //         duration: 0.28,
+    //         ease: "ease-in-out"
+    //       });
+    //       hidden.current = true;
+    //     }
+    //   } else {
+    //     // scrolling up -> show
+    //     if (hidden.current && navRef.current) {
+    //       gsap.to(navRef.current, {
+    //         y: 0,
+    //         duration: 0.28,
+    //         ease: "power2.out",
+    //       });
+    //       hidden.current = false;
+    //     }
+    //   }
 
-      lastScrollY.current = currentY;
-      ticking.current = false;
-    };
+    //   lastScrollY.current = currentY;
+    //   ticking.current = false;
+    // };
 
     const onScroll = () => {
       if (!ticking.current) {
@@ -179,7 +180,7 @@ function Navbar() {
       data-aos="fade-down"
       style={{ transform: "translateY(0)" }}
     >
-      <div className="w-6/7 mx-auto rounded-full h-16 flex items-center px-6 py-2 bg-white/5 backdrop-blur-md shadow-sm text-white">
+      <div className="w-6/7 mx-auto rounded-full h-16 justify-between flex items-center  px-6 py-2 bg-white/5 backdrop-blur-md shadow-sm text-white">
         {/* left spacer for logo (keeps layout balanced) */}
         <div
           className="w-12 h-12 mr-4 flex items-center justify-center"
@@ -190,7 +191,7 @@ function Navbar() {
           </div>
         </div>
 
-        <div className="flex-1 flex justify-end">
+        <div className=" flex justify-end">
           <div className="flex gap-6">
             {links.map(({ to, label }) => (
               <Link
@@ -219,6 +220,7 @@ function Navbar() {
             ))}
           </div>
         </div>
+        <TikitButton text="Get Quetion"/>
       </div>
     </nav>
   );
