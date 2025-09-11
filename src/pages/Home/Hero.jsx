@@ -29,7 +29,7 @@ function Hero() {
           emitRadius={0.12}
         />
       </div>
-     
+
       {/* Foreground content */}
       <div className="relative mx-auto h-full z-10 w-6/7 flex items-center flex-col justify-center ">
         <div

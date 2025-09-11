@@ -47,6 +47,36 @@ body,
   height: 100%;
   background-color: oklch(16.5% 0.012 236.6);
 }
+
+/* Global scrollbar styling */
+html,
+body {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #769cb6 ;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3d4699, #769cb6);
+  border-radius: 9999px;
+  border: 2px solid transparent; /* creates padding/gap */
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4b56a8, #3d4699);
+}
+
 .section {
   position: relative;
   width: 100%;

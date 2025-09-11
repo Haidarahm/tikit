@@ -13,31 +13,33 @@ function Home() {
   useEffect(() => {
     // Animate Element 1 to bottom:0, left:0
     gsap.to(".element1", {
-      y: "170vh",
-      x: "100vw",
+      top: "140%",
+      left: "70%",
       rotate: 180,
       duration: 1.5,
-      ease: "ease-in-out",
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: ".home-scroll-trigger", // Trigger on scrolling this container
-        start: "top 0%", // Start when top of trigger hits 80% from top of viewport
+        scroller: ".sections",
+        start: "top 80%",
         end: "bottom 0%", // Optional: define end
-        scrub: 0.5, // Smooth animation while scrolling
+        scrub: 1.5, // Smooth animation while scrolling
       },
     });
 
     // Animate Element 2 to top:0, right:0
     gsap.to(".element2", {
-      x:"-80vw",
-      y:"40vh",
-      rotate:125,
+      bottom: "-40%",
+      right: "70%",
+      rotate: 100,
       duration: 1.5,
-      ease: "power2.out",
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: ".home-scroll-trigger",
-        start: "top 0%",
+        scroller: ".sections",
+        start: "top 80%",
         end: "bottom 0%",
-        scrub: true,
+        scrub: 1.5,
       },
     });
 
@@ -48,21 +50,19 @@ function Home() {
   }, []);
 
   return (
-    <div className="relative home-scroll-trigger overflow-hidden scroll-smooth">
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        {/* Element 1 - Starts top-left, moves to bottom-left */}
-        <img
-          src={element2} // Fixed: element1 should use element1.png
-          alt="Decorative element 1"
-          className="element1 absolute top-0 left-0 w-auto h-auto max-w-[300px] max-h-[300px]"
-        />
-        {/* Element 2 - Starts center-right, moves to top-right */}
-        <img
-          src={element1} // Fixed: element2 should use element2.png
-          alt="Decorative element 2"
-          className="element2 absolute bottom-1/2  right-0 w-auto h-auto max-w-[400px] max-h-[400px]"
-        />
-      </div>
+    <div className="sections  relative snap-y snap-mandatory h-screen overflow-y-auto  overflow-x-hidden home-scroll-trigger">
+      {/* Element 1 - Starts top-left, moves to bottom-left */}
+      <img
+        src={element2} // Fixed: element1 should use element1.png
+        alt="Decorative element 1"
+        className="element1 absolute -top-6/7 z-10 -left-1/2 w-auto h-auto max-w-[300px] max-h-[300px]"
+      />
+      {/* Element 2 - Starts center-right, moves to top-right */}
+      <img
+        src={element1} // Fixed: element2 should use element2.png
+        alt="Decorative element 2"
+        className="element2 absolute bottom-1/5 -rotate-45 z-10 -right-1/2 w-auto h-auto max-w-[400px] max-h-[400px]"
+      />
       <Hero />
       <Numbers />
     </div>
