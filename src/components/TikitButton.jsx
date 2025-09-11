@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa6";
 
 function TikitButton({ text }) {
   return (
-    <button className="group relative inline-flex items-center gap-2 font-hero-light text-sm bg-primary text-background px-4 py-2 rounded-full transition-[transform,background-color] duration-300 focus:outline-none hover:scale-[1.03] active:scale-[0.98]">
+    <button className="group cursor-pointer relative inline-flex items-center gap-2 font-hero-light text-sm bg-primary text-background px-4 py-2 rounded-full transition-[transform,background-color] duration-300 focus:outline-none hover:scale-[1.03] active:scale-[0.98]">
       <span className="whitespace-nowrap transition-transform duration-300 group-hover:translate-x-1 group-focus:translate-x-1">
         {text}
       </span>

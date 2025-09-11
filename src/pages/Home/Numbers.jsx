@@ -1,5 +1,6 @@
 import React from "react";
 import LiquidEther from "../../components/aurora/LiquidEther";
+import CountUp from "../../components/CountUp";
 
 function Numbers() {
   const data = [
@@ -7,6 +8,7 @@ function Numbers() {
       count: 300,
       text1: "Happy",
       text2: "Clients",
+      plus: true,
     },
     {
       count: 8,
@@ -18,6 +20,7 @@ function Numbers() {
       count: 500,
       text1: "Completed",
       text2: "Projects",
+      plus: true,
     },
     {
       count: 98,
@@ -57,13 +60,12 @@ function Numbers() {
           Clients who stay. Most of ours work with us well beyond one project
         </h3>
         <div className="numbers relative flex justify-center  mt-8 h-[45vh] items-stretch">
-          {data.map(({ count, text1, text2, bottom }, idx) => (
+          {data.map(({ count, text1, text2, bottom,plus }, idx) => (
             <div
               key={idx}
               className={`circle
                 
                 ${bottom ? "w-[179px] h-[179px] " : "w-[210px] h-[210px]"}
-                 
                  rounded-full
                   bg-[#e9e7e518] 
                   text-center
@@ -73,8 +75,18 @@ function Numbers() {
                      bottom ? "self-end" : "self-start"
                    }`}
             >
-              <span className="font-light text-center text-[50px]">
-                +{count}
+              <span className="font-light text-center h-[65px] flex items-center text-[50px]">
+                
+                {
+                  <CountUp
+                    from={0}
+                    to={count}
+                    separator=","
+                    direction="up"
+                    duration={1}
+                    className="count-up-text"
+                  />
+                } {plus?'+':''}
               </span>
               <h2 className="text-[18px] leading-tight">
                 {text1} <br /> {text2}
