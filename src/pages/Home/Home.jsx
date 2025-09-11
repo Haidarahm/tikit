@@ -55,13 +55,13 @@ function Home() {
       <img
         src={element2} // Fixed: element1 should use element1.png
         alt="Decorative element 1"
-        className="element1 absolute -top-6/7 z-10 -left-1/2 w-auto h-auto max-w-[300px] max-h-[300px]"
+        className="element1 absolute -top-6/7 z-10 -left-1/2 w-auto h-auto max-w-[300px] max-h-[300px] float-up-down"
       />
       {/* Element 2 - Starts center-right, moves to top-right */}
       <img
         src={element1} // Fixed: element2 should use element2.png
         alt="Decorative element 2"
-        className="element2 absolute bottom-1/5 -rotate-45 z-10 -right-1/2 w-auto h-auto max-w-[400px] max-h-[400px]"
+        className="element2 absolute bottom-1/5 -rotate-45 z-10 -right-1/2 w-auto h-auto max-w-[400px] max-h-[400px] float-up-down-delayed"
       />
       <Hero />
       <Numbers />
