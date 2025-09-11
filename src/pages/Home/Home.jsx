@@ -13,11 +13,12 @@ function Home() {
   useEffect(() => {
     // Animate Element 1 to bottom:0, left:0
     gsap.to(".element1", {
-      top: "140%",
+      top: "145%",
       left: "70%",
-      rotate: 180,
+      rotation: 100,
       duration: 1.5,
       ease: "power1.inOut",
+
       scrollTrigger: {
         trigger: ".home-scroll-trigger", // Trigger on scrolling this container
         scroller: ".sections",
@@ -31,7 +32,7 @@ function Home() {
     gsap.to(".element2", {
       bottom: "-40%",
       right: "70%",
-      rotate: 100,
+      rotation: 100,
       duration: 1.5,
       ease: "power1.inOut",
       scrollTrigger: {
