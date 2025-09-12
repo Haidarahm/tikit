@@ -48,7 +48,7 @@ function Numbers() {
   ];
 
   return (
-    <div className="section font-hero-light flex flex-col mx-auto h-full z-10 w-6/7 justify-center">
+    <div className="section font-hero-light flex flex-col mx-auto  h-[calc(100%-104px)] mt-[104px]  z-10 w-6/7 justify-center">
       <div className="texts text-center">
         <h1
           className="text-[32px] font-bold"
