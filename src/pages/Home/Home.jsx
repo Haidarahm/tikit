@@ -44,6 +44,23 @@ function Home() {
       },
     });
 
+    // Animate CSS filter on scroll (e.g., blur and saturation)
+    gsap.fromTo(
+      [".element1", ".element2"],
+      { filter: "grayscale(0px) " },
+      {
+        filter: "grayscale(100%) ",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".home-scroll-trigger",
+          scroller: ".sections",
+          start: "top 00%",
+          end: "bottom 0%",
+          scrub: 1.5,
+        },
+      }
+    );
+
     // Cleanup ScrollTrigger on unmount
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -56,13 +73,13 @@ function Home() {
       <img
         src={element2} // Fixed: element1 should use element1.png
         alt="Decorative element 1"
-        className="element1 absolute -top-6/7 z-10 -left-1/2 w-auto h-auto max-w-[300px] max-h-[300px] float-up-down"
+        className="element1 absolute -top-6/7  z-10 -left-[42%] w-auto h-auto max-w-[300px] max-h-[300px] float-up-down"
       />
       {/* Element 2 - Starts center-right, moves to top-right */}
       <img
         src={element1} // Fixed: element2 should use element2.png
         alt="Decorative element 2"
-        className="element2 absolute bottom-1/5 -rotate-45 z-10 -right-1/2 w-auto h-auto max-w-[400px] max-h-[400px] float-up-down-delayed"
+        className="element2 absolute bottom-[30%] -rotate-45 z-10 -right-[42%] w-auto h-auto max-w-[400px] max-h-[400px] float-up-down-delayed"
       />
       <Hero />
       <Numbers />

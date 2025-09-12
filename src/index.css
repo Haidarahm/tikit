@@ -45,7 +45,8 @@ html,
 body,
 #root {
   height: 100%;
-  background-color: oklch(16.5% 0.012 236.6);
+  /* background-color: oklch(16.5% 0.012 236.6); */
+  background-color: black;
 }
 
 /* Global scrollbar styling */
@@ -79,8 +80,7 @@ body {
 
 .section {
   position: relative;
-
-  height: 100vh;
+ 
   color: white;
   overflow: hidden;
   scroll-snap-align: start;

@@ -4,10 +4,10 @@ import AvatarGroupDemo from "../../components/ui/AvatarGroupDemo";
 
 function Hero() {
   return (
-    <div className="section">
+    <div className="section h-[calc(100vh-32px)] rounded-[25px] w-[95vw] overflow-hidden mx-auto mt-[16px]">
       {/* Background layer */}
 
-      <div className="pointer-events-none absolute inset-0 z-0">
+      <div className="pointer-events-none h-full mt-[16px]  w-[95vw] mx-auto  overflow-hidden bg-[#101b22] rounded-[25px] absolute inset-0 z-0">
         <LiquidEther
           colors={["#3d4699", "#5d6fa1", "#769cb6"]}
           mouseForce={20}
@@ -16,17 +16,14 @@ function Hero() {
           viscous={30}
           iterationsViscous={32}
           iterationsPoisson={32}
-          resolution={0.65}
+          resolution={0.5}
           isBounce={false}
           autoDemo={true}
           autoSpeed={0.5}
-          autoIntensity={1.2}
+          autoIntensity={2.2}
           takeoverDuration={0.25}
-          autoResumeDelay={500}
+          autoResumeDelay={3000}
           autoRampDuration={0.6}
-          sideBias={0.8}
-          emitCount={5}
-          emitRadius={0.12}
         />
       </div>
 

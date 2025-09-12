@@ -176,7 +176,7 @@ function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="fixed top-4 inset-x-0 z-50"
+      className="fixed top-10 inset-x-0 z-50"
       data-aos="fade-down"
       style={{ transform: "translateY(0)" }}
     >
@@ -219,10 +219,10 @@ function Navbar() {
               </Link>
             ))}
           </div>
-        </div><div className="w-[137px]">
-        <TikitButton text="Get Quetion"/>
         </div>
-        
+        <div className="w-[137px]">
+          <TikitButton text="Get Quetion" />
+        </div>
       </div>
     </nav>
   );
