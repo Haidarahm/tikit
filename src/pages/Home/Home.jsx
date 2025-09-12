@@ -1,8 +1,8 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import Hero from "./Hero";
 import Numbers from "./Numbers";
-import element1 from "../../assets/elements/1.png";
-import element2 from "../../assets/elements/2.png";
+import element1 from "../../assets/elements/5.png";
+import element2 from "../../assets/elements/6.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
