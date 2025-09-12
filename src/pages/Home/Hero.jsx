@@ -9,7 +9,7 @@ function Hero() {
 
       <div className="pointer-events-none h-full mt-[16px]  w-[95vw] mx-auto  overflow-hidden bg-[#101b22] rounded-[25px] absolute inset-0 z-0">
         <LiquidEther
-          colors={["#3d4699", "#5d6fa1", "#769cb6"]}
+          colors={["#142236", "#5d6fa1", "#769cb6"]}
           mouseForce={20}
           cursorSize={100}
           isViscous={false}
@@ -22,7 +22,7 @@ function Hero() {
           autoSpeed={0.5}
           autoIntensity={2.2}
           takeoverDuration={0.25}
-          autoResumeDelay={3000}
+          autoResumeDelay={1000}
           autoRampDuration={0.6}
         />
       </div>

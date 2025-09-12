@@ -1,25 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import LiquidEther from "../../components/aurora/LiquidEther";
 import CountUp from "../../components/CountUp";
-
+import Aos from "aos";
 function Numbers() {
-  const containerRef = useRef(null);
-  const [revealed, setRevealed] = useState(false);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setRevealed(entry.isIntersecting);
-        });
-      },
-      { root: null, threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
   const data = [
     {
       count: 300,
@@ -71,39 +54,29 @@ function Numbers() {
         />
       </div> */}
       {/* <div className="relative mx-auto h-full z-10 w-6/7 flex items-center flex-col justify-center"></div> */}
-      <div className="texts">
+      <div className="texts text-center ">
         <h1
-          className="text-[36px] font-bold"
+          className="text-[32px] font-bold "
+          
           style={{
-            opacity: revealed ? 1 : 0,
-            transform: revealed ? "translateY(0px)" : "translateY(16px)",
-            transition: "opacity 500ms ease, transform 500ms ease",
-            transitionDelay: revealed ? "0ms" : "0ms",
+            background: "linear-gradient(135deg, #07D9F5 0% ,  #07D9F5 25% , #B387FF 50%, #B387FF 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
           }}
         >
           The best measure of success?
         </h1>
-        <h3
-          className="text-[32px] font-light "
-          style={{
-            opacity: revealed ? 1 : 0,
-            transform: revealed ? "translateY(0px)" : "translateY(16px)",
-            transition: "opacity 500ms ease, transform 500ms ease",
-            transitionDelay: revealed ? "120ms" : "0ms",
-          }}
-        >
+        <h3 className="text-[25px] font-light ">
           Clients who stay. Most of ours work with us well beyond one project
         </h3>
-        <div
-          ref={containerRef}
-          className="numbers relative flex justify-center  mt-8 h-[45vh] items-stretch"
-        >
+        <div className="numbers relative flex justify-center  mt-8 h-[45vh] items-stretch">
           {data.map(({ count, text1, text2, bottom, plus }, idx) => (
             <div
               key={idx}
               className={`circle
                 
-                ${bottom ? "w-[179px] h-[179px] " : "w-[210px] h-[210px]"}
+                w-[200px] h-[200px]
                  rounded-full
                   bg-[#e9e7e518] 
                   text-center
@@ -112,14 +85,8 @@ function Numbers() {
                    items-center justify-center backdrop-blur-md  ${
                      bottom ? "self-end" : "self-start"
                    }`}
-              style={{
-                opacity: revealed ? 1 : 0,
-                transform: revealed ? "translateY(0px)" : "translateY(16px)",
-                transition: "opacity 500ms ease, transform 500ms ease",
-                transitionDelay: `${idx * 120}ms`,
-              }}
             >
-              <span className="font-light text-center h-[65px] flex items-center text-[50px]">
+              <span className="font-light text-center h-[65px] flex items-center text-[46px]">
                 {
                   <CountUp
                     from={0}
@@ -132,7 +99,7 @@ function Numbers() {
                 }{" "}
                 {plus ? "+" : ""}
               </span>
-              <h2 className="text-[18px] leading-tight">
+              <h2 className="text-[16px] leading-tight">
                 {text1} <br /> {text2}
               </h2>
             </div>
