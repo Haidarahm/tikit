@@ -18,7 +18,7 @@ function Numbers() {
     return () => {
       if (scroller) scroller.removeEventListener("scroll", Aos.refresh);
     };
-  }, []); 
+  }, []);
 
   const data = [
     {
@@ -48,8 +48,8 @@ function Numbers() {
   ];
 
   return (
-    <div className="section font-hero-light flex flex-col mx-auto  h-[calc(100%-104px)] mt-[104px]  z-10 w-6/7 justify-center">
-      <div className="texts text-center">
+    <div className="section font-hero-light flex flex-col mx-auto  h-screen  z-10 w-6/7 justify-center">
+      <div className="texts text-center  mt-[104px]">
         <h1
           className="text-[32px] font-bold"
           data-aos="fade-up"
@@ -64,8 +64,11 @@ function Numbers() {
         >
           The best measure of success?
         </h1>
-        <h3 className="text-[25px] font-light" data-aos="fade-up"
-          data-aos-delay="100">
+        <h3
+          className="text-[25px] font-light"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           Clients who stay. Most of ours work with us well beyond one project
         </h3>
 

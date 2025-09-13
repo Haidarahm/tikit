@@ -4,7 +4,7 @@ import AvatarGroupDemo from "../../components/ui/AvatarGroupDemo";
 
 function Hero() {
   return (
-    <div className="section h-[calc(100vh-32px)] rounded-[25px] w-[95vw] overflow-hidden mx-auto mt-[16px]">
+    <div className="section h-screen rounded-[25px] w-[95vw] overflow-hidden mx-auto">
       {/* Background layer */}
 
       <div className="pointer-events-none h-full mt-[16px]  w-[95vw] mx-auto  overflow-hidden bg-[#101b22] rounded-[25px] absolute inset-0 z-0">

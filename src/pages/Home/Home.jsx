@@ -5,6 +5,8 @@ import element1 from "../../assets/elements/5.png";
 import element2 from "../../assets/elements/6.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Goals from "./Goals";
+import Services from "./Services";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -83,6 +85,8 @@ function Home() {
       />
       <Hero />
       <Numbers />
+      <Goals />
+      <Services />
     </div>
   );
 }
