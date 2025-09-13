@@ -86,7 +86,7 @@ function Home() {
       <Hero />
       <Numbers />
       <Goals />
-      <Services />
+      {/* <Services /> */}
     </div>
   );
 }

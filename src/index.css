@@ -84,7 +84,7 @@ body {
   color: white;
   overflow: hidden;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  /* scroll-snap-stop: always; */
 }
 
 /* Floating animation for decorative elements */
