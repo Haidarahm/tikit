@@ -15,16 +15,14 @@ function Home() {
   useEffect(() => {
     // Animate Element 1 to bottom:0, left:0
     gsap.to(".element1", {
-      top: "145%",
-      left: "70%",
+      top: "900px",
+      left: "1000px",
       rotation: 100,
       duration: 1.5,
       ease: "power1.inOut",
 
       scrollTrigger: {
-        trigger: ".home-scroll-trigger", // Trigger on scrolling this container
-        scroller: ".sections",
-        start: "top 80%",
+        start: "top 0%",
         end: "bottom 0%", // Optional: define end
         scrub: 1.5, // Smooth animation while scrolling
       },
@@ -32,15 +30,13 @@ function Home() {
 
     // Animate Element 2 to top:0, right:0
     gsap.to(".element2", {
-      bottom: "-40%",
-      right: "70%",
+       top: "80vh",
+       right: "70%",
       rotation: 100,
       duration: 1.5,
       ease: "power1.inOut",
       scrollTrigger: {
-        trigger: ".home-scroll-trigger",
-        scroller: ".sections",
-        start: "top 80%",
+        start: "top 0%",
         end: "bottom 0%",
         scrub: 1.5,
       },
@@ -55,8 +51,8 @@ function Home() {
         ease: "none",
         scrollTrigger: {
           trigger: ".home-scroll-trigger",
-          scroller: ".sections",
-          start: "top 00%",
+
+          start: "top 0%",
           end: "bottom 0%",
           scrub: 1.5,
         },
@@ -70,23 +66,23 @@ function Home() {
   }, []);
 
   return (
-    <div className="sections  relative snap-y snap-mandatory h-screen overflow-y-auto  overflow-x-hidden home-scroll-trigger">
+    <div className="sections relative h-full w-full overflow-hidden home-scroll-trigger">
       {/* Element 1 - Starts top-left, moves to bottom-left */}
       <img
         src={element2} // Fixed: element1 should use element1.png
         alt="Decorative element 1"
-        className="element1 absolute -top-6/7  z-10 -left-[42%] w-auto h-auto max-w-[300px] max-h-[300px] float-up-down"
+        className="element1 absolute top-4  z-10 left-8 w-auto h-auto max-w-[300px] max-h-[300px] float-up-down"
       />
       {/* Element 2 - Starts center-right, moves to top-right */}
       <img
         src={element1} // Fixed: element2 should use element2.png
         alt="Decorative element 2"
-        className="element2 absolute bottom-[30%] -rotate-45 z-10 -right-[42%] w-auto h-auto max-w-[400px] max-h-[400px] float-up-down-delayed"
+        className="element2 absolute top-[45vh] -rotate-45 z-10 right-0 w-auto h-auto max-w-[400px] max-h-[400px] float-up-down-delayed"
       />
       <Hero />
       <Numbers />
       <Goals />
-      {/* <Services /> */}
+      <Services />
     </div>
   );
 }
