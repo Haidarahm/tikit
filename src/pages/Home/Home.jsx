@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Goals from "./Goals";
 import Services from "./Services";
 import { Connections } from "./Connections";
+import Reviews from "./Reviews";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -69,6 +70,7 @@ function Home() {
       <Goals />
       <Services />
       <Connections />
+      <Reviews />
     </div>
   );
 }
