@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Goals from "./Goals";
 import Services from "./Services";
+import { Connections } from "./Connections";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -17,21 +18,7 @@ function Home() {
     gsap.to(".element1", {
       top: "900px",
       left: "1000px",
-      rotation: 100,
-      duration: 1.5,
-      ease: "power1.inOut",
-
-      scrollTrigger: {
-        start: "top 0%",
-        end: "bottom 0%", // Optional: define end
-        scrub: 1.5, // Smooth animation while scrolling
-      },
-    });
-
-    // Animate Element 2 to top:0, right:0
-    gsap.to(".element2", {
-       top: "80vh",
-       right: "70%",
+      filter:"grayscale(100%)",
       rotation: 100,
       duration: 1.5,
       ease: "power1.inOut",
@@ -42,22 +29,22 @@ function Home() {
       },
     });
 
-    // Animate CSS filter on scroll (e.g., blur and saturation)
-    gsap.fromTo(
-      [".element1", ".element2"],
-      { filter: "grayscale(0px) " },
-      {
-        filter: "grayscale(100%) ",
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".home-scroll-trigger",
+    // Animate Element 2 to top:0, right:0
+    gsap.to(".element2", {
+      top: "80vh",
+      right: "70%",
+      filter:"grayscale(100%)",
+      rotation: 100,
+      duration: 1.5,
+      ease: "power1.inOut",
+      scrollTrigger: {
+        start: "top 0%",
+        end: "bottom 0%",
+        scrub: 1.5,
+      },
+    });
 
-          start: "top 0%",
-          end: "bottom 0%",
-          scrub: 1.5,
-        },
-      }
-    );
+  
 
     // Cleanup ScrollTrigger on unmount
     return () => {
@@ -77,12 +64,12 @@ function Home() {
       <img
         src={element1} // Fixed: element2 should use element2.png
         alt="Decorative element 2"
-        className="element2 absolute top-[45vh] -rotate-45 z-10 right-0 w-auto h-auto max-w-[400px] max-h-[400px] float-up-down-delayed"
+        className="element2 absolute top-[45vh] rotate-90 z-10 right-0 w-auto h-auto max-w-[400px] max-h-[400px] float-up-down-delayed"
       />
       <Hero />
       <Numbers />
       <Goals />
-      <Services />
+      <Connections />
     </div>
   );
 }
