@@ -5,7 +5,7 @@ import image2 from "../../assets/images/goal-image-2.png";
 import image3 from "../../assets/images/goal-image-3.png";
 function Goals() {
   return (
-    <div className="section font-hero-light flex  mx-auto h-[230vh] z-10 w-6/7">
+    <div className="section font-hero-light flex  mx-auto h-[230vh] z-10   w-6/7">
       <ScrollStack
         useWindowScroll={true}
         itemDistance={0}

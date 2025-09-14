@@ -3,7 +3,7 @@ import CardSwap, { Card } from "../../components/CardSwap";
 
 export const Connections = () => {
   return (
-    <div className="section  relative font-hero-light flex items-center mx-auto justify-between min-h-screen w-[95vw] rounded-2xl">
+    <div style={{backgroundImage:"url(../../../assets/aurora-background.png)"}} className="section relative font-hero-light flex items-center mx-auto justify-between min-h-screen w-[95vw] rounded-2xl">
       <div className="text w-1/2">
         <h1 className="title font-bold text-[48px]">
           Bold, data-led <br /> marketing <br /> crafted by experts
