@@ -67,8 +67,8 @@ function Home() {
       <Hero />
       <Numbers />
       <Goals />
-      <Connections />
       <Services />
+      <Connections />
     </div>
   );
 }
