@@ -3,22 +3,31 @@ import CardSwap, { Card } from "../../components/CardSwap";
 
 export const Connections = () => {
   return (
-    <div style={{backgroundImage:"url(../../../assets/aurora-background.png)"}} className="section relative font-hero-light flex items-center mx-auto justify-between min-h-screen w-[95vw] rounded-2xl">
-      <div className="text w-1/2">
-        <h1 className="title font-bold text-[48px]">
+    <div
+      style={{
+        backgroundImage: "url('/src/assets/backgrounds/aurora-background.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+      className="section relative font-hero-light flex items-center mx-auto justify-between min-h-screen w-[95vw] rounded-2xl"
+    >
+      <div className="text w-1/2 relative z-10">
+        <h1 className="title font-bold text-[48px] text-white">
           Bold, data-led <br /> marketing <br /> crafted by experts
         </h1>
-        <p className=" font-light text-[20px]">
-          Today’s consumers expect more than ads — they expect connection. We
-          blend data with creativity to help brands reach and resonate with the
+        <p className=" font-light text-[20px] text-gray-300">
+          Today's consumers expect more than ads — they expect connection. We
+          blend data with creativity to help brands <be/> reach and resonate with the
           right audience.
         </p>
       </div>
 
-      <div className="relative  w-1/2 h-[600px]">
+      <div className="relative w-1/2 h-[600px] z-10">
         <CardSwap
+        width={600}
           cardDistance={60}
-          verticalDistance={70}
+          verticalDistance={80}
           delay={5000}
           pauseOnHover={false}
         >
