@@ -18,7 +18,7 @@ function Home() {
     gsap.to(".element1", {
       top: "900px",
       left: "1000px",
-      filter:"grayscale(100%)",
+      filter: "grayscale(100%)",
       rotation: 100,
       duration: 1.5,
       ease: "power1.inOut",
@@ -31,9 +31,9 @@ function Home() {
 
     // Animate Element 2 to top:0, right:0
     gsap.to(".element2", {
-      top: "80vh",
+      top: "90vh",
       right: "70%",
-      filter:"grayscale(100%)",
+      filter: "grayscale(100%)",
       rotation: 100,
       duration: 1.5,
       ease: "power1.inOut",
@@ -43,8 +43,6 @@ function Home() {
         scrub: 1.5,
       },
     });
-
-  
 
     // Cleanup ScrollTrigger on unmount
     return () => {
@@ -64,12 +62,13 @@ function Home() {
       <img
         src={element1} // Fixed: element2 should use element2.png
         alt="Decorative element 2"
-        className="element2 absolute top-[45vh] rotate-90 z-10 right-0 w-auto h-auto max-w-[400px] max-h-[400px] float-up-down-delayed"
+        className="element2 absolute top-[55vh] rotate-90 z-10 right-12 w-auto h-auto max-w-[300px] max-h-[300px] float-up-down-delayed"
       />
       <Hero />
       <Numbers />
       <Goals />
       <Connections />
+      <Services />
     </div>
   );
 }
