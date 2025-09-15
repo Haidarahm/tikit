@@ -107,40 +107,40 @@ function Navbar() {
     });
 
     // scroll handler: hide on scroll down, show on scroll up
-    // const handleScroll = () => {
-    //   const currentY = window.scrollY || window.pageYOffset;
+    const handleScroll = () => {
+      const currentY = window.scrollY || window.pageYOffset;
 
-    //   // small threshold to avoid jitter
-    //   if (Math.abs(currentY - lastScrollY.current) < 6) {
-    //     ticking.current = false;
-    //     return;
-    //   }
+      // small threshold to avoid jitter
+      if (Math.abs(currentY - lastScrollY.current) < 6) {
+        ticking.current = false;
+        return;
+      }
 
-    //   if (currentY > lastScrollY.current && currentY > 80) {
-    //     // scrolling down -> hide
-    //     if (!hidden.current && navRef.current) {
-    //       gsap.to(navRef.current, {
-    //         y: -120,
-    //         duration: 0.28,
-    //         ease: "ease-in-out"
-    //       });
-    //       hidden.current = true;
-    //     }
-    //   } else {
-    //     // scrolling up -> show
-    //     if (hidden.current && navRef.current) {
-    //       gsap.to(navRef.current, {
-    //         y: 0,
-    //         duration: 0.28,
-    //         ease: "power2.out",
-    //       });
-    //       hidden.current = false;
-    //     }
-    //   }
+      if (currentY > lastScrollY.current && currentY > 80) {
+        // scrolling down -> hide
+        if (!hidden.current && navRef.current) {
+          gsap.to(navRef.current, {
+            y: -120,
+            duration: 0.35,
+            ease: "power2.out",
+          });
+          hidden.current = true;
+        }
+      } else {
+        // scrolling up -> show
+        if (hidden.current && navRef.current) {
+          gsap.to(navRef.current, {
+            y: 0,
+            duration: 0.35,
+            ease: "power2.out",
+          });
+          hidden.current = false;
+        }
+      }
 
-    //   lastScrollY.current = currentY;
-    //   ticking.current = false;
-    // };
+      lastScrollY.current = currentY;
+      ticking.current = false;
+    };
 
     const onScroll = () => {
       if (!ticking.current) {
