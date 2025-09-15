@@ -1,31 +1,27 @@
 import React from "react";
 import Masonry from "../../components/Masonry";
 
-const items = [
-  {
-    id: "1",
-    img: "https://picsum.photos/id/1015/600/900?grayscale",
-    url: "https://example.com/one",
-    height: 400,
-  },
-  {
-    id: "2",
-    img: "https://picsum.photos/id/1011/600/750?grayscale",
-    url: "https://example.com/two",
-    height: 250,
-  },
-  {
-    id: "3",
-    img: "https://picsum.photos/id/1020/600/800?grayscale",
-    url: "https://example.com/three",
-    height: 600,
-  },
-  // ... more items
-];
+// Import all images from assets/who we are (jpg, jpeg, png, webp)
+// Vite will inline URLs for us
+const whoWeAreImages = Object.values(
+  import.meta.glob("../../assets/who-we-are/*.{jpg,jpeg,png,webp}", {
+    eager: true,
+    as: "url",
+  })
+);
+
+// Build items array dynamically from imported images
+const items = whoWeAreImages.map((imgUrl, idx) => ({
+  id: String(idx + 1),
+  img: imgUrl,
+  url: "#",
+  // Vary heights for a nicer masonry layout
+  height: [400, 260, 560, 320, 480, 360][idx % 6],
+}));
 
 const AboutUs = () => {
   return (
-    <div className="section font-hero-light flex-col mx-auto h-[60vh] z-10 w-6/7 my-[100px] ">
+    <div className="section font-hero-light flex-col mx-auto min-h-screen z-10 w-6/7 my-[100px] ">
       <Masonry
         items={items}
         ease="power3.out"

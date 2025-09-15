@@ -46,7 +46,7 @@ function Goals() {
         // baseScale={0.8}
         // scaleDuration={10}
         // rotationAmount={0}
-         blurAmount={50}
+         blurAmount={20}
       >
         {goalsData.map((goal) => (
           <ScrollStackItem
