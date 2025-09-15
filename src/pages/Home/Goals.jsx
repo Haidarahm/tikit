@@ -8,7 +8,7 @@ function Goals() {
   const goalsData = [
     {
       id: 1,
-      title: "Amplify your brand's reach",
+      title: "Amplify your  brand's reach",
       description:
         "Reach real audiences with meaningful content. We grow traffic that actually converts.",
       image: image1,
@@ -46,7 +46,7 @@ function Goals() {
         // baseScale={0.8}
         // scaleDuration={10}
         // rotationAmount={0}
-        // blurAmount={10}
+         blurAmount={50}
       >
         {goalsData.map((goal) => (
           <ScrollStackItem
@@ -54,13 +54,8 @@ function Goals() {
             itemClassName={`flex relative items-center  overflow-hidden ${goal.backgroundColor} opacity-90`}
           >
             <div className="text">
-              <h2 className="font-bold text-[52px] filter backdrop-blur-lg leading-[50px] mb-[22px]">
-                {goal.title.split(" ").map((word, index) => (
-                  <React.Fragment key={index}>
-                    {word}
-                    {index === 1 && <br />}
-                  </React.Fragment>
-                ))}
+              <h2 className="font-bold max-w-[500px] text-[52px] filter backdrop-blur-lg leading-[50px] mb-[22px]">
+                {goal.title}
               </h2>
               <p className="text-[32px] leading-[35px]">{goal.description}</p>
             </div>
