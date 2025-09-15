@@ -56,21 +56,24 @@ function Reviews() {
   ];
 
   return (
-    <div className="section font-hero-light flex mx-auto h-[50vh] z-10 w-6/7 justify-between items-center">
-      <h1 className="font-bold text-[48px] leading-[66px] text-white mb-8">
-        What our clients <br /> say about us
-      </h1>
+    <div className="section font-hero-light overflow-visible min-h-[70vh] justify-center  flex flex-col mx-auto z-10 w-6/7  ">
+      <h1 className="text-center font-bold text-[32px] mb-[38px]">Reviews</h1>
+      <div className="main flex justify-between items-center">
+        <h1 className="font-bold text-[48px] leading-[66px] text-white mb-8">
+          What our clients <br /> say about us
+        </h1>
 
-      <div className=" flex justify-center">
-        <CardStack
-          items={reviewsData}
-          offset={10}
-          scaleFactor={0.06}
-          onCardChange={(frontCard) => {
-            setCurrentCard(frontCard);
-            console.log("Front card:", frontCard.name);
-          }}
-        />
+        <div className="flex justify-center">
+          <CardStack
+            items={reviewsData}
+            offset={10}
+            scaleFactor={0.06}
+            onCardChange={(frontCard) => {
+              setCurrentCard(frontCard);
+              console.log("Front card:", frontCard.name);
+            }}
+          />
+        </div>
       </div>
     </div>
   );
