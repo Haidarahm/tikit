@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
  * - items: Array<{ title: string; description: string; media?: React.ReactNode }>
  * - heightPerItemVh?: number (default 160)
  */
-export default function StickyPinnedSection({ items, heightPerItemVh = 160 }) {
+export default function StickyPinnedSection({ items, heightPerItemVh = 100 }) {
   const sectionRef = useRef(null);
   const [activeIdx, setActiveIdx] = useState(0);
 
@@ -53,7 +53,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 160 }) {
   return (
     <section
       ref={sectionRef}
-      style={{ height: `${sectionHeightVh}vh` }}
+      style={{ height: `100vh` }}
       className="relative w-full overflow-visible"
     >
       <div className="sticky top-0 flex h-screen items-start justify-center gap-10 p-10">
