@@ -7,10 +7,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Goals from "./Goals";
 import Services from "./Services";
-import { Connections } from "./Connections";
-import Reviews from "./Reviews";
+// import { Connections } from "./Connections";
+// import Reviews from "./Reviews"; // removed if file deleted
 import AboutUs from "./AboutUs";
-import WorkSection from "./Work";
+import WorkSection from "./WorkSection";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -71,10 +71,12 @@ function Home() {
       <Numbers />
       <Goals />
       <Services />
-      <Connections />
-      <Reviews />
+      {/* Reviews removed if not used */}
       <AboutUs />
-      <WorkSection />
+      {/* Ensure sticky section is not clipped by parent overflow */}
+      <div className="relative w-full overflow-visible">
+        <WorkSection />
+      </div>
     </div>
   );
 }

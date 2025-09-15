@@ -12,7 +12,7 @@ const images = [work1, work2, work3, work4, work5];
 
 gsap.registerPlugin(ScrollTrigger);
 
-function WorkSection() {
+function Work() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -81,21 +81,41 @@ function WorkSection() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="work-item md:col-span-2 overflow-hidden rounded-2xl">
-            <img src={images[0]} alt="work 1" className="w-full h-full object-cover block" />
+            <img
+              src={images[0]}
+              alt="work 1"
+              className="w-full h-full object-cover block"
+            />
           </div>
           <div className="work-item md:col-span-2 overflow-hidden rounded-2xl">
-            <img src={images[1]} alt="work 2" className="w-full h-full object-cover block" />
+            <img
+              src={images[1]}
+              alt="work 2"
+              className="w-full h-full object-cover block"
+            />
           </div>
 
           <div className="work-item lg:col-span-4 overflow-hidden rounded-2xl">
-            <img src={images[2]} alt="work 3" className="w-full h-full object-cover block" />
+            <img
+              src={images[2]}
+              alt="work 3"
+              className="w-full h-full object-cover block"
+            />
           </div>
 
           <div className="work-item md:col-span-2 overflow-hidden rounded-2xl">
-            <img src={images[3]} alt="work 4" className="w-full h-full object-cover block" />
+            <img
+              src={images[3]}
+              alt="work 4"
+              className="w-full h-full object-cover block"
+            />
           </div>
           <div className="work-item md:col-span-2 overflow-hidden rounded-2xl">
-            <img src={images[4]} alt="work 5" className="w-full h-full object-cover block" />
+            <img
+              src={images[4]}
+              alt="work 5"
+              className="w-full h-full object-cover block"
+            />
           </div>
         </div>
       </div>
@@ -103,4 +123,4 @@ function WorkSection() {
   );
 }
 
-export default WorkSection;
+export default Work;
