@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
  */
 export default function StickyPinnedSection({ items }) {
   const sectionRef = useRef(null);
+  const stickyRef = useRef(null);
   const mediaRefs = useRef([]);
   const textRefs = useRef([]);
 
@@ -57,7 +58,9 @@ export default function StickyPinnedSection({ items }) {
       });
 
       // Create a segment for each item: fade in, hold, fade out
-      const segment = 1; // one second per item; total duration ~= count seconds
+      const segment = 1; // abstract unit per item (scrubbed)
+      const textFadePortion = 0.12; // 12% fade in/out for text blocks
+      const mediaFadePortion = 0.18; // 18% fade in/out for media
       for (let i = 0; i < count; i++) {
         const textNode = textRefs.current[i];
         const mediaNode = mediaRefs.current[i];
@@ -65,9 +68,27 @@ export default function StickyPinnedSection({ items }) {
 
         if (textNode) {
           const letters = textNode.querySelectorAll(".letter");
-          // Gate the visibility of this block to its segment (slight gap to avoid overlap)
-          tl.set(textNode, { autoAlpha: 1, zIndex: 1 }, at + 0.0002);
-          tl.set(textNode, { autoAlpha: 0, zIndex: 0 }, at + segment - 0.0002);
+          // Smooth fade at segment edges for this text block
+          tl.fromTo(
+            textNode,
+            { autoAlpha: 0, zIndex: 1 },
+            {
+              autoAlpha: 1,
+              duration: segment * textFadePortion,
+              ease: "power2.out",
+            },
+            at
+          );
+          tl.to(
+            textNode,
+            {
+              autoAlpha: 0,
+              zIndex: 0,
+              duration: segment * textFadePortion,
+              ease: "power2.in",
+            },
+            at + segment - segment * textFadePortion
+          );
 
           if (letters.length) {
             gsap.set(letters, { opacity: 0, y: 30, visibility: "inherit" });
@@ -108,12 +129,25 @@ export default function StickyPinnedSection({ items }) {
             y: 20,
             filter: "blur(12px)",
           });
-          // Gate media visibility to its segment to avoid overlap
-          tl.to(mediaNode, { opacity: 1, duration: 0.0001, ease: "none" }, at);
+          // Smooth media fade in/out across the segment edges
+          tl.fromTo(
+            mediaNode,
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: segment * mediaFadePortion,
+              ease: "power2.out",
+            },
+            at
+          );
           tl.to(
             mediaNode,
-            { opacity: 0, duration: 0.0001, ease: "none" },
-            at + segment - 0.0005
+            {
+              opacity: 0,
+              duration: segment * mediaFadePortion,
+              ease: "power2.in",
+            },
+            at + segment - segment * mediaFadePortion
           );
           tl.to(
             mediaNode,
@@ -121,7 +155,7 @@ export default function StickyPinnedSection({ items }) {
               scale: 1,
               y: 0,
               filter: "blur(0px)",
-              duration: segment * 0.6,
+              duration: segment * (1 - mediaFadePortion * 2) * 0.6,
               ease: "power3.out",
             },
             at
@@ -132,13 +166,27 @@ export default function StickyPinnedSection({ items }) {
               scale: 1.04,
               y: -10,
               filter: "blur(8px)",
-              duration: segment * 0.5,
+              duration: segment * (1 - mediaFadePortion * 2) * 0.4,
               ease: "power2.inOut",
             },
             at + segment * 0.6
           );
         }
       }
+
+      // Smooth, scrubbed fade up near the end of the pin range
+      const fadeOutPortion = 0.12; // last 12% of the pin range
+      const fadeStart = pinDistance * (1 - fadeOutPortion);
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: el,
+            start: `top+=${fadeStart} top`,
+            end: `top+=${pinDistance} top`,
+            scrub: true,
+          },
+        })
+        .to(stickyRef.current, { autoAlpha: 0, y: -40, ease: "none" });
     });
 
     return () => ctx.revert();
@@ -152,7 +200,10 @@ export default function StickyPinnedSection({ items }) {
       style={{ height: `100vh` }}
       className="relative w-full overflow-visible"
     >
-      <div className="sticky top-0 flex h-screen items-center justify-center gap-10 p-10">
+      <div
+        ref={stickyRef}
+        className="sticky top-0 flex h-screen items-center justify-center gap-10 p-10"
+      >
         {/* Left column: stacked text items to avoid layout reflow */}
         <div className="relative h-[70vh] w-full max-w-2xl">
           {items.map((it, i) => (
