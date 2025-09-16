@@ -215,6 +215,26 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
           },
         })
         .to(stickyRef.current, { autoAlpha: 0, y: -40, ease: "none" });
+
+      // Featured Work title entrance on section enter
+      const fwLetters = el.querySelectorAll(".fw-letter");
+      if (fwLetters.length) {
+        const playFeaturedTitle = () => {
+          gsap.set(fwLetters, { opacity: 0, y: 12 });
+          gsap.to(fwLetters, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.02,
+            ease: "power3.out",
+          });
+        };
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 80%",
+          onEnter: playFeaturedTitle,
+        });
+      }
     });
 
     return () => ctx.revert();
@@ -233,7 +253,11 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
         className="sticky top-0 flex h-screen items-center justify-center gap-10 p-10"
       >
         <div className="pointer-events-none text-white text-[32px] font-bold absolute top-32 left-1/2 -translate-x-1/2 uppercase ">
-          Featured Work
+          {Array.from("Featured Work").map((ch, i) => (
+            <span key={i} className="fw-letter inline-block">
+              {ch === " " ? "\u00A0" : ch}
+            </span>
+          ))}
         </div>
         {/* Text column */}
         <div className="relative h-[70vh] mt-16 w-full max-w-2xl">
