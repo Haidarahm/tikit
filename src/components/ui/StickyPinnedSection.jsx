@@ -1,3 +1,4 @@
+// StickyPinnedSection.jsx
 import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -7,9 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * StickyPinnedSection
  * Props:
- * - items: Array<{ title: string; description: string; media?: React.ReactNode }>
+ * - items: Array<{ title: string; subtitle?: string; description: string; media?: React.ReactNode }>
+ * - heightPerItemVh: number (default 200)
  */
-export default function StickyPinnedSection({ items }) {
+export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
   const sectionRef = useRef(null);
   const stickyRef = useRef(null);
   const mediaRefs = useRef([]);
@@ -17,15 +19,14 @@ export default function StickyPinnedSection({ items }) {
 
   const count = items?.length ?? 0;
 
-  // Build a scrubbed timeline that pins the section and transitions items based on scroll
   useLayoutEffect(() => {
     const el = sectionRef.current;
     if (!el || !count) return;
 
-    const pinDistance = window.innerHeight * (count * 1.2);
+    const pinDistance = window.innerHeight * (count * (heightPerItemVh / 100));
 
     const ctx = gsap.context(() => {
-      // Ensure media hidden initially and text wrappers hidden to avoid cross-bleed
+      // Reset states
       gsap.set(mediaRefs.current, { opacity: 0, y: 20 });
       gsap.set(textRefs.current, {
         opacity: 0,
@@ -33,23 +34,15 @@ export default function StickyPinnedSection({ items }) {
         visibility: "hidden",
         zIndex: 0,
       });
-      // Hint heavy layers
-      mediaRefs.current.forEach((node) => {
-        if (!node) return;
-        gsap.set(node, { willChange: "opacity, transform, filter" });
-      });
-      textRefs.current.forEach((node) => {
-        if (!node) return;
-        gsap.set(node, { willChange: "opacity, transform" });
-      });
 
+      // Timeline
       const tl = gsap.timeline({
         defaults: { ease: "power2.out" },
         scrollTrigger: {
           trigger: el,
           start: "top top",
           end: `+=${pinDistance}`,
-          scrub: 0.6,
+          scrub: 0.8, // smoother scrub
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
@@ -57,18 +50,24 @@ export default function StickyPinnedSection({ items }) {
         },
       });
 
-      // Create a segment for each item: fade in, hold, fade out
-      const segment = 1; // abstract unit per item (scrubbed)
-      const textFadePortion = 0.12; // 12% fade in/out for text blocks
-      const mediaFadePortion = 0.18; // 18% fade in/out for media
+      // Adjusted values
+      const segment = 2.5; // longer per item
+      const textFadeDur = 0.6; // smoother fades
+      const mediaFadePortion = 0.15;
+      const switchDelay = 0.1;
+
       for (let i = 0; i < count; i++) {
         const textNode = textRefs.current[i];
         const mediaNode = mediaRefs.current[i];
         const at = i * segment;
 
+        // --- TEXT ---
         if (textNode) {
-          const letters = textNode.querySelectorAll(".letter");
-          // Smooth fade + subtle blur/lift at segment edges for this text block (fixed 0.3 duration)
+          const lettersTitle = textNode.querySelectorAll(".letter-title");
+          const lettersSubtitle = textNode.querySelectorAll(".letter-subtitle");
+          const lettersDesc = textNode.querySelectorAll(".letter-desc");
+          const lettersBtn = textNode.querySelectorAll(".letter-btn");
+
           tl.fromTo(
             textNode,
             { autoAlpha: 0, zIndex: 1, y: 8, filter: "blur(8px)" },
@@ -76,10 +75,10 @@ export default function StickyPinnedSection({ items }) {
               autoAlpha: 1,
               y: 0,
               filter: "blur(0px)",
-              duration: 0.3,
+              duration: textFadeDur,
               ease: "power2.out",
             },
-            at
+            at + switchDelay
           );
           tl.to(
             textNode,
@@ -88,96 +87,81 @@ export default function StickyPinnedSection({ items }) {
               zIndex: 0,
               y: -8,
               filter: "blur(6px)",
-              duration: 0.3,
+              duration: textFadeDur,
               ease: "power2.in",
             },
-            at + segment - segment * textFadePortion
+            at + segment - textFadeDur - switchDelay
           );
 
-          if (letters.length) {
-            const lettersTitle = textNode.querySelectorAll(".letter-title");
-            const lettersSubtitle =
-              textNode.querySelectorAll(".letter-subtitle");
-            const lettersDesc = textNode.querySelectorAll(".letter-desc");
+          // Letters animation
+          gsap.set([lettersTitle, lettersSubtitle, lettersDesc, lettersBtn], {
+            opacity: 0,
+            y: 30,
+            visibility: "inherit",
+          });
 
-            // Prepare all letters
-            gsap.set([lettersTitle, lettersSubtitle, lettersDesc], {
-              opacity: 0,
-              y: 30,
-              visibility: "inherit",
-            });
+          tl.to(
+            lettersTitle,
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              stagger: 0.03,
+              ease: "power3.out",
+            },
+            at + switchDelay
+          );
 
-            // Title in
+          if (lettersSubtitle.length) {
             tl.to(
-              lettersTitle,
+              lettersSubtitle,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.02,
+                ease: "power3.out",
+              },
+              at + switchDelay + 0.1
+            );
+          }
+          if (lettersDesc.length) {
+            tl.to(
+              lettersDesc,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.015,
+                ease: "power3.out",
+              },
+              at + switchDelay + 0.2
+            );
+          }
+          if (lettersBtn.length) {
+            tl.to(
+              lettersBtn,
               {
                 opacity: 1,
                 y: 0,
                 duration: 0.4,
                 stagger: 0.02,
                 ease: "power3.out",
-                overwrite: "auto",
               },
-              at
-            );
-
-            // Subtitle in (after title)
-            if (lettersSubtitle.length) {
-              tl.to(
-                lettersSubtitle,
-                {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.4,
-                  stagger: 0.02,
-                  ease: "power3.out",
-                  overwrite: "auto",
-                },
-                at + 0.05
-              );
-            }
-
-            // Description in (after subtitle)
-            if (lettersDesc.length) {
-              tl.to(
-                lettersDesc,
-                {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.4,
-                  stagger: 0.02,
-                  ease: "power3.out",
-                  overwrite: "auto",
-                },
-                at + 0.1
-              );
-            }
-
-            // No letter-out; block fades at edges
-          } else {
-            // Fallback: animate the whole block if letters aren't found
-            tl.fromTo(
-              textNode,
-              { y: 10 },
-              { y: 0, duration: segment * 0.4, ease: "power2.out" },
-              at
-            ).to(
-              textNode,
-              { y: 0, duration: segment * 0.35, ease: "none" },
-              at + segment * 0.6
+              at + switchDelay + 0.3
             );
           }
         }
 
+        // --- MEDIA ---
         if (mediaNode) {
-          // scale + blur + slight parallax
           gsap.set(mediaNode, {
             opacity: 0,
             scale: 0.96,
             y: 20,
             filter: "blur(12px)",
           });
-          // Smooth media fade in/out across the segment edges
+
           tl.fromTo(
             mediaNode,
             { opacity: 0 },
@@ -186,7 +170,7 @@ export default function StickyPinnedSection({ items }) {
               duration: segment * mediaFadePortion,
               ease: "power2.out",
             },
-            at
+            at + switchDelay
           );
           tl.to(
             mediaNode,
@@ -195,7 +179,7 @@ export default function StickyPinnedSection({ items }) {
               duration: segment * mediaFadePortion,
               ease: "power2.in",
             },
-            at + segment - segment * mediaFadePortion
+            at + segment - segment * mediaFadePortion - switchDelay
           );
           tl.to(
             mediaNode,
@@ -203,27 +187,16 @@ export default function StickyPinnedSection({ items }) {
               scale: 1,
               y: 0,
               filter: "blur(0px)",
-              duration: segment * (1 - mediaFadePortion * 2) * 0.6,
+              duration: segment * 0.8,
               ease: "power3.out",
             },
             at
           );
-          tl.to(
-            mediaNode,
-            {
-              scale: 1.04,
-              y: -10,
-              filter: "blur(8px)",
-              duration: segment * (1 - mediaFadePortion * 2) * 0.4,
-              ease: "power2.inOut",
-            },
-            at + segment * 0.6
-          );
         }
       }
 
-      // Smooth, scrubbed fade up near the end of the pin range
-      const fadeOutPortion = 0.12; // last 12% of the pin range
+      // Fade out entire section at the very end
+      const fadeOutPortion = 0.15;
       const fadeStart = pinDistance * (1 - fadeOutPortion);
       gsap
         .timeline({
@@ -238,21 +211,21 @@ export default function StickyPinnedSection({ items }) {
     });
 
     return () => ctx.revert();
-  }, [count]);
+  }, [count, heightPerItemVh]);
 
   if (!count) return null;
 
   return (
     <section
       ref={sectionRef}
-      style={{ height: `100vh` }}
+      style={{ height: "100vh" }}
       className="relative font-hero-light w-full overflow-visible"
     >
       <div
         ref={stickyRef}
         className="sticky top-0 flex h-screen items-center justify-center gap-10 p-10"
       >
-        {/* Left column: stacked text items to avoid layout reflow */}
+        {/* Text column */}
         <div className="relative h-[70vh] w-full max-w-2xl">
           {items.map((it, i) => (
             <div
@@ -292,15 +265,19 @@ export default function StickyPinnedSection({ items }) {
                 ))}
               </p>
               <div className="mt-8">
-                <button className="rounded-full bg-white/10 px-5 py-2 text-white backdrop-blur hover:bg-white/20 transition-colors">
-                  View Work
+                <button className="rounded-full overflow-hidden bg-white/10 px-5 py-2 text-white backdrop-blur hover:bg-white/20 transition-colors">
+                  {Array.from("View Work").map((ch, j) => (
+                    <span key={j} className="letter letter-btn inline-block">
+                      {ch === " " ? "\u00A0" : ch}
+                    </span>
+                  ))}
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Right column: sticky media panel (no placeholder background) */}
+        {/* Media column */}
         <div className="sticky z-10 top-10 h-[70vh] w-[28rem] shrink-0 overflow-hidden rounded-xl">
           <div className="relative h-full w-full">
             {items.map((it, i) => (
