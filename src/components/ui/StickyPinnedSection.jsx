@@ -269,7 +269,6 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
               style={{
                 willChange: "opacity, transform",
                 transform: "translateZ(0)",
-                pointerEvents: "none",
               }}
             >
               <h2 className="text-2xl font-bold text-[32px] text-white">
@@ -299,7 +298,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
                 ))}
               </p>
               <div className="mt-8">
-                <button className="rounded-full overflow-hidden bg-white/10 px-5 py-2 text-white backdrop-blur hover:bg-white/20 transition-colors">
+                <button className="rounded-full border border-white bg-transparent px-5 py-2 text-white transition-colors hover:bg-white hover:text-black">
                   {Array.from("View Work").map((ch, j) => (
                     <span key={j} className="letter letter-btn inline-block">
                       {ch === " " ? "\u00A0" : ch}
