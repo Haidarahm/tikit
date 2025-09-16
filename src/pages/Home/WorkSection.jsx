@@ -9,7 +9,7 @@ const content = [
   {
     title: "Hidden",
     subtitle: "Brand Campaign",
-    description: "Brand visuals, campaign assets and art direction.",
+    description: "See changes as they happen. With our platform, you can track every modification in real time..",
     content: (
       <img
         src={hiddenImg}
@@ -22,7 +22,7 @@ const content = [
   {
     title: "Krave",
     subtitle: "Digital Launch",
-    description: "Content system and digital launch materials.",
+    description: "See changes as they happen. With our platform, you can track every modification in real time.",
     content: (
       <img
         src={kraveImg}
@@ -35,7 +35,7 @@ const content = [
   {
     title: "Porsche",
     subtitle: "Editorial Series",
-    description: "Editorial layouts and social creatives.",
+    description: "See changes as they happen. With our platform, you can track every modification in real time.",
     content: (
       <img
         src={porscheImg}

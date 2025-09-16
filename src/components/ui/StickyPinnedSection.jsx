@@ -260,7 +260,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
           ))}
         </div>
         {/* Text column */}
-        <div className="relative h-[70vh] mt-16 w-full max-w-2xl">
+        <div className="relative h-[70vh] mt-16 w-full max-w-xl">
           {items.map((it, i) => (
             <div
               key={i}
@@ -279,7 +279,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
                 ))}
               </h2>
               {it.subtitle ? (
-                <p className="mt-2 text-slate-300">
+                <p className="mt-2  text-white text-[20px]">
                   {Array.from(it.subtitle ?? "").map((ch, j) => (
                     <span
                       key={j}
@@ -290,7 +290,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
                   ))}
                 </p>
               ) : null}
-              <p className="mt-6 max-w-sm text-slate-300">
+              <p className="mt-6 w-full text-white text-[24px]">
                 {Array.from(it.description ?? "").map((ch, j) => (
                   <span key={j} className="letter letter-desc inline-block">
                     {ch === " " ? "\u00A0" : ch}
