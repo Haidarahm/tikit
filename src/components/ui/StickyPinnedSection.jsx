@@ -65,38 +65,26 @@ export default function StickyPinnedSection({ items }) {
 
         if (textNode) {
           const letters = textNode.querySelectorAll(".letter");
-          // Gate the visibility of this block to its segment
-          tl.set(textNode, { autoAlpha: 1, zIndex: 1 }, at);
-          tl.set(textNode, { autoAlpha: 0, zIndex: 0 }, at + segment - 0.0001);
+          // Gate the visibility of this block to its segment (slight gap to avoid overlap)
+          tl.set(textNode, { autoAlpha: 1, zIndex: 1 }, at + 0.0002);
+          tl.set(textNode, { autoAlpha: 0, zIndex: 0 }, at + segment - 0.0002);
 
           if (letters.length) {
             gsap.set(letters, { opacity: 0, y: 30, visibility: "inherit" });
-            // Animate in letters (staggered)
+            // Animate in letters (staggered) and hold fully visible until segment end
             tl.to(
               letters,
               {
                 opacity: 1,
                 y: 0,
-                duration: segment * 0.5,
-                stagger: 0.02,
+                duration: segment * 0.3,
+                stagger: 0.01,
                 ease: "power3.out",
                 overwrite: "auto",
               },
               at
             );
-            // Animate out letters (reverse stagger)
-            tl.to(
-              letters,
-              {
-                opacity: 0,
-                y: -10,
-                duration: segment * 0.35,
-                stagger: { each: 0.015, from: "end" },
-                ease: "power2.inOut",
-                overwrite: "auto",
-              },
-              at + segment * 0.6
-            );
+            // No letter-out; hide whole block at segment end via gate above
           } else {
             // Fallback: animate the whole block if letters aren't found
             tl.fromTo(
@@ -106,7 +94,7 @@ export default function StickyPinnedSection({ items }) {
               at
             ).to(
               textNode,
-              { y: -10, duration: segment * 0.35, ease: "power2.inOut" },
+              { y: 0, duration: segment * 0.35, ease: "none" },
               at + segment * 0.6
             );
           }
@@ -196,8 +184,8 @@ export default function StickyPinnedSection({ items }) {
           ))}
         </div>
 
-        {/* Right column: sticky media panel */}
-        <div className="sticky z-10 top-10 h-[70vh] w-[28rem] shrink-0 overflow-hidden rounded-xl bg-white/5 backdrop-blur-md">
+        {/* Right column: sticky media panel (no placeholder background) */}
+        <div className="sticky z-10 top-10 h-[70vh] w-[28rem] shrink-0 overflow-hidden rounded-xl">
           <div className="relative h-full w-full">
             {items.map((it, i) => (
               <div
