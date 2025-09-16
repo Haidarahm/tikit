@@ -10,6 +10,7 @@ import Goals from "./Goals";
 import Services from "./Services";
 import AboutUs from "./AboutUs";
 import StickyPinnedSection from "../../components/ui/StickyPinnedSection";
+import WorkSection from "./WorkSection";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -52,29 +53,6 @@ function Home() {
     };
   }, []);
 
-  const content = [
-    {
-      title: "Hidden",
-      description: "Brand visuals, campaign assets and art direction.",
-      content: <div className="h-full w-full bg-black/20" />,
-    },
-    {
-      title: "Krave",
-      description: "Content system and digital launch materials.",
-      content: <div className="h-full w-full bg-black/20" />,
-    },
-    {
-      title: "Porsche",
-      description: "Editorial layouts and social creatives.",
-      content: <div className="h-full w-full bg-black/20" />,
-    },
-  ];
-
-  const items = content.map(({ title, description, content: media }) => ({
-    title,
-    description,
-    media,
-  }));
 
   return (
     <div className="sections relative w-full home-scroll-trigger">
@@ -95,10 +73,9 @@ function Home() {
       <Numbers />
       <Goals />
 
+    <WorkSection/>
       {/* Sticky pinned work section */}
-      <div className="relative z-10 w-full overflow-visible">
-        <StickyPinnedSection items={items} heightPerItemVh={100} />
-      </div>
+    
 
       <Services />
       <AboutUs />

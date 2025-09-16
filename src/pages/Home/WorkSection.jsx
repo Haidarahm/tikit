@@ -1,5 +1,6 @@
 import React from "react";
-import { StickyScroll } from "../../components/ui/sticky-scroll-reveal";
+import StickyPinnedSection from "../../components/ui/StickyPinnedSection";
+
 
 const content = [
   {
@@ -19,15 +20,16 @@ const content = [
   },
 ];
 
+const items = content.map(({ title, description, content: media }) => ({
+  title,
+  description,
+  media,
+}));
+
 export default function WorkSection() {
   return (
-    <section className=" relative w-full  bg-neutral-950 py-20 px-6 md:px-16">
-      <div className="relative mx-auto w-full max-w-7xl">
-        <h2 className="text-white text-3xl md:text-4xl font-bold mb-8">
-          Featured Work
-        </h2>
-        
-      </div>
-    </section>
+    <div className="relative z-10 w-full overflow-visible">
+      <StickyPinnedSection items={items} heightPerItemVh={100} />
+    </div>
   );
 }

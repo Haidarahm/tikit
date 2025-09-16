@@ -56,7 +56,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 100 }) {
       style={{ height: `100vh` }}
       className="relative w-full overflow-visible"
     >
-      <div className="sticky top-0 flex h-screen items-start justify-center gap-10 p-10">
+      <div className="sticky top-0 flex h-screen items-center justify-center gap-10 p-10">
         {/* Left column: stacked text items to avoid layout reflow */}
         <div className="relative h-[70vh] w-full max-w-2xl">
           {items.map((it, i) => (
