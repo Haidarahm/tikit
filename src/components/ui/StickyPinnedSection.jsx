@@ -68,13 +68,15 @@ export default function StickyPinnedSection({ items }) {
 
         if (textNode) {
           const letters = textNode.querySelectorAll(".letter");
-          // Smooth fade at segment edges for this text block
+          // Smooth fade + subtle blur/lift at segment edges for this text block (fixed 0.3 duration)
           tl.fromTo(
             textNode,
-            { autoAlpha: 0, zIndex: 1 },
+            { autoAlpha: 0, zIndex: 1, y: 8, filter: "blur(8px)" },
             {
               autoAlpha: 1,
-              duration: segment * textFadePortion,
+              y: 0,
+              filter: "blur(0px)",
+              duration: 0.3,
               ease: "power2.out",
             },
             at
@@ -84,28 +86,74 @@ export default function StickyPinnedSection({ items }) {
             {
               autoAlpha: 0,
               zIndex: 0,
-              duration: segment * textFadePortion,
+              y: -8,
+              filter: "blur(6px)",
+              duration: 0.3,
               ease: "power2.in",
             },
             at + segment - segment * textFadePortion
           );
 
           if (letters.length) {
-            gsap.set(letters, { opacity: 0, y: 30, visibility: "inherit" });
-            // Animate in letters (staggered) and hold fully visible until segment end
+            const lettersTitle = textNode.querySelectorAll(".letter-title");
+            const lettersSubtitle =
+              textNode.querySelectorAll(".letter-subtitle");
+            const lettersDesc = textNode.querySelectorAll(".letter-desc");
+
+            // Prepare all letters
+            gsap.set([lettersTitle, lettersSubtitle, lettersDesc], {
+              opacity: 0,
+              y: 30,
+              visibility: "inherit",
+            });
+
+            // Title in
             tl.to(
-              letters,
+              lettersTitle,
               {
                 opacity: 1,
                 y: 0,
-                duration: segment * 0.3,
-                stagger: 0.01,
+                duration: 0.4,
+                stagger: 0.02,
                 ease: "power3.out",
                 overwrite: "auto",
               },
               at
             );
-            // No letter-out; hide whole block at segment end via gate above
+
+            // Subtitle in (after title)
+            if (lettersSubtitle.length) {
+              tl.to(
+                lettersSubtitle,
+                {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.4,
+                  stagger: 0.02,
+                  ease: "power3.out",
+                  overwrite: "auto",
+                },
+                at + 0.05
+              );
+            }
+
+            // Description in (after subtitle)
+            if (lettersDesc.length) {
+              tl.to(
+                lettersDesc,
+                {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.4,
+                  stagger: 0.02,
+                  ease: "power3.out",
+                  overwrite: "auto",
+                },
+                at + 0.1
+              );
+            }
+
+            // No letter-out; block fades at edges
           } else {
             // Fallback: animate the whole block if letters aren't found
             tl.fromTo(
@@ -198,7 +246,7 @@ export default function StickyPinnedSection({ items }) {
     <section
       ref={sectionRef}
       style={{ height: `100vh` }}
-      className="relative w-full overflow-visible"
+      className="relative font-hero-light w-full overflow-visible"
     >
       <div
         ref={stickyRef}
@@ -217,20 +265,37 @@ export default function StickyPinnedSection({ items }) {
                 pointerEvents: "none",
               }}
             >
-              <h2 className="text-2xl font-bold text-white">
+              <h2 className="text-2xl font-bold text-[32px] text-white">
                 {Array.from(it.title ?? "").map((ch, j) => (
-                  <span key={j} className="letter inline-block">
+                  <span key={j} className="letter letter-title inline-block">
                     {ch === " " ? "\u00A0" : ch}
                   </span>
                 ))}
               </h2>
+              {it.subtitle ? (
+                <p className="mt-2 text-slate-300">
+                  {Array.from(it.subtitle ?? "").map((ch, j) => (
+                    <span
+                      key={j}
+                      className="letter letter-subtitle inline-block"
+                    >
+                      {ch === " " ? "\u00A0" : ch}
+                    </span>
+                  ))}
+                </p>
+              ) : null}
               <p className="mt-6 max-w-sm text-slate-300">
                 {Array.from(it.description ?? "").map((ch, j) => (
-                  <span key={j} className="letter inline-block">
+                  <span key={j} className="letter letter-desc inline-block">
                     {ch === " " ? "\u00A0" : ch}
                   </span>
                 ))}
               </p>
+              <div className="mt-8">
+                <button className="rounded-full bg-white/10 px-5 py-2 text-white backdrop-blur hover:bg-white/20 transition-colors">
+                  View Work
+                </button>
+              </div>
             </div>
           ))}
         </div>

@@ -8,6 +8,7 @@ import porscheImg from "../../assets/work/porsche.jpg";
 const content = [
   {
     title: "Hidden",
+    subtitle: "Brand Campaign",
     description: "Brand visuals, campaign assets and art direction.",
     content: (
       <img
@@ -20,6 +21,7 @@ const content = [
   },
   {
     title: "Krave",
+    subtitle: "Digital Launch",
     description: "Content system and digital launch materials.",
     content: (
       <img
@@ -32,6 +34,7 @@ const content = [
   },
   {
     title: "Porsche",
+    subtitle: "Editorial Series",
     description: "Editorial layouts and social creatives.",
     content: (
       <img
@@ -44,11 +47,14 @@ const content = [
   },
 ];
 
-const items = content.map(({ title, description, content: media }) => ({
-  title,
-  description,
-  media,
-}));
+const items = content.map(
+  ({ title, subtitle, description, content: media }) => ({
+    title,
+    subtitle,
+    description,
+    media,
+  })
+);
 
 export default function WorkSection() {
   return (
