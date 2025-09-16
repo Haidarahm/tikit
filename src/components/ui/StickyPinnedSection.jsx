@@ -51,10 +51,10 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
       });
 
       // Adjusted values
-      const segment = 2.5; // longer per item
-      const textFadeDur = 0.6; // smoother fades
-      const mediaFadePortion = 0.15;
-      const switchDelay = 0.1;
+      const segment = 2.0; // shorter per item span
+      const textFadeDur = 0.25; // faster fades
+      const mediaFadePortion = 0.08; // quicker media fades
+      const switchDelay = 0.02; // minimal delay before text starts
 
       for (let i = 0; i < count; i++) {
         const textNode = textRefs.current[i];
@@ -93,64 +93,63 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
             at + segment - textFadeDur - switchDelay
           );
 
-          // Letters animation
+          // Prepare letters (will animate via an auto-play timeline when the item enters)
           gsap.set([lettersTitle, lettersSubtitle, lettersDesc, lettersBtn], {
             opacity: 0,
             y: 30,
             visibility: "inherit",
           });
 
-          tl.to(
-            lettersTitle,
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.5,
-              stagger: 0.03,
-              ease: "power3.out",
-            },
-            at + switchDelay
-          );
-
+          const itemTl = gsap.timeline({ paused: true });
+          itemTl.to(lettersTitle, {
+            opacity: 1,
+            y: 0,
+            duration: 0.2,
+            stagger: 0.012,
+            ease: "power3.out",
+          });
           if (lettersSubtitle.length) {
-            tl.to(
+            itemTl.to(
               lettersSubtitle,
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.5,
-                stagger: 0.02,
+                duration: 0.18,
+                stagger: 0.01,
                 ease: "power3.out",
               },
-              at + switchDelay + 0.1
+              ">+0.04"
             );
           }
           if (lettersDesc.length) {
-            tl.to(
+            itemTl.to(
               lettersDesc,
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.5,
-                stagger: 0.015,
+                duration: 0.18,
+                stagger: 0.01,
                 ease: "power3.out",
               },
-              at + switchDelay + 0.2
+              ">+0.04"
             );
           }
           if (lettersBtn.length) {
-            tl.to(
+            itemTl.to(
               lettersBtn,
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.4,
-                stagger: 0.02,
+                duration: 0.16,
+                stagger: 0.008,
                 ease: "power3.out",
               },
-              at + switchDelay + 0.3
+              ">+0.04"
             );
           }
+
+          // Trigger the per-item text animation when the main timeline reaches this segment
+          tl.call(() => itemTl.restart(true), [], at + switchDelay);
         }
 
         // --- MEDIA ---

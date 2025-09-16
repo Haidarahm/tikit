@@ -59,7 +59,7 @@ const items = content.map(
 export default function WorkSection() {
   return (
     <div className="relative z-10 w-full overflow-visible">
-      <StickyPinnedSection items={items} heightPerItemVh={300} />
+      <StickyPinnedSection items={items} heightPerItemVh={200} />
     </div>
   );
 }
