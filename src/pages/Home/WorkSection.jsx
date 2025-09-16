@@ -1,22 +1,46 @@
 import React from "react";
 import StickyPinnedSection from "../../components/ui/StickyPinnedSection";
 
+import hiddenImg from "../../assets/work/hidden.jpg";
+import kraveImg from "../../assets/work/krave.jpg";
+import porscheImg from "../../assets/work/porsche.jpg";
 
 const content = [
   {
     title: "Hidden",
     description: "Brand visuals, campaign assets and art direction.",
-    content: <div className="h-full w-full bg-black/20" />,
+    content: (
+      <img
+        src={hiddenImg}
+        alt="Hidden — Brand visuals, campaign assets and art direction"
+        className="h-full w-full object-cover"
+        loading="lazy"
+      />
+    ),
   },
   {
     title: "Krave",
     description: "Content system and digital launch materials.",
-    content: <div className="h-full w-full bg-black/20" />,
+    content: (
+      <img
+        src={kraveImg}
+        alt="Krave — Content system and digital launch materials"
+        className="h-full w-full object-cover"
+        loading="lazy"
+      />
+    ),
   },
   {
     title: "Porsche",
     description: "Editorial layouts and social creatives.",
-    content: <div className="h-full w-full bg-black/20" />,
+    content: (
+      <img
+        src={porscheImg}
+        alt="Porsche — Editorial layouts and social creatives"
+        className="h-full w-full object-cover"
+        loading="lazy"
+      />
+    ),
   },
 ];
 

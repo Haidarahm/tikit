@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -8,45 +8,153 @@ gsap.registerPlugin(ScrollTrigger);
  * StickyPinnedSection
  * Props:
  * - items: Array<{ title: string; description: string; media?: React.ReactNode }>
- * - heightPerItemVh?: number (default 160)
  */
-export default function StickyPinnedSection({ items, heightPerItemVh = 100 }) {
+export default function StickyPinnedSection({ items }) {
   const sectionRef = useRef(null);
-  const [activeIdx, setActiveIdx] = useState(0);
+  const mediaRefs = useRef([]);
+  const textRefs = useRef([]);
 
   const count = items?.length ?? 0;
-  const sectionHeightVh = useMemo(
-    () => Math.max((count || 1) * heightPerItemVh, heightPerItemVh),
-    [count, heightPerItemVh]
-  );
 
-  useEffect(() => {
+  // Build a scrubbed timeline that pins the section and transitions items based on scroll
+  useLayoutEffect(() => {
     const el = sectionRef.current;
     if (!el || !count) return;
 
-    // Pin the section for a scroll distance based on items count
     const pinDistance = window.innerHeight * (count * 1.2);
 
-    const st = ScrollTrigger.create({
-      trigger: el,
-      start: "top top",
-      end: `+=${pinDistance}`,
-      pin: true,
-      pinSpacing: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        const p = self.progress; // 0..1
-        const idx = Math.min(
-          count - 1,
-          Math.max(0, Math.round(p * (count - 1)))
-        );
-        if (idx !== activeIdx) setActiveIdx(idx);
-      },
+    const ctx = gsap.context(() => {
+      // Ensure media hidden initially and text wrappers hidden to avoid cross-bleed
+      gsap.set(mediaRefs.current, { opacity: 0, y: 20 });
+      gsap.set(textRefs.current, {
+        opacity: 0,
+        y: 0,
+        visibility: "hidden",
+        zIndex: 0,
+      });
+      // Hint heavy layers
+      mediaRefs.current.forEach((node) => {
+        if (!node) return;
+        gsap.set(node, { willChange: "opacity, transform, filter" });
+      });
+      textRefs.current.forEach((node) => {
+        if (!node) return;
+        gsap.set(node, { willChange: "opacity, transform" });
+      });
+
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        scrollTrigger: {
+          trigger: el,
+          start: "top top",
+          end: `+=${pinDistance}`,
+          scrub: 0.6,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Create a segment for each item: fade in, hold, fade out
+      const segment = 1; // one second per item; total duration ~= count seconds
+      for (let i = 0; i < count; i++) {
+        const textNode = textRefs.current[i];
+        const mediaNode = mediaRefs.current[i];
+        const at = i * segment;
+
+        if (textNode) {
+          const letters = textNode.querySelectorAll(".letter");
+          // Gate the visibility of this block to its segment
+          tl.set(textNode, { autoAlpha: 1, zIndex: 1 }, at);
+          tl.set(textNode, { autoAlpha: 0, zIndex: 0 }, at + segment - 0.0001);
+
+          if (letters.length) {
+            gsap.set(letters, { opacity: 0, y: 30, visibility: "inherit" });
+            // Animate in letters (staggered)
+            tl.to(
+              letters,
+              {
+                opacity: 1,
+                y: 0,
+                duration: segment * 0.5,
+                stagger: 0.02,
+                ease: "power3.out",
+                overwrite: "auto",
+              },
+              at
+            );
+            // Animate out letters (reverse stagger)
+            tl.to(
+              letters,
+              {
+                opacity: 0,
+                y: -10,
+                duration: segment * 0.35,
+                stagger: { each: 0.015, from: "end" },
+                ease: "power2.inOut",
+                overwrite: "auto",
+              },
+              at + segment * 0.6
+            );
+          } else {
+            // Fallback: animate the whole block if letters aren't found
+            tl.fromTo(
+              textNode,
+              { y: 10 },
+              { y: 0, duration: segment * 0.4, ease: "power2.out" },
+              at
+            ).to(
+              textNode,
+              { y: -10, duration: segment * 0.35, ease: "power2.inOut" },
+              at + segment * 0.6
+            );
+          }
+        }
+
+        if (mediaNode) {
+          // scale + blur + slight parallax
+          gsap.set(mediaNode, {
+            opacity: 0,
+            scale: 0.96,
+            y: 20,
+            filter: "blur(12px)",
+          });
+          // Gate media visibility to its segment to avoid overlap
+          tl.to(mediaNode, { opacity: 1, duration: 0.0001, ease: "none" }, at);
+          tl.to(
+            mediaNode,
+            { opacity: 0, duration: 0.0001, ease: "none" },
+            at + segment - 0.0005
+          );
+          tl.to(
+            mediaNode,
+            {
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)",
+              duration: segment * 0.6,
+              ease: "power3.out",
+            },
+            at
+          );
+          tl.to(
+            mediaNode,
+            {
+              scale: 1.04,
+              y: -10,
+              filter: "blur(8px)",
+              duration: segment * 0.5,
+              ease: "power2.inOut",
+            },
+            at + segment * 0.6
+          );
+        }
+      }
     });
 
-    return () => st.kill();
-  }, [count, activeIdx]);
+    return () => ctx.revert();
+  }, [count]);
 
   if (!count) return null;
 
@@ -62,25 +170,49 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 100 }) {
           {items.map((it, i) => (
             <div
               key={i}
-              className={`absolute inset-0 flex flex-col justify-center transition-opacity duration-300 ${
-                i === activeIdx
-                  ? "opacity-100"
-                  : "opacity-0 pointer-events-none"
-              }`}
+              ref={(el) => (textRefs.current[i] = el)}
+              className="absolute inset-0 flex flex-col justify-center"
               style={{
                 willChange: "opacity, transform",
                 transform: "translateZ(0)",
+                pointerEvents: "none",
               }}
             >
-              <h2 className="text-2xl font-bold text-white">{it.title}</h2>
-              <p className="mt-6 max-w-sm text-slate-300">{it.description}</p>
+              <h2 className="text-2xl font-bold text-white">
+                {Array.from(it.title ?? "").map((ch, j) => (
+                  <span key={j} className="letter inline-block">
+                    {ch === " " ? "\u00A0" : ch}
+                  </span>
+                ))}
+              </h2>
+              <p className="mt-6 max-w-sm text-slate-300">
+                {Array.from(it.description ?? "").map((ch, j) => (
+                  <span key={j} className="letter inline-block">
+                    {ch === " " ? "\u00A0" : ch}
+                  </span>
+                ))}
+              </p>
             </div>
           ))}
         </div>
 
         {/* Right column: sticky media panel */}
         <div className="sticky z-10 top-10 h-[70vh] w-[28rem] shrink-0 overflow-hidden rounded-xl bg-white/5 backdrop-blur-md">
-          <div className="h-full w-full">{items[activeIdx].media ?? null}</div>
+          <div className="relative h-full w-full">
+            {items.map((it, i) => (
+              <div
+                key={i}
+                ref={(el) => (mediaRefs.current[i] = el)}
+                className="absolute inset-0"
+                style={{
+                  opacity: 0,
+                  willChange: "opacity",
+                }}
+              >
+                {it.media ?? null}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
