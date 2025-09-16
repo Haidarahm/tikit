@@ -14,7 +14,7 @@ const content = [
       <img
         src={hiddenImg}
         alt="Hidden — Brand visuals, campaign assets and art direction"
-        className="h-full w-full object-cover"
+        className="h-full rounded-[20px] w-full object-cover"
         loading="lazy"
       />
     ),
@@ -27,7 +27,7 @@ const content = [
       <img
         src={kraveImg}
         alt="Krave — Content system and digital launch materials"
-        className="h-full w-full object-cover"
+        className="h-full rounded-[20px] w-full object-cover"
         loading="lazy"
       />
     ),
@@ -40,7 +40,7 @@ const content = [
       <img
         src={porscheImg}
         alt="Porsche — Editorial layouts and social creatives"
-        className="h-full w-full object-cover"
+        className="h-full rounded-[20px] w-full object-cover"
         loading="lazy"
       />
     ),

@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
  * StickyPinnedSection
  * Props:
  * - items: Array<{ title: string; subtitle?: string; description: string; media?: React.ReactNode }>
- * - heightPerItemVh: number (default 200)
+ * - heightPerItemVh: number (default 300)
  */
 export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
   const sectionRef = useRef(null);
@@ -27,7 +27,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
 
     const ctx = gsap.context(() => {
       // Reset states
-      gsap.set(mediaRefs.current, { opacity: 0, y: 20 });
+      gsap.set(mediaRefs.current, { opacity: 0, y: 20, scale: 0 });
       gsap.set(textRefs.current, {
         opacity: 0,
         y: 0,
@@ -51,10 +51,9 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
       });
 
       // Adjusted values
-      const segment = 2.0; // shorter per item span
-      const textFadeDur = 0.25; // faster fades
-      const mediaFadePortion = 0.08; // quicker media fades
-      const switchDelay = 0.02; // minimal delay before text starts
+      const segment = 2.0; // per item span
+      const textFadeDur = 0.25;
+      const switchDelay = 0.02;
 
       for (let i = 0; i < count; i++) {
         const textNode = textRefs.current[i];
@@ -93,7 +92,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
             at + segment - textFadeDur - switchDelay
           );
 
-          // Prepare letters (will animate via an auto-play timeline when the item enters)
+          // Prepare letters
           gsap.set([lettersTitle, lettersSubtitle, lettersDesc, lettersBtn], {
             opacity: 0,
             y: 30,
@@ -148,48 +147,57 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
             );
           }
 
-          // Trigger the per-item text animation when the main timeline reaches this segment
+          // Trigger the per-item text animation
           tl.call(() => itemTl.restart(true), [], at + switchDelay);
         }
 
         // --- MEDIA ---
         if (mediaNode) {
+          // start state
           gsap.set(mediaNode, {
             opacity: 0,
-            scale: 0.96,
-            y: 20,
-            filter: "blur(12px)",
+            scale: 0.85,
+            y: 30,
+            filter: "blur(20px)",
           });
 
-          tl.fromTo(
+          // animate IN
+          tl.to(
             mediaNode,
-            { opacity: 0 },
             {
               opacity: 1,
-              duration: segment * mediaFadePortion,
-              ease: "power2.out",
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)",
+              duration: segment * 0.6,
+              ease: "power3.out",
             },
             at + switchDelay
           );
+
+          // hold fully visible
+          tl.to(
+            mediaNode,
+            {
+              opacity: 1,
+              duration: segment * 0.2,
+              ease: "none",
+            },
+            at + switchDelay + segment * 0.6
+          );
+
+          // animate OUT
           tl.to(
             mediaNode,
             {
               opacity: 0,
-              duration: segment * mediaFadePortion,
-              ease: "power2.in",
+              scale: 0.9,
+              y: -30,
+              filter: "blur(12px)",
+              duration: segment * 0.2,
+              ease: "power2.inOut",
             },
-            at + segment - segment * mediaFadePortion - switchDelay
-          );
-          tl.to(
-            mediaNode,
-            {
-              scale: 1,
-              y: 0,
-              filter: "blur(0px)",
-              duration: segment * 0.8,
-              ease: "power3.out",
-            },
-            at
+            at + segment - segment * 0.2
           );
         }
       }
@@ -224,8 +232,11 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
         ref={stickyRef}
         className="sticky top-0 flex h-screen items-center justify-center gap-10 p-10"
       >
+        <div className="pointer-events-none text-white text-[32px] font-bold absolute top-32 left-1/2 -translate-x-1/2 uppercase ">
+          Featured Work
+        </div>
         {/* Text column */}
-        <div className="relative h-[70vh] w-full max-w-2xl">
+        <div className="relative h-[70vh] mt-16 w-full max-w-2xl">
           {items.map((it, i) => (
             <div
               key={i}
@@ -277,7 +288,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
         </div>
 
         {/* Media column */}
-        <div className="sticky z-10 top-10 h-[70vh] w-[28rem] shrink-0 overflow-hidden rounded-xl">
+        <div className="sticky z-10 top-10 mt-16 h-[50vh] w-[40rem] shrink-0 overflow-hidden rounded-xl">
           <div className="relative h-full w-full">
             {items.map((it, i) => (
               <div
@@ -286,7 +297,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
                 className="absolute inset-0"
                 style={{
                   opacity: 0,
-                  willChange: "opacity",
+                  willChange: "opacity, transform",
                 }}
               >
                 {it.media ?? null}
