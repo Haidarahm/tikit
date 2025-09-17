@@ -262,7 +262,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
           </div>
           <button className="rounded-full border font-light bg-white text-black  px-5 py-2  transition-colors hover:bg-transparent hover:text-white">
             {Array.from("Explore Work").map((ch, i) => (
-              <span key={i} className="fw-letter inline-block">
+              <span key={i} className="fw-letter inline-block text-[14px]">
                 {ch === " " ? "\u00A0" : ch}
               </span>
             ))}
