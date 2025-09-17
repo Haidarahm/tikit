@@ -252,15 +252,24 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
         ref={stickyRef}
         className="sticky top-0 flex h-screen items-center justify-center gap-10 p-10"
       >
-        <div className="pointer-events-none text-white text-[32px] font-bold absolute top-32 left-1/2 -translate-x-1/2 uppercase ">
-          {Array.from("Featured Work").map((ch, i) => (
-            <span key={i} className="fw-letter inline-block">
-              {ch === " " ? "\u00A0" : ch}
-            </span>
-          ))}
+        <div className=" text-white px-16 flex  w-full font-bold absolute top-32 left-1/2 -translate-x-1/2 uppercase  items-center justify-between gap-4 ">
+          <div>
+            {Array.from("Featured Work").map((ch, i) => (
+              <span key={i} className="fw-letter text-[32px]  inline-block">
+                {ch === " " ? "\u00A0" : ch}
+              </span>
+            ))}
+          </div>
+          <button className="rounded-full border font-light bg-white text-black  px-5 py-2  transition-colors hover:bg-transparent hover:text-white">
+            {Array.from("Explore Work").map((ch, i) => (
+              <span key={i} className="fw-letter inline-block">
+                {ch === " " ? "\u00A0" : ch}
+              </span>
+            ))}
+          </button>
         </div>
         {/* Text column */}
-        <div className="relative h-[70vh] mt-16 w-full max-w-xl">
+        <div className="relative h-[70vh] mt-20 w-full max-w-xl">
           {items.map((it, i) => (
             <div
               key={i}
@@ -298,9 +307,12 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
                 ))}
               </p>
               <div className="mt-8">
-                <button className="rounded-full border border-white bg-transparent px-5 py-2 text-white transition-colors hover:bg-white hover:text-black">
+                <button className="font-light rounded-full border border-white bg-transparent px-5 py-2 text-white transition-colors hover:bg-white hover:text-black">
                   {Array.from("View Work").map((ch, j) => (
-                    <span key={j} className="letter letter-btn inline-block">
+                    <span
+                      key={j}
+                      className="letter text-[14px] letter-btn inline-block"
+                    >
                       {ch === " " ? "\u00A0" : ch}
                     </span>
                   ))}
@@ -311,7 +323,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
         </div>
 
         {/* Media column */}
-        <div className="sticky z-10 top-10 mt-16 h-[50vh] w-[40rem] shrink-0 overflow-hidden rounded-xl">
+        <div className="sticky z-10 top-10 mt-20 h-[50vh] w-[40rem] shrink-0 overflow-hidden rounded-xl">
           <div className="relative h-full w-full">
             {items.map((it, i) => (
               <div

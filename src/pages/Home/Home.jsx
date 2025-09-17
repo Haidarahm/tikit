@@ -53,7 +53,6 @@ function Home() {
     };
   }, []);
 
-
   return (
     <div className="sections relative w-full home-scroll-trigger">
       {/* Element 1 */}
@@ -73,9 +72,8 @@ function Home() {
       <Numbers />
       <Goals />
 
-    <WorkSection/>
+      <WorkSection />
       {/* Sticky pinned work section */}
-    
 
       <Services />
       <AboutUs />
