@@ -11,6 +11,7 @@ import Services from "./Services";
 import AboutUs from "./AboutUs";
 import StickyPinnedSection from "../../components/ui/StickyPinnedSection";
 import WorkSection from "./WorkSection";
+import Connections from "./Connections";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -73,7 +74,7 @@ function Home() {
       <Goals />
 
       <WorkSection />
-      {/* Sticky pinned work section */}
+      <Connections />      {/* Sticky pinned work section */}
 
       <Services />
       <AboutUs />
