@@ -4,6 +4,7 @@ import LogoIntro from "./components/LogoIntro";
 import Navbar from "./components/Navbar";
 import DarkBackground from "./components/DarkBackground";
 import { Outlet } from "react-router-dom";
+import Work from "./pages/Work/Work";
 
 const Layout = () => (
   <DarkBackground>
@@ -22,6 +23,7 @@ function App() {
       <Route path="/" element={<LogoIntro />} />
       <Route element={<Layout />}>
         <Route path="/home" element={<Home />} />
+        <Route path="/work" element={<Work />} />
       </Route>
     </Routes>
   );

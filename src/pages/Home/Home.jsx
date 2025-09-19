@@ -68,14 +68,11 @@ function Home() {
         alt="Decorative element 2"
         className="element2 absolute top-[55vh] right-12 rotate-90 z-10 w-auto h-auto max-w-[300px] max-h-[300px]"
       />
-
       <Hero />
       <Numbers />
       <Goals />
-
       <WorkSection />
-      <Connections />      {/* Sticky pinned work section */}
-
+      <Connections /> {/* Sticky pinned work section */}
       <Services />
       <AboutUs />
     </div>
