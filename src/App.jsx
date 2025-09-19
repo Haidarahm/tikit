@@ -5,9 +5,11 @@ import Navbar from "./components/Navbar";
 import DarkBackground from "./components/DarkBackground";
 import { Outlet } from "react-router-dom";
 import Work from "./pages/Work/Work";
+import ScrollToTop from "./components/ScrollToTop";
 
 const Layout = () => (
   <DarkBackground>
+    <ScrollToTop />
     <div className="relative w-full">
       <Navbar />
       <div>

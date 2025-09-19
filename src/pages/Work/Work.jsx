@@ -11,6 +11,7 @@ import image3 from "../../assets/images/card-3.jpg";
 import "./work.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitText from "../../components/SplitText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,10 +91,31 @@ const Work = () => {
       );
     }
   }, []);
-
+const handleAnimationComplete = () => {
+  console.log('All letters have animated!');
+};
   return (
-    <div className="work-section flex flex-col h-[calc(100%+40vh)]">
-      <div className="h-[95vh] w-full description"></div>
+    <div className="work-section font-hero-light flex flex-col h-[calc(100%+40vh)]">
+      <div className="h-[75vh] flex flex-col justify-center items-center w-full description text-white mt-[104px]">
+        <SplitText
+          text="Featured Work"
+          className="title font-bold text-[64px] mb-[20px]"
+          delay={100}
+          duration={0.6}
+          ease="power3.out"
+          splitType="chars"
+          from={{ opacity: 0, y: 40 }}
+          to={{ opacity: 1, y: 0 }}
+          threshold={0.1}
+          rootMargin="-100px"
+          textAlign="center"
+          onLetterAnimationComplete={handleAnimationComplete}
+        />
+        <p className="paragraph font-light text-[32px] w-[900px] text-center leading-[40px]">
+          We take a similar approach to design commercial we do impactfully
+          approache, over the flowchart of user friendly wireframe.
+        </p>
+      </div>
       <div className="images grid grid-cols-2 grid-rows-4 gap-4 h-full p-4">
         {imagesArr.map((item, i) => (
           <div
