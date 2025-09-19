@@ -49,9 +49,14 @@ const AboutUs = () => {
     >
       {inView && (
         <div className="w-full">
-          <h2 className="text-white text-3xl md:text-4xl font-bold mb-8">
+          <h2 className="text-white text-3xl text-center md:text-4xl font-bold mb-8">
             Who We Are
           </h2>
+          <p className="text-[36px] font-light text-center mb-[40px]">
+            We create and innovate digital experiences through strategic
+            collaboration and creativity. Each project engages and inspires,
+            aiming to drive impactful results.
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {whoWeAreImages.map((src, idx) => (
               <div
