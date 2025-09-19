@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 import LiquidEther from "../../components/aurora/LiquidEther";
 import AvatarGroupDemo from "../../components/ui/AvatarGroupDemo";
 
 function Hero() {
-  return (
-    <div className="section h-screen rounded-[25px] w-[95vw] overflow-hidden mx-auto">
-      {/* Background layer */}
+  const sectionRef = useRef(null);
 
-      <div className="pointer-events-none h-full mt-[16px]  w-[95vw] mx-auto  overflow-hidden bg-[#101b22] rounded-[25px] absolute inset-0 z-0">
+  useEffect(() => {
+    // Animate width from 0 to 95vw
+    gsap.fromTo(
+      sectionRef.current,
+      { width: "0vw" },
+      {
+        width: "95vw",
+        duration: 3, // smooth & slower
+        ease: "power3.out",
+      }
+    );
+  }, []);
+
+  return (
+    <div
+      ref={sectionRef}
+      className="section h-screen rounded-[25px] overflow-hidden mx-auto"
+    >
+      {/* Background layer */}
+      <div className="pointer-events-none h-full mt-[16px] w-[95vw] mx-auto overflow-hidden bg-[#101b22] rounded-[25px] absolute inset-0 z-0">
         <LiquidEther
           colors={["#142236", "#5d6fa1", "#769cb6"]}
           mouseForce={20}
