@@ -60,6 +60,7 @@ const imagesArr = [
 
 const Work = () => {
   const imagesRef = useRef([]);
+  const paragraphRef = useRef();
 
   useEffect(() => {
     // Animate images in pairs, sequentially
@@ -91,9 +92,23 @@ const Work = () => {
       );
     }
   }, []);
-const handleAnimationComplete = () => {
-  console.log('All letters have animated!');
-};
+
+  // Animate paragraph after SplitText animation completes
+  const handleAnimationComplete = () => {
+    if (paragraphRef.current) {
+      gsap.fromTo(
+        paragraphRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+        }
+      );
+    }
+  };
+
   return (
     <div className="work-section font-hero-light flex flex-col h-[calc(100%+40vh)]">
       <div className="h-[75vh] flex flex-col justify-center items-center w-full description text-white mt-[104px]">
@@ -111,7 +126,11 @@ const handleAnimationComplete = () => {
           textAlign="center"
           onLetterAnimationComplete={handleAnimationComplete}
         />
-        <p className="paragraph font-light text-[32px] w-[900px] text-center leading-[40px]">
+        <p
+          ref={paragraphRef}
+          className="paragraph font-light text-[32px] w-[900px] text-center leading-[40px]"
+          style={{ opacity: 0, transform: "translateY(40px)" }}
+        >
           We take a similar approach to design commercial we do impactfully
           approache, over the flowchart of user friendly wireframe.
         </p>
@@ -141,11 +160,11 @@ const handleAnimationComplete = () => {
             />
             {/* Overlay for title, subtitle, and button */}
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <h3 className="text-white text-xl font-semibold mb-2">
+              <h3 className="text-white text-xl font-bold text-[30px] mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-200 text-sm mb-4">{item.subtitle}</p>
-              <button className="px-4 py-2 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition">
+              <p className="text-gray-200 text-sm mb-4 text-[20px]">{item.subtitle}</p>
+              <button className="px-4 py-2 rounded-full  bg-transparent text-white border-1 hover:text-black cursor-pointer hover:bg-white transition">
                 View Work
               </button>
             </div>
