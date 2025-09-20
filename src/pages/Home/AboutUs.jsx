@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // Import all images from assets/who-we-are (jpg, jpeg, png, webp)
 // Vite will inline URLs for us
@@ -11,7 +13,22 @@ const whoWeAreImages = Object.values(
 
 const AboutUs = () => {
   const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const gridRef = useRef(null);
   const [inView, setInView] = useState(false);
+  const [imagesInView, setImagesInView] = useState(new Set());
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false, // Allow animations to repeat when scrolling back
+      offset: 100,
+      easing: "ease-out-cubic",
+      mirror: true, // Animate elements when scrolling past them
+    });
+  }, []);
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -21,6 +38,12 @@ const AboutUs = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
+        } else {
+          setInView(false);
+          // Don't reset images immediately - let them fade out naturally
+          setTimeout(() => {
+            setImagesInView(new Set());
+          }, 800); // Wait for transition to complete
         }
       },
       {
@@ -33,6 +56,42 @@ const AboutUs = () => {
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
+
+  // Individual image intersection observer
+  useEffect(() => {
+    if (!inView) return;
+
+    const imageContainers =
+      gridRef.current?.querySelectorAll(".image-container");
+    if (!imageContainers) return;
+
+    const observers = Array.from(imageContainers).map((container, index) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setImagesInView((prev) => new Set([...prev, index]));
+          } else {
+            setImagesInView((prev) => {
+              const newSet = new Set(prev);
+              newSet.delete(index);
+              return newSet;
+            });
+          }
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px -10% 0px",
+          threshold: 0.3,
+        }
+      );
+      observer.observe(container);
+      return observer;
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, [inView]);
 
   // Helper for occasional larger spans for a creative layout
   const getSpanClasses = (idx) => {
@@ -47,32 +106,55 @@ const AboutUs = () => {
       ref={sectionRef}
       className="section font-hero-light flex-col mx-auto min-h-[220vh] z-10 w-6/7 my-[100px] "
     >
-      {inView && (
-        <div className="w-full">
-          <h2 className="text-white text-3xl text-center md:text-4xl font-bold mb-8">
-            Who We Are
-          </h2>
-          <p className="text-[36px] font-light text-center mb-[40px]">
-            We create and innovate digital experiences through strategic
-            collaboration and creativity. Each project engages and inspires,
-            aiming to drive impactful results.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {whoWeAreImages.map((src, idx) => (
-              <div
-                key={idx}
-                className={`overflow-hidden rounded-xl ${getSpanClasses(idx)}`}
-              >
-                <img
-                  src={src}
-                  alt={`who-we-are-${idx + 1}`}
-                  className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-500"
-                />
-              </div>
-            ))}
-          </div>
+      <div className="w-full">
+        <h2
+          ref={titleRef}
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+          className="text-white text-3xl text-center md:text-4xl font-bold mb-8"
+        >
+          Who We Are
+        </h2>
+        <p
+          ref={descriptionRef}
+          data-aos="fade-left"
+          data-aos-duration="1000"
+          data-aos-delay="300"
+          className="text-[36px] font-light text-center mb-[40px]"
+        >
+          We create and innovate digital experiences through strategic
+          collaboration and creativity. Each project engages and inspires,
+          aiming to drive impactful results.
+        </p>
+        <div
+          ref={gridRef}
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="500"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        >
+          {whoWeAreImages.map((src, idx) => (
+            <div
+              key={idx}
+              className={`image-container overflow-hidden rounded-xl transition-all duration-800 ease-out ${
+                imagesInView.has(idx)
+                  ? "opacity-100 scale-100 translate-y-0 rotate-0"
+                  : "opacity-0 scale-90 translate-y-8 rotate-1"
+              } ${getSpanClasses(idx)}`}
+              style={{
+                transitionDelay: `${idx * 100}ms`,
+              }}
+            >
+              <img
+                src={src}
+                alt={`who-we-are-${idx + 1}`}
+                className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-500"
+              />
+            </div>
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 };

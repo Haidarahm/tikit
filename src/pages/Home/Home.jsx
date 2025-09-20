@@ -71,9 +71,9 @@ function Home() {
       <Hero />
       <Numbers />
       <Goals />
+      <Services />
       <WorkSection />
       <Connections /> {/* Sticky pinned work section */}
-      <Services />
       <AboutUs />
     </div>
   );
