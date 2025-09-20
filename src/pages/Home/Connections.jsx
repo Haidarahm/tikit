@@ -20,7 +20,7 @@ const Connections = () => {
     });
   }, []);
   return (
-    <div className="section h-[80vh] flex flex-col justify-center font-hero-light rounded-[25px] text-center w-[60vw] overflow-hidden mx-auto mt-[60px]">
+    <div className="section h-[100vh] flex flex-col justify-center font-hero-light rounded-[25px] text-center w-[60vw] overflow-hidden mx-auto mt-[60px]">
       <ScrollFloat
         animationDuration={1}
         ease="back.inOut(2)"
