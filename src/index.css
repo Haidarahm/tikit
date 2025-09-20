@@ -28,6 +28,24 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "PlusJakartaSans";
+  src: url("./assets/fonts/PlusJakartaSans-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PlusJakartaSans";
+  src: url("./assets/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -102,8 +120,6 @@ body {
   padding: 50px;
   /* margin-top: 0; */
 }
-
-
 
 /* Floating animation for decorative elements */
 @keyframes floatUpDown {

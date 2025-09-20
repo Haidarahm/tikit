@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import InfiniteScroll from "../../components/InfiniteScroll";
 
 const Hero = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+    });
+  }, []);
+
   const items = [
     { content: "Text Item 1" },
     { content: <p>Paragraph Item 2</p> },
@@ -19,9 +29,14 @@ const Hero = () => {
     { content: <p>Paragraph Item 14</p> },
   ];
   return (
-    <div data-scroll-section className="h-screen px-[60px] flex flex-col">
+    <div data-scroll-section className="h-screen  flex flex-col">
       <div style={{ height: "500px", position: "relative" }}>
-        <div   className="title z-20 w-full absolute text-[64px] capitalize  flex items-center  font-bold leading-[60px] h-full text-white">
+        <div
+          className="title z-20 w-full pl-[60px] absolute text-[64px] capitalize  flex items-center  font-bold leading-[60px] h-full text-white"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        >
           We are Tikit — a full-service <br /> marketing agency
         </div>
         <InfiniteScroll
@@ -34,10 +49,15 @@ const Hero = () => {
           pauseOnHover={true}
         />
       </div>
-      <div className="description flex-1 flex text-white bg-black  gap-14 justify-center items-center">
+      <div
+        className="description flex-1 flex text-white px-[60px]  gap-14 justify-center items-center"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="600"
+      >
         <div className="title font-bold text-[38px] w-2/7 ">About Us</div>
         <div className="paragraph text-[32px] ">
-          Driven by insight and creativity: the story behind “Tikit” — a
+          Driven by insight and creativity: the story behind "Tikit" — a
           regional agency powering brands, building trust, and delivering
           results.
         </div>

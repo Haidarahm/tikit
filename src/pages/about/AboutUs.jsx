@@ -3,7 +3,7 @@ import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import Hero from "./Hero";
 import Article from "./Article";
-
+import './about.css'
 const AboutUs = () => {
   const containerRef = useRef(null);
 
@@ -21,9 +21,13 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div ref={containerRef} data-scroll-container className="w-full font-hero-light">
-     <Hero/>
-      <Article/>
+    <div
+      ref={containerRef}
+      data-scroll-container
+      className="about-us-section w-full font-hero-light"
+    >
+      <Hero />
+      <Article />
     </div>
   );
 };
