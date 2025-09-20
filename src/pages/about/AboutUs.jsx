@@ -3,7 +3,7 @@ import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import Hero from "./Hero";
 import Article from "./Article";
-import './about.css'
+import "./about.css";
 const AboutUs = () => {
   const containerRef = useRef(null);
 
