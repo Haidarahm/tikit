@@ -72,8 +72,8 @@ function Home() {
       <Numbers />
       <Goals />
       <Services />
-      <WorkSection />
       <Connections /> {/* Sticky pinned work section */}
+      <WorkSection />
       <AboutUs />
     </div>
   );
