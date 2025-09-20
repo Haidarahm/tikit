@@ -16,46 +16,14 @@ import SplitText from "../../components/SplitText";
 gsap.registerPlugin(ScrollTrigger);
 
 const imagesArr = [
-  {
-    src: hiddenImg,
-    title: "Hidden Project",
-    subtitle: "A secret creative work",
-  },
-  {
-    src: kraveImg,
-    title: "Krave",
-    subtitle: "Branding & Identity",
-  },
-  {
-    src: porscheImg,
-    title: "Porsche",
-    subtitle: "Automotive Campaign",
-  },
-  {
-    src: rangeRoverImg,
-    title: "Range Rover",
-    subtitle: "Luxury Experience",
-  },
-  {
-    src: theReveImg,
-    title: "The Reve",
-    subtitle: "Fashion Editorial",
-  },
-  {
-    src: image1,
-    title: "Card One",
-    subtitle: "UI/UX Design",
-  },
-  {
-    src: image2,
-    title: "Card Two",
-    subtitle: "Web Development",
-  },
-  {
-    src: image3,
-    title: "Card Three",
-    subtitle: "Photography",
-  },
+  { src: hiddenImg, title: "Hidden Project", subtitle: "A secret creative work" },
+  { src: kraveImg, title: "Krave", subtitle: "Branding & Identity" },
+  { src: porscheImg, title: "Porsche", subtitle: "Automotive Campaign" },
+  { src: rangeRoverImg, title: "Range Rover", subtitle: "Luxury Experience" },
+  { src: theReveImg, title: "The Reve", subtitle: "Fashion Editorial" },
+  { src: image1, title: "Card One", subtitle: "UI/UX Design" },
+  { src: image2, title: "Card Two", subtitle: "Web Development" },
+  { src: image3, title: "Card Three", subtitle: "Photography" },
 ];
 
 const Work = () => {
@@ -63,37 +31,26 @@ const Work = () => {
   const paragraphRef = useRef();
 
   useEffect(() => {
-    // Animate images in pairs, sequentially
-    for (let i = 0; i < imagesRef.current.length; i += 2) {
-      const group = imagesRef.current.slice(i, i + 2);
-      if (group.length === 0) continue;
+    imagesRef.current.forEach((el) => {
+      const img = el.querySelector("img");
 
       gsap.fromTo(
-        group,
+        img,
         { height: "10%" },
         {
           height: "100%",
-          duration: 1,
           ease: "none",
           scrollTrigger: {
-            trigger: group[0],
-            start: "top 100%",
-            end: "+=95%",
+            trigger: el,
+            start: "top 90%",
+            end: "top 20%",
             scrub: true,
-            onEnter: () => {
-              gsap.to(group, {
-                height: "100%",
-                duration: 1,
-                ease: "none",
-              });
-            },
           },
         }
       );
-    }
+    });
   }, []);
 
-  // Animate paragraph after SplitText animation completes
   const handleAnimationComplete = () => {
     if (paragraphRef.current) {
       gsap.fromTo(
@@ -110,7 +67,7 @@ const Work = () => {
   };
 
   return (
-    <div className="work-section font-hero-light flex flex-col h-[calc(100%+40vh)]">
+    <div className="work-section font-hero-light flex flex-col h-[calc(100%+10vh)]">
       <div className="h-[75vh] flex flex-col justify-center items-center w-full description text-white mt-[104px]">
         <SplitText
           text="Featured Work"
@@ -135,36 +92,27 @@ const Work = () => {
           approache, over the flowchart of user friendly wireframe.
         </p>
       </div>
-      <div className="images grid grid-cols-2 grid-rows-4 gap-4 h-full p-4">
+
+      {/* Image Grid */}
+      <div className="images grid grid-cols-2 grid-rows-4 gap-4 h-[300vh] p-4">
         {imagesArr.map((item, i) => (
           <div
             key={i}
             ref={(el) => (imagesRef.current[i] = el)}
-            style={{
-              height: "10%",
-              width: "100%",
-              overflow: "hidden",
-            }}
-            className="group relative shadow-lg transition duration-300 ease-in-out bg-black rounded-lg"
+            className="group relative shadow-lg  rounded-lg overflow-hidden"
           >
             <img
               src={item.src}
               alt={item.title}
-              className="mb-8"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
+              className="w-full object-cover  rounded-lg"
+              style={{ height: "10%" }} // start height
             />
-            {/* Overlay for title, subtitle, and button */}
+
+            {/* Overlay */}
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <h3 className="text-white text-xl font-bold text-[30px] mb-2">
-                {item.title}
-              </h3>
-              <p className="text-gray-200 text-sm mb-4 text-[20px]">{item.subtitle}</p>
-              <button className="px-4 py-2 rounded-full  bg-transparent text-white border-1 hover:text-black cursor-pointer hover:bg-white transition">
+              <h3 className="text-white text-[30px] font-bold mb-2">{item.title}</h3>
+              <p className="text-gray-200 text-[20px] mb-4">{item.subtitle}</p>
+              <button className="px-4 py-2 rounded-full border border-white bg-transparent text-white hover:bg-white hover:text-black transition">
                 View Work
               </button>
             </div>
@@ -176,3 +124,6 @@ const Work = () => {
 };
 
 export default Work;
+
+/* work.css */
+
