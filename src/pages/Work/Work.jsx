@@ -16,7 +16,11 @@ import SplitText from "../../components/SplitText";
 gsap.registerPlugin(ScrollTrigger);
 
 const imagesArr = [
-  { src: hiddenImg, title: "Hidden Project", subtitle: "A secret creative work" },
+  {
+    src: hiddenImg,
+    title: "Hidden Project",
+    subtitle: "A secret creative work",
+  },
   { src: kraveImg, title: "Krave", subtitle: "Branding & Identity" },
   { src: porscheImg, title: "Porsche", subtitle: "Automotive Campaign" },
   { src: rangeRoverImg, title: "Range Rover", subtitle: "Luxury Experience" },
@@ -110,7 +114,9 @@ const Work = () => {
 
             {/* Overlay */}
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <h3 className="text-white text-[30px] font-bold mb-2">{item.title}</h3>
+              <h3 className="text-white text-[30px] font-bold mb-2">
+                {item.title}
+              </h3>
               <p className="text-gray-200 text-[20px] mb-4">{item.subtitle}</p>
               <button className="px-4 py-2 rounded-full border border-white bg-transparent text-white hover:bg-white hover:text-black transition">
                 View Work
@@ -126,4 +132,3 @@ const Work = () => {
 export default Work;
 
 /* work.css */
-

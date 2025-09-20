@@ -10,6 +10,7 @@ import AOSRefresher from "./components/AOSRefresher";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import AboutUs from "./pages/about/AboutUs";
 
 const Layout = () => (
   <DarkBackground>
@@ -34,6 +35,7 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/home" element={<Home />} />
         <Route path="/work" element={<Work />} />
+        <Route path="/about" element={<AboutUs />} />
       </Route>
     </Routes>
   );
