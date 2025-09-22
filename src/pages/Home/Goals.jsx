@@ -8,7 +8,7 @@ function Goals() {
   const goalsData = [
     {
       id: 1,
-      title: "Amplify your  brand's reach",
+      title: "Amplify your brand's reach",
       description:
         "Reach real audiences with meaningful content. We grow traffic that actually converts.",
       image: image1,
@@ -21,7 +21,6 @@ function Goals() {
         "Track results in real time and optimize every move — all managed on one smart platform.",
       image: image2,
       backgroundColor: "bg-[#5653B7]",
-      
     },
     {
       id: 3,
@@ -30,36 +29,39 @@ function Goals() {
         "Reach real audiences with meaningful content. We grow traffic that actually converts.",
       image: image3,
       backgroundColor: "bg-[#9D74E5]",
-      
     },
   ];
 
   return (
-    <div className="section font-hero-light flex  mx-auto h-[230vh] z-10   w-6/7">
+    <div className="section font-hero-light flex mx-auto h-[240vh] z-10 w-6/7">
       <ScrollStack
         useWindowScroll={true}
         itemDistance={0}
-        // itemScale={0.08}
         itemStackDistance={50}
         stackPosition="100"
-        // // scaleEndPosition="-5%"
-        // baseScale={0.8}
-        // scaleDuration={10}
-        // rotationAmount={0}
-         blurAmount={20}
+      
       >
         {goalsData.map((goal) => (
           <ScrollStackItem
             key={goal.id}
-            itemClassName={`flex relative items-center  overflow-hidden ${goal.backgroundColor} opacity-90`}
+            itemClassName={`flex relative items-center overflow-hidden ${goal.backgroundColor} opacity-90`}
           >
             <div className="text">
-              <h2 className="font-bold max-w-[500px] text-[52px] filter backdrop-blur-lg leading-[50px] mb-[22px]">
+              {/* ❌ REMOVED backdrop-blur-lg — it’s expensive in scroll animations */}
+              <h2 className="font-bold max-w-[500px] text-[52px] leading-[50px] mb-[22px]">
                 {goal.title}
               </h2>
               <p className="text-[32px] leading-[35px]">{goal.description}</p>
             </div>
-            <img src={goal.image} alt="" className="rounded-[39px]" />
+            {/* ✅ Optimized image with size + lazy load */}
+            <img
+              src={goal.image}
+              alt={goal.title}
+              className="rounded-[39px] object-cover"
+              width={500}
+              height={400}
+              loading="lazy"
+            />
           </ScrollStackItem>
         ))}
       </ScrollStack>
