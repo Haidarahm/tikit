@@ -12,12 +12,18 @@ import AboutUs from "./AboutUs";
 import StickyPinnedSection from "../../components/ui/StickyPinnedSection";
 import WorkSection from "./WorkSection";
 import Connections from "./Connections";
+import Reviews from "./Reviews";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   useEffect(() => {
+    // Safety: ensure no leftover locomotive-scroll styles block scrolling
+    const htmlEl = document.documentElement;
+    htmlEl.classList.remove("has-scroll-smooth", "has-scroll-init");
+    document.body.style.removeProperty("overflow");
+
     // Animate Element 1
     gsap.to(".element1", {
       top: "900px",
@@ -75,6 +81,7 @@ function Home() {
       <Connections /> {/* Sticky pinned work section */}
       <WorkSection />
       <AboutUs />
+      <Reviews />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import ScrollFloat from "../../components/ScrollFloat";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -14,41 +14,46 @@ const splitText = (text) => {
 };
 
 const Connections = () => {
-  // Initialize AOS
+  const sectionContainerRef = useRef(null);
+
+  // GSAP animations scoped to section container
   useEffect(() => {
-    // Animate Element 1
-    gsap.to(".element1", {
+    const scrollerEl = sectionContainerRef.current;
+    if (!scrollerEl) return;
+
+    const element1Tween = gsap.to(".element1-c", {
       top: "900px",
       left: "1000px",
-      filter: "grayscale(100%)",
       rotation: 100,
       duration: 1.5,
       ease: "power1.inOut",
       scrollTrigger: {
+        trigger: scrollerEl,
         start: "top 0%",
         end: "bottom 0%",
         scrub: 1.5,
       },
     });
 
-    // Animate Element 2
-    gsap.to(".element2", {
+    const element2Tween = gsap.to(".element2-c", {
       top: "90vh",
       right: "70%",
-      filter: "grayscale(100%)",
       rotation: 100,
       duration: 1.5,
       ease: "power1.inOut",
       scrollTrigger: {
+        trigger: scrollerEl,
         start: "top 0%",
         end: "bottom 0%",
         scrub: 1.5,
       },
     });
 
-    // Cleanup on unmount
+    ScrollTrigger.refresh();
+
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      element1Tween?.scrollTrigger?.kill();
+      element2Tween?.scrollTrigger?.kill();
     };
   }, []);
   useEffect(() => {
@@ -61,17 +66,20 @@ const Connections = () => {
     });
   }, []);
   return (
-    <div className=" relative section h-[100vh] flex flex-col w-full justify-center font-hero-light section-container-scroll  overflow-hidden  mt-[60px]">
-       <img
+    <div
+      ref={sectionContainerRef}
+      className=" relative text-white  h-[100vh] flex flex-col w-full justify-center font-hero-light section-container-scroll    mt-[60px]"
+    >
+      <img
         src={element2}
         alt="Decorative element 1"
-        className="element1 absolute top-4 left-8 z-10 w-auto h-auto max-w-[300px] max-h-[300px]"
+        className="element1-c absolute top-4 left-8 z-0  grayscale-75 w-auto h-auto max-w-[300px] max-h-[300px]"
       />
       {/* Element 2 */}
       <img
         src={element1}
         alt="Decorative element 2"
-        className="element2 absolute top-[55vh] right-12 rotate-90 z-10 w-auto h-auto max-w-[300px] max-h-[300px]"
+        className="element2-c absolute top-[55vh] right-12 grayscale-75 rotate-90 z-0 w-auto h-auto max-w-[300px] max-h-[300px]"
       />
       <div className="flex flex-col justify-center w-[60vw]  mx-auto text-center">
         <ScrollFloat

@@ -104,7 +104,7 @@ const AboutUs = () => {
   return (
     <div
       ref={sectionRef}
-      className="section font-hero-light flex-col mx-auto min-h-[220vh] z-10 w-6/7 my-[100px] "
+      className="section font-hero-light flex-col mx-auto z-10 w-6/7 my-[100px] "
     >
       <div className="w-full">
         <h2

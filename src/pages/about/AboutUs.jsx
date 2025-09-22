@@ -16,7 +16,12 @@ const AboutUs = () => {
     });
 
     return () => {
-      scroll.destroy();
+      try {
+        scroll.destroy();
+      } catch (_) {}
+      const htmlEl = document.documentElement;
+      htmlEl.classList.remove("has-scroll-smooth", "has-scroll-init");
+      document.body.style.removeProperty("overflow");
     };
   }, []);
 
