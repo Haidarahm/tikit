@@ -185,7 +185,10 @@ function ThreeDScrollTriggerRowImpl({
   return (
     <div
       ref={containerRef}
-      className={cn("w-full overflow-hidden whitespace-nowrap", className)}
+      className={cn(
+        "w-full overflow-hidden mt-[20px] whitespace-nowrap",
+        className
+      )}
       {...props}
     >
       <motion.div

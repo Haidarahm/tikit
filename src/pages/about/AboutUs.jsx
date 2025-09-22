@@ -29,7 +29,7 @@ const AboutUs = () => {
     <div
       ref={containerRef}
       data-scroll-container
-      className="about-us-section w-full font-hero-light"
+      className="about-us-section w-full min-h-screen font-hero-light"
     >
       <Hero />
       <Article />
