@@ -66,13 +66,13 @@ function Home() {
       <img
         src={element2}
         alt="Decorative element 1"
-        className="element1 pointer-events-none absolute top-4 left-8 z-10 w-auto h-auto max-w-[300px] max-h-[300px]"
+        className="element1 fade-in-delay-1s pointer-events-none absolute top-4 left-8 z-10 w-auto h-auto max-w-[300px] max-h-[300px]"
       />
       {/* Element 2 */}
       <img
         src={element1}
         alt="Decorative element 2"
-        className="element2 pointer-events-none absolute top-[55vh] right-12 rotate-90 z-10 w-auto h-auto max-w-[300px] max-h-[300px]"
+        className="element2 fade-in-delay-1s pointer-events-none absolute top-[55vh] right-12 rotate-90 z-10 w-auto h-auto max-w-[300px] max-h-[300px]"
       />
       <Hero />
       <Numbers />
