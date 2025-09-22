@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  useRef,
-  useEffect,
-  useState,
-  useMemo,
-  useContext,
-} from "react";
+import React, { useRef, useEffect, useState, useMemo, useContext } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -107,7 +101,7 @@ function ThreeDScrollTriggerRowImpl({
   ...props
 }: ThreeDScrollTriggerRowImplProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [numCopies, setNumCopies] = useState(3);
+  const [numCopies, setNumCopies] = useState(5);
   const x = useMotionValue(0);
 
   const prevTimeRef = useRef<number | null>(null);
@@ -115,7 +109,10 @@ function ThreeDScrollTriggerRowImpl({
   const baseXRef = useRef(0);
 
   // Memoized children
-  const childrenArray = useMemo(() => React.Children.toArray(children), [children]);
+  const childrenArray = useMemo(
+    () => React.Children.toArray(children),
+    [children]
+  );
 
   const BlockContent = useMemo(() => {
     return (
@@ -125,25 +122,43 @@ function ThreeDScrollTriggerRowImpl({
     );
   }, [childrenArray]);
 
-  // Measure block width
+  // Measure block width and adjust copies; re-measure on resize
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const block = container.querySelector(".threed-scroll-trigger-block") as HTMLElement;
-    if (block) {
+    const measure = () => {
+      const block = container.querySelector(
+        ".threed-scroll-trigger-block"
+      ) as HTMLElement;
+      if (!block) return;
       unitWidthRef.current = block.scrollWidth;
-      // keep just enough to cover the viewport + 1
       const containerWidth = container.offsetWidth;
-      const needed = Math.max(2, Math.ceil(containerWidth / unitWidthRef.current) + 1);
+      // Keep at least ~3x container width worth of copies to avoid gaps
+      const needed = Math.max(
+        4,
+        Math.ceil((containerWidth * 3) / Math.max(1, unitWidthRef.current)) + 1
+      );
       setNumCopies(needed);
-    }
+    };
+
+    measure();
+
+    const ro = new ResizeObserver(() => measure());
+    ro.observe(container);
+    const block = container.querySelector(
+      ".threed-scroll-trigger-block"
+    ) as HTMLElement | null;
+    if (block) ro.observe(block);
+
+    return () => ro.disconnect();
   }, [childrenArray]);
 
   // Animation loop
   useAnimationFrame((time) => {
     if (prevTimeRef.current == null) prevTimeRef.current = time;
-    const dt = Math.max(0, (time - prevTimeRef.current) / 1000);
+    // Cap dt to avoid large jumps when tab regains focus
+    const dt = Math.min(0.05, Math.max(0, (time - prevTimeRef.current) / 1000));
     prevTimeRef.current = time;
 
     const unitWidth = unitWidthRef.current;
@@ -155,19 +170,14 @@ function ThreeDScrollTriggerRowImpl({
     const currentDirection = direction * scrollDirection;
 
     const pixelsPerSecond = (unitWidth * baseVelocity) / 100;
-    const moveBy = currentDirection * pixelsPerSecond * (1 + speedMultiplier) * dt;
+    const moveBy =
+      currentDirection * pixelsPerSecond * (1 + speedMultiplier) * dt;
 
     const newX = baseXRef.current + moveBy;
-    // ✅ instead of wrap, shift back when > unitWidth
-    if (newX > unitWidth) {
-      baseXRef.current = newX - unitWidth;
-    } else if (newX < -unitWidth) {
-      baseXRef.current = newX + unitWidth;
-    } else {
-      baseXRef.current = newX;
-    }
-
-    x.set(baseXRef.current);
+    baseXRef.current = newX;
+    // Wrap displayed offset into [0, unitWidth) for seamless looping in both directions
+    const displayed = wrap(0, unitWidth, baseXRef.current);
+    x.set(displayed);
   });
 
   const xTransform = useTransform(x, (v) => `translate3d(${-v}px,0,0)`);
@@ -197,7 +207,6 @@ function ThreeDScrollTriggerRowImpl({
     </div>
   );
 }
-
 
 /* --------------------------
    Local row (if no shared velocity)

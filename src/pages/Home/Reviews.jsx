@@ -39,7 +39,7 @@ const Reviews = () => {
   return (
     <div className="relative w-full max-w-7xl mx-auto px-4 py-16">
       <ThreeDScrollTriggerContainer>
-        <ThreeDScrollTriggerRow baseVelocity={5} direction={1}>
+        <ThreeDScrollTriggerRow baseVelocity={3} direction={1}>
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
@@ -65,7 +65,7 @@ const Reviews = () => {
         </ThreeDScrollTriggerRow>
       </ThreeDScrollTriggerContainer>
       <ThreeDScrollTriggerContainer>
-        <ThreeDScrollTriggerRow baseVelocity={5} direction={-1}>
+        <ThreeDScrollTriggerRow baseVelocity={3} direction={-1}>
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
@@ -91,7 +91,7 @@ const Reviews = () => {
         </ThreeDScrollTriggerRow>
       </ThreeDScrollTriggerContainer>
       <ThreeDScrollTriggerContainer>
-        <ThreeDScrollTriggerRow baseVelocity={5} direction={1}>
+        <ThreeDScrollTriggerRow baseVelocity={3} direction={1}>
           {testimonials.map((testimonial, index) => (
             <div
               key={index}

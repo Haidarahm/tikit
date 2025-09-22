@@ -22,7 +22,7 @@ const AboutUs = () => {
   // Initialize AOS
   useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 500,
       once: false, // Allow animations to repeat when scrolling back
       offset: 100,
       easing: "ease-out-cubic",
@@ -110,7 +110,7 @@ const AboutUs = () => {
         <h2
           ref={titleRef}
           data-aos="fade-right"
-          data-aos-duration="1000"
+          data-aos-duration="500"
           data-aos-delay="100"
           className="text-white text-3xl text-center md:text-4xl font-bold mb-8"
         >
@@ -119,8 +119,8 @@ const AboutUs = () => {
         <p
           ref={descriptionRef}
           data-aos="fade-left"
-          data-aos-duration="1000"
-          data-aos-delay="300"
+          data-aos-duration="500"
+          data-aos-delay="200"
           className="text-[36px] font-light text-center mb-[40px]"
         >
           We create and innovate digital experiences through strategic
@@ -130,8 +130,8 @@ const AboutUs = () => {
         <div
           ref={gridRef}
           data-aos="fade-up"
-          data-aos-duration="1000"
-          data-aos-delay="500"
+          data-aos-duration="500"
+          data-aos-delay="300"
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
           {whoWeAreImages.map((src, idx) => (
@@ -143,7 +143,7 @@ const AboutUs = () => {
                   : "opacity-0 scale-90 translate-y-8 rotate-1"
               } ${getSpanClasses(idx)}`}
               style={{
-                transitionDelay: `${idx * 100}ms`,
+                transitionDelay: `${idx * 50}ms`,
               }}
             >
               <img
