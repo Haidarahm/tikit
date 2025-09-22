@@ -110,39 +110,7 @@ const Reviews = () => {
           ))}
         </ThreeDScrollTriggerRow>
       </ThreeDScrollTriggerContainer>
-      <ThreeDScrollTriggerContainer>
-        <ThreeDScrollTriggerRow baseVelocity={3} direction={1}>
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="flex gap-[23px] h-[300px] w-[600px] ml-[20px]  p-7 rounded-xl text-white border border-white/15 bg-white/10 backdrop-blur-md shadow-xl"
-            >
-              <div className="icon h-full">
-                <img src={quote} alt="" className="h-[40px]  w-[40px]" />
-              </div>
-
-              <div className="content flex-col flex-1 justify-between w-full flex">
-                <p className="relative block text-wrap text-[24px] font-light">
-                  {testimonial.text}
-                </p>
-                <div className="user flex items-center">
-                  <img
-                    src={testimonial.avatar}
-                    alt=""
-                    className="w-[75px] h-[75px] rounded-full "
-                  />
-                  <div className="name-specialist flex flex-col ml-[20px]">
-                    <div className="text-[20px]">{testimonial.name}</div>
-                    <div className="specialist text-[18px] text-gray-400">
-                      {testimonial.company}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </ThreeDScrollTriggerRow>
-      </ThreeDScrollTriggerContainer>
+     
     </div>
   );
 };
