@@ -22,11 +22,25 @@ function Navbar() {
   ];
 
   useEffect(() => {
-    AOS.init({ duration: 700, once: true });
+    AOS.init({ duration: 750, once: true });
 
     // timeline: logo appears first, then nav items stagger
     const queryNavItems = () =>
       navRef.current ? navRef.current.querySelectorAll(".nav-item") : [];
+
+    // Intro reveal: scaleX from 0 using transforms (GPU-friendly)
+    if (navRef.current) {
+      gsap.set(navRef.current, {
+        scaleX: 0.001,
+        transformOrigin: "center center",
+      });
+      gsap.to(navRef.current, {
+        scaleX: 1,
+        duration: 2,
+        ease: "power3.out",
+        delay: 0.2,
+      });
+    }
 
     const tl = gsap.timeline();
     tl.fromTo(
@@ -36,6 +50,7 @@ function Navbar() {
         scale: 1,
         opacity: 1,
         duration: 0.8,
+        delay: 0.8,
         ease: "back.out(1.7)",
       }
     ).fromTo(
@@ -45,6 +60,7 @@ function Navbar() {
         y: 0,
         opacity: 1,
         duration: 0.45,
+        delay: 0.8,
         stagger: 0.08,
         ease: "power2.out",
       },
@@ -177,7 +193,7 @@ function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="fixed top-10 inset-x-0 z-50"
+      className="fixed top-10 inset-x-0 z-50 gpu-transform"
       data-aos="fade-down"
       style={{ transform: "translateY(0)" }}
     >

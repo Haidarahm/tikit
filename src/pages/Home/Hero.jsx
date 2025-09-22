@@ -16,7 +16,7 @@ function Hero() {
     gsap.set(element, { scaleX: 0.001, transformOrigin: "center center" });
     gsap.to(element, {
       scaleX: 1,
-      duration: 1.6,
+      duration: 2,
       delay: 0.2,
       ease: "power3.out",
     });
@@ -24,7 +24,7 @@ function Hero() {
 
   useEffect(() => {
     // Defer importing/rendering LiquidEther by 1 second
-    const timerId = setTimeout(() => setShowLiquid(true), 1000);
+    const timerId = setTimeout(() => setShowLiquid(true), 2000);
     return () => clearTimeout(timerId);
   }, []);
 
