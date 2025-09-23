@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import AboutUs from "./pages/about/AboutUs";
+import Footer from "./components/Footer";
 
 const Layout = () => (
   <DarkBackground>
@@ -21,6 +22,7 @@ const Layout = () => (
       <div>
         <Outlet />
       </div>
+      <Footer/>
     </div>
   </DarkBackground>
 );

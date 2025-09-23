@@ -1,18 +1,60 @@
 import React from "react";
 import FloatingInput from "../../components/ui/FloatingInput";
+import Hyperspeed from "../../components/Hyperspeed";
 
 const ContactUs = () => {
   return (
-    <div className="relative text-white min-h-[100vh] font-hero-light rounded-[25px] flex flex-col mx-auto py-[60px] px-[50px]  w-[95vw] bg-black">
-      <div className="email w-full flex h-1/2">
-        <div className="texts flex  flex-col relative ">
+    <div className="relative  gap-3.5 text-white h-[80vh] font-hero-light rounded-[25px] flex flex-col mx-auto py-[60px] px-[50px]  w-[95vw] bg-black">
+      <div className="w-full h-full absolute">
+        <Hyperspeed
+          effectOptions={{
+            onSpeedUp: () => {},
+            onSlowDown: () => {},
+            distortion: "turbulentDistortion",
+            length: 400,
+            roadWidth: 10,
+            islandWidth: 2,
+            lanesPerRoad: 4,
+            fov: 90,
+            fovSpeedUp: 150,
+            speedUp: 2,
+            carLightsFade: 0.4,
+            totalSideLightSticks: 20,
+            lightPairsPerRoadWay: 40,
+            shoulderLinesWidthPercentage: 0.05,
+            brokenLinesWidthPercentage: 0.1,
+            brokenLinesLengthPercentage: 0.5,
+            lightStickWidth: [0.12, 0.5],
+            lightStickHeight: [1.3, 1.7],
+            movingAwaySpeed: [60, 80],
+            movingCloserSpeed: [-120, -160],
+            carLightsLength: [400 * 0.03, 400 * 0.2],
+            carLightsRadius: [0.05, 0.14],
+            carWidthPercentage: [0.3, 0.5],
+            carShiftX: [-0.8, 0.8],
+            carFloorSeparation: [0, 5],
+            colors: {
+              roadColor: 0x080808,
+              islandColor: 0x0a0a0a,
+              background: 0x000000,
+              shoulderLines: 0xffffff,
+              brokenLines: 0xffffff,
+              leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
+              rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
+              sticks: 0x03b3c3,
+            },
+          }}
+        />
+      </div>
+      <div className="email  w-full flex h-2/3 justify-between ">
+        <div className="texts flex justify-between flex-col relative   ">
           <h3 className="subtitle text-[50px]">Kick it off with Tikit!</h3>
           <h1 className="title text-[70px] font-bold">contact us now</h1>
           <p className="description text-[24px] font-light w-full">
             We want to hear from you. let’s us know <br /> how we can help!
           </p>
         </div>
-        <div className="action h-full flex-col flex justify-between">
+        <div className="action w-[45%]  flex-col flex justify-between">
           <div className="title text-[24px]">
             let’s us know how we can help!
           </div>
@@ -33,7 +75,7 @@ const ContactUs = () => {
           </button>
         </div>
       </div>
-      <div className="brands h-1/2"></div>
+      <div className="brands h-1/2 w-full"></div>
     </div>
   );
 };
