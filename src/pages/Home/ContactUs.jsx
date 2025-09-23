@@ -4,8 +4,9 @@ import Hyperspeed from "../../components/Hyperspeed";
 
 const ContactUs = () => {
   return (
-    <div className="relative  gap-3.5 text-white h-[80vh] font-hero-light rounded-[25px] flex flex-col mx-auto py-[60px] px-[50px]  w-[95vw] bg-black">
-      <div className="w-full h-full absolute">
+    <div className="relative  gap-3.5  overflow-hidden text-white h-[80vh] font-hero-light rounded-[25px] flex flex-col mx-auto py-[60px] px-[50px]  w-[95vw] bg-black">
+      <div className="overlay absolute w-full h-full bg-[#00000076] z-10"></div>
+      <div className="w-full h-full absolute z-0">
         <Hyperspeed
           effectOptions={{
             onSpeedUp: () => {},
@@ -46,7 +47,7 @@ const ContactUs = () => {
           }}
         />
       </div>
-      <div className="email  w-full flex h-2/3 justify-between ">
+      <div className="email  w-full flex h-2/3 justify-between relative z-10 ">
         <div className="texts flex justify-between flex-col relative   ">
           <h3 className="subtitle text-[50px]">Kick it off with Tikit!</h3>
           <h1 className="title text-[70px] font-bold">contact us now</h1>
@@ -75,7 +76,9 @@ const ContactUs = () => {
           </button>
         </div>
       </div>
-      <div className="brands h-1/2 w-full"></div>
+      <div className="brands flex-1 w-full relative z-10">
+          <div className="title font-light absolute -top-[14px] left-1/2 -translate-x-1/2 ">20+ Brands Trust Us</div>
+      </div>
     </div>
   );
 };

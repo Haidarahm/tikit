@@ -257,3 +257,7 @@ body {
   will-change: transform;
   transform: translateZ(0);
 }
+#lights canvas{
+  width: 100% !important;
+  height: 100% !important;
+}
