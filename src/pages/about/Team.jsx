@@ -4,10 +4,7 @@ const Team = () => {
   const imageUrls = useMemo(() => {
     const modules = import.meta.glob(
       "../../assets/images/*.{png,jpg,jpeg,webp}",
-      {
-        eager: true,
-        as: "url",
-      }
+      { eager: true, as: "url" }
     );
     return Object.values(modules);
   }, []);
@@ -34,9 +31,8 @@ const Team = () => {
       const horizontalDistance = Math.max(0, trackWidth - effectiveViewport);
       horizontalDistanceRef.current = horizontalDistance;
       const viewportH = window.innerHeight;
-      sectionHeightRef.current = Math.ceil(viewportH + horizontalDistance);
+      sectionHeightRef.current = Math.ceil(viewportH + horizontalDistance + 16);
       container.style.minHeight = `${sectionHeightRef.current}px`;
-      // Notify smooth scrollers (e.g., Locomotive) to recalc after height change
       window.dispatchEvent(new Event("resize"));
     };
 
@@ -51,13 +47,19 @@ const Team = () => {
       );
       const raw = (0 - rect.top) / totalScroll;
       const progress = Math.min(1, Math.max(0, raw));
-      const targetTranslate = -progress * horizontalDistanceRef.current;
-      const eased = lastTranslate + (targetTranslate - lastTranslate) * 0.2;
-      lastTranslate = eased;
-      const clamped = Math.max(
-        -horizontalDistanceRef.current,
-        Math.min(0, eased)
-      );
+      let clamped;
+      if (progress <= 0) {
+        clamped = 0;
+        lastTranslate = 0;
+      } else if (progress >= 0.999) {
+        clamped = -horizontalDistanceRef.current;
+        lastTranslate = clamped;
+      } else {
+        const targetTranslate = -progress * horizontalDistanceRef.current;
+        const eased = lastTranslate + (targetTranslate - lastTranslate) * 0.2;
+        lastTranslate = eased;
+        clamped = Math.max(-horizontalDistanceRef.current, Math.min(0, eased));
+      }
       track.style.transform = `translate3d(${clamped}px, 0, 0)`;
       rafId = requestAnimationFrame(loop);
     };
@@ -83,7 +85,6 @@ const Team = () => {
       });
 
     window.addEventListener("resize", compute, { passive: true });
-
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener("resize", compute);
@@ -98,36 +99,34 @@ const Team = () => {
       className="relative mt-[50px] text-white font-hero-light"
     >
       <div
-        className="h-screen flex relative"
+        className="h-[50vh] flex relative"
         data-scroll
         data-scroll-sticky
         data-scroll-target="#team-section"
       >
-        {/* Left section - pinned */}
-        <div className="z-10 left-section absolute left-0 top-0 w-[40%] h-full flex items-center px-[50px] text-[48px] pointer-events-none">
+        <div className="z-50 absolute left-0 top-0 w-[40%] h-full flex items-center px-[50px] text-[48px] pointer-events-none">
           <h1 className="leading-[1.1]">
             Our <br /> creative team
           </h1>
         </div>
 
-        {/* Right section */}
         <div
           ref={rightRef}
-          className="relative z-0 flex-1 overflow-hidden h-full pl-[40%]"
+          className="relative z-0 flex-1 overflow-hidden h-screen pl-[40%]"
         >
           <div
             ref={trackRef}
-            className="flex items-center gap-5 will-change-transform py-6"
+            className="flex items-center gap-8 will-change-transform py-0"
           >
             {imageUrls.map((src, index) => (
               <div
                 key={String(index)}
-                className="relative h-[330px] w-[300px] rounded-[10px] shrink-0 overflow-hidden bg-[#111]"
+                className="relative h-[50vh] w-[450px] rounded-[10px] shrink-0 overflow-hidden bg-[#111]"
               >
                 <img
                   src={src}
                   alt={`team-${index + 1}`}
-                  className="h-full w-full object-cover rounded-[10px] select-none"
+                  className="h-full w-full object-cover select-none"
                   draggable={false}
                 />
               </div>
