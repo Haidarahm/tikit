@@ -4,6 +4,7 @@ import {
   ThreeDScrollTriggerRow,
 } from "../../components/ui/ThreeDScrollTriggerRow";
 import quote from "../../assets/icons/quot.svg";
+
 const Reviews = () => {
   const testimonials = [
     {

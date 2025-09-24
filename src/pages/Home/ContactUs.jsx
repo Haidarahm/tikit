@@ -1,8 +1,43 @@
 import React from "react";
 import FloatingInput from "../../components/ui/FloatingInput";
 import Hyperspeed from "../../components/Hyperspeed";
+import LogoLoop from "../../components/LogoLoop";
+import b1 from "../../assets/brands/1.svg";
+import b2 from "../../assets/brands/2.svg";
+import b3 from "../../assets/brands/3.svg";
+import b4 from "../../assets/brands/4.svg";
+import b5 from "../../assets/brands/5.svg";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+} from "react-icons/si";
 
 const ContactUs = () => {
+  // const techLogos = [
+  //   { node: <SiReact />, title: "React", href: "https://react.dev" },
+  //   { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+  //   {
+  //     node: <SiTypescript />,
+  //     title: "TypeScript",
+  //     href: "https://www.typescriptlang.org",
+  //   },
+  //   {
+  //     node: <SiTailwindcss />,
+  //     title: "Tailwind CSS",
+  //     href: "https://tailwindcss.com",
+  //   },
+  // ];
+
+  // Alternative with image sources
+  const imageLogos = [
+    { src: b1, alt: "Brand 1" },
+    { src: b2, alt: "Brand 2" },
+    { src: b3, alt: "Brand 3" },
+    { src: b4, alt: "Brand 4" },
+    { src: b5, alt: "Brand 5" },
+  ];
   return (
     <div className="relative  gap-3.5  overflow-hidden text-white h-[80vh] font-hero-light rounded-[25px] flex flex-col mx-auto py-[60px] px-[50px]  w-[95vw] bg-black">
       <div className="overlay absolute w-full h-full bg-[#00000076] z-10"></div>
@@ -77,7 +112,37 @@ const ContactUs = () => {
         </div>
       </div>
       <div className="brands flex-1 w-full relative z-10">
-          <div className="title font-light absolute -top-[14px] left-1/2 -translate-x-1/2 ">20+ Brands Trust Us</div>
+        <div className="flex w-full justify-between items-center gap-4 mb-4">
+          <div className="h-[1px] w-[42%] bg-gray-400"></div>
+
+          <div className="title font-light text-center">
+            20+ Brands Trust Us
+          </div>
+
+          <div className="h-[1px] w-[42%] bg-gray-400"></div>
+        </div>
+        <div
+          style={{
+            height: "120px",
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <LogoLoop
+            logos={imageLogos}
+            speed={50}
+            direction="left"
+            logoHeight={70}
+            gap={150}
+            pauseOnHover
+            scaleOnHover
+            fadeOut
+            fadeOutColor="#000"
+            ariaLabel="Brand partners"
+          />
+        </div>
       </div>
     </div>
   );
