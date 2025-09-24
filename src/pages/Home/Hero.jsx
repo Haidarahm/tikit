@@ -7,23 +7,78 @@ import AvatarGroupDemo from "../../components/ui/AvatarGroupDemo";
 
 function Hero() {
   const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const h2Ref = useRef(null);
+  const h1Ref = useRef(null);
+  const avatarRef = useRef(null);
+
   const [showLiquid, setShowLiquid] = useState(false);
 
   useEffect(() => {
-    // Use transform-based intro animation for better performance
     const element = sectionRef.current;
     if (!element) return;
-    gsap.set(element, { scaleX: 0.001, transformOrigin: "center center" });
-    gsap.to(element, {
-      scaleX: 1,
-      duration: 2,
-      delay: 0.2,
-      ease: "power3.out",
-    });
+  
+    // Clear inline styles before animating again
+    gsap.set(
+      [titleRef.current, h2Ref.current, h1Ref.current, subtitleRef.current, avatarRef.current],
+      { clearProps: "all" }
+    );
+  
+    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+  
+    // Step 1: Section resize (keep smooth)
+    tl.set(element, { scaleX: 0.001, transformOrigin: "center center" })
+      .to(element, {
+        scaleX: 1,
+        duration: 2,
+        ease: "power3.out",
+      })
+  
+      // Step 2: Title container
+      .fromTo(
+        titleRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4 },
+        "+=0.1"
+      )
+  
+      // Step 3: h2 then h1
+      .fromTo(
+        h2Ref.current,
+        { y: 15, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3 },
+        "+=0.05"
+      )
+      .fromTo(
+        h1Ref.current,
+        { y: 15, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.35 },
+        "+=0.05"
+      )
+  
+      // Step 4: Subtitle
+      .fromTo(
+        subtitleRef.current,
+        { y: 15, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.35 },
+        "+=0.1"
+      )
+  
+      // Step 5: Avatar group
+      .fromTo(
+        avatarRef.current,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4 },
+        "+=0.1"
+      );
+  
+    return () => tl.kill();
   }, []);
+  
 
   useEffect(() => {
-    // Defer importing/rendering LiquidEther by 1 second
+    // Defer LiquidEther load
     const timerId = setTimeout(() => setShowLiquid(true), 2000);
     return () => clearTimeout(timerId);
   }, []);
@@ -61,45 +116,31 @@ function Hero() {
 
       {/* Foreground content */}
       <div className="relative mx-auto h-[calc(100%-104px)] mt-[104px] z-10 w-6/7 flex items-center flex-col justify-center ">
-        <div
-          className="title flex flex-col gap-4 items-center "
-          data-aos="fade-up"
-          data-aos-delay="0"
-        >
+        <div className="title flex flex-col gap-4 items-center" ref={titleRef}>
           <h2
+            ref={h2Ref}
             className="font-hero-light font-light text-[27px]"
-            data-aos="fade-up"
-            data-aos-delay="100"
           >
             Marketing Agency
           </h2>
           <h1
+            ref={h1Ref}
             className="font-hero-light text-4xl font-bold text-[64px]"
-            data-aos="fade-up"
-            data-aos-delay="250"
           >
             ROI REBELS
           </h1>
         </div>
 
-        <div className="subtitle" data-aos="fade-up" data-aos-delay="400">
-          <h3
-            className="font-hero-light font-light text-[36px]"
-            data-aos="fade-up"
-            data-aos-delay="450"
-          >
+        <div className="subtitle" ref={subtitleRef}>
+          <h3 className="font-hero-light font-light text-[36px]">
             Fueling brands with influence
           </h3>
         </div>
-        <div
-          className="avatar mt-[50px]"
-          data-aos="fade-up"
-          data-aos-delay="550"
-        >
+
+        <div className="avatar mt-[50px]" ref={avatarRef}>
           <AvatarGroupDemo />
           <div className="text text-center mt-[10px]">
-            <span className="font-bold font-hero-light">+300 Happy</span>{" "}
-            Clients
+            <span className="font-bold font-hero-light">+300 Happy</span> Clients
           </div>
         </div>
       </div>

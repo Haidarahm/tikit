@@ -44,7 +44,7 @@ function Goals() {
         {goalsData.map((goal) => (
           <ScrollStackItem
             key={goal.id}
-            itemClassName={`flex relative items-center overflow-hidden ${goal.backgroundColor} opacity-90`}
+            itemClassName={`flex relative items-center overflow-hidden ${goal.backgroundColor} `}
           >
             <div className="text">
               {/* ❌ REMOVED backdrop-blur-lg — it’s expensive in scroll animations */}
