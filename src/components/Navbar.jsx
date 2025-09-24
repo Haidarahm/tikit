@@ -28,19 +28,7 @@ function Navbar() {
     const queryNavItems = () =>
       navRef.current ? navRef.current.querySelectorAll(".nav-item") : [];
 
-    // Intro reveal: scaleX from 0 using transforms (GPU-friendly)
-    if (navRef.current) {
-      gsap.set(navRef.current, {
-        scaleX: 0.001,
-        transformOrigin: "center center",
-      });
-      gsap.to(navRef.current, {
-        scaleX: 1,
-        duration: 2,
-        ease: "power3.out",
-        delay: 0.2,
-      });
-    }
+    // Removed resize intro effect
 
     const tl = gsap.timeline();
     tl.fromTo(
@@ -68,9 +56,9 @@ function Navbar() {
     );
 
     // logo part hover: make only the marked path jump
-    const logoForJump = logoRef.current;
-    if (logoForJump) {
-      const jumpTarget = logoForJump.querySelector(".logo-jump");
+    const logoNode = logoRef.current;
+    if (logoNode) {
+      const jumpTarget = logoNode.querySelector(".logo-jump");
       if (jumpTarget) {
         const onEnterLogoPart = () => {
           gsap.fromTo(
@@ -85,8 +73,8 @@ function Navbar() {
             }
           );
         };
-        logoForJump.addEventListener("mouseenter", onEnterLogoPart);
-        logoForJump._onEnterLogoPart = onEnterLogoPart;
+        logoNode.addEventListener("mouseenter", onEnterLogoPart);
+        logoNode._onEnterLogoPart = onEnterLogoPart;
       }
     }
 
@@ -179,13 +167,9 @@ function Navbar() {
         delete el._onLeave;
       });
       // cleanup logo part hover
-      const logoForJump = logoRef.current;
-      if (logoForJump && logoForJump._onEnterLogoPart) {
-        logoForJump.removeEventListener(
-          "mouseenter",
-          logoForJump._onEnterLogoPart
-        );
-        delete logoForJump._onEnterLogoPart;
+      if (logoNode && logoNode._onEnterLogoPart) {
+        logoNode.removeEventListener("mouseenter", logoNode._onEnterLogoPart);
+        delete logoNode._onEnterLogoPart;
       }
     };
   }, []);

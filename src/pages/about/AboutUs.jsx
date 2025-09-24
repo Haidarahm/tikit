@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import Hero from "./Hero";
-import Article from "./Article";
 import "./about.css";
+import AnimatedText from "./AnimatedText";
 const AboutUs = () => {
   const containerRef = useRef(null);
 
@@ -18,6 +18,7 @@ const AboutUs = () => {
     return () => {
       try {
         scroll.destroy();
+        // eslint-disable-next-line no-unused-vars, no-empty
       } catch (_) {}
       const htmlEl = document.documentElement;
       htmlEl.classList.remove("has-scroll-smooth", "has-scroll-init");
@@ -32,7 +33,7 @@ const AboutUs = () => {
       className="about-us-section w-full min-h-screen font-hero-light"
     >
       <Hero />
-      <Article />
+      <AnimatedText />
     </div>
   );
 };

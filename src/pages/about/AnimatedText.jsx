@@ -1,10 +1,10 @@
 import React from "react";
 
-const Article = () => {
+const AnimatedText = () => {
   return (
     <div
       data-scroll-section
-      className="min-h-[190vh] relative w-full p-14 overflow-hidden"
+      className=" relative w-full p-14 overflow-hidden"
     >
       <div
         className="title font-[PlusJakartaSans] relative whitespace-nowrap text-white text-[180px] font-bold"
@@ -28,4 +28,4 @@ const Article = () => {
   );
 };
 
-export default Article;
+export default AnimatedText;
