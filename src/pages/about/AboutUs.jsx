@@ -39,7 +39,7 @@ const AboutUs = () => {
       <AnimatedText />
       <Images/>
       <Team/>
-      {/* <Strategy/> */}
+      <Strategy/>
     </div>
   );
 };

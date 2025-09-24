@@ -99,12 +99,12 @@ const Team = () => {
       className="relative mt-[50px] text-white font-hero-light"
     >
       <div
-        className="h-[50vh] flex relative"
+        className="h-[100vh] flex relative"
         data-scroll
         data-scroll-sticky
         data-scroll-target="#team-section"
       >
-        <div className="z-50 absolute left-0 top-0 w-[40%] h-full flex items-center px-[50px] text-[48px] pointer-events-none">
+        <div className="z-50 bg-black absolute left-0 top-0 w-[30%] h-full flex items-center px-[50px] text-[48px] pointer-events-none">
           <h1 className="leading-[1.1]">
             Our <br /> creative team
           </h1>
@@ -112,7 +112,7 @@ const Team = () => {
 
         <div
           ref={rightRef}
-          className="relative z-0 flex-1 overflow-hidden h-screen pl-[40%]"
+          className="relative z-0 flex flex-1 overflow-hidden h-screen pl-[30%]"
         >
           <div
             ref={trackRef}
