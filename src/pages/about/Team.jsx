@@ -1,5 +1,11 @@
 import React from "react";
 import image from "../../assets/images/card-1.jpg";
+
+// Import all images from assets/images (URLs). Uppercase name avoids unused-var lint.
+const IMAGES = import.meta.glob("../../assets/images/*.{png,jpg,jpeg,webp}", {
+  eager: true,
+  as: "url",
+});
 const Team = () => {
   return (
     <div
