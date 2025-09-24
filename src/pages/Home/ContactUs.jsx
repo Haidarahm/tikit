@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FloatingInput from "../../components/ui/FloatingInput";
 import Hyperspeed from "../../components/Hyperspeed";
 import LogoLoop from "../../components/LogoLoop";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import b1 from "../../assets/brands/1.svg";
 import b2 from "../../assets/brands/2.svg";
 import b3 from "../../assets/brands/3.svg";
@@ -15,6 +17,9 @@ import {
 } from "react-icons/si";
 
 const ContactUs = () => {
+  useEffect(() => {
+    AOS.init({ duration: 750, once: true });
+  }, []);
   // const techLogos = [
   //   { node: <SiReact />, title: "React", href: "https://react.dev" },
   //   { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
@@ -84,13 +89,33 @@ const ContactUs = () => {
       </div>
       <div className="email  w-full flex h-2/3 justify-between relative z-10 ">
         <div className="texts flex justify-between flex-col relative   ">
-          <h3 className="subtitle text-[50px]">Kick it off with Tikit!</h3>
-          <h1 className="title text-[70px] font-bold">contact us now</h1>
-          <p className="description text-[24px] font-light w-full">
+          <h3
+            className="subtitle text-[50px]"
+            data-aos="fade-up"
+            data-aos-delay="0"
+          >
+            Kick it off with Tikit!
+          </h3>
+          <h1
+            className="title text-[70px] font-bold"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
+            contact us now
+          </h1>
+          <p
+            className="description text-[24px] font-light w-full"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             We want to hear from you. let’s us know <br /> how we can help!
           </p>
         </div>
-        <div className="action w-[45%]  flex-col flex justify-between">
+        <div
+          className="action w-[45%]  flex-col flex justify-between"
+          data-aos="fade-left"
+          data-aos-delay="0"
+        >
           <div className="title text-[24px]">
             let’s us know how we can help!
           </div>
