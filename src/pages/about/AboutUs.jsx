@@ -39,6 +39,7 @@ const AboutUs = () => {
       <AnimatedText />
       <Images/>
       <Team/>
+      <Strategy/>
     </div>
   );
 };
