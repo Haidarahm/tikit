@@ -6,6 +6,7 @@ import "./about.css";
 import AnimatedText from "./AnimatedText";
 import Images from "./images";
 import Strategy from "./Strategy";
+import Team from "./Team";
 const AboutUs = () => {
   const containerRef = useRef(null);
 
@@ -37,7 +38,7 @@ const AboutUs = () => {
       <Hero />
       <AnimatedText />
       <Images/>
-      <Strategy/>
+      <Team/>
     </div>
   );
 };
