@@ -4,6 +4,8 @@ import "locomotive-scroll/dist/locomotive-scroll.css";
 import Hero from "./Hero";
 import "./about.css";
 import AnimatedText from "./AnimatedText";
+import Images from "./images";
+import Strategy from "./Strategy";
 const AboutUs = () => {
   const containerRef = useRef(null);
 
@@ -34,6 +36,8 @@ const AboutUs = () => {
     >
       <Hero />
       <AnimatedText />
+      <Images/>
+      <Strategy/>
     </div>
   );
 };

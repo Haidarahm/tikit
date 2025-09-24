@@ -9,6 +9,7 @@ function LogoIntro() {
 
   useEffect(() => {
     if (!wrapperRef.current) return;
+
     const ctx = gsap.context(() => {
       const svg = document.querySelector(".intro-logo svg");
       const shapes = svg
@@ -19,39 +20,39 @@ function LogoIntro() {
           )
         : [];
 
-      // Prepare draw effect on all shapes
-      shapes.forEach((el) => {
-        let length = 0;
-        try {
-          if (typeof el.getTotalLength === "function") {
-            length = el.getTotalLength();
-          }
-        } catch (e) {
-          length = 0;
-        }
-        if (!Number.isFinite(length) || length <= 0) length = 300;
-
-        // Force initial invisible state
-        el.style.stroke = "#ffffff";
-        el.style.strokeWidth = "2";
-        el.style.fill = "none"; // ⬅️ make sure it starts with no fill
-        el.style.fillOpacity = "0";
-        el.style.strokeDasharray = String(length);
-        el.style.strokeDashoffset = String(length);
-        el.style.strokeLinecap = "round";
-        el.style.strokeLinejoin = "round";
-      });
-
+      // Hide everything instantly before animating
       gsap.set(".intro-logo", {
         opacity: 0,
         scale: 0.94,
         transformOrigin: "50% 50%",
       });
 
+      shapes.forEach((el) => {
+        let length = 0;
+        try {
+          if (typeof el.getTotalLength === "function") {
+            length = el.getTotalLength();
+          }
+        } catch {
+          length = 300;
+        }
+        if (!Number.isFinite(length) || length <= 0) length = 300;
+
+        gsap.set(el, {
+          stroke: "#ffffff",
+          strokeWidth: 2,
+          fill: "none",
+          fillOpacity: 0,
+          strokeDasharray: length,
+          strokeDashoffset: length,
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+        });
+      });
+
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.to(".intro-logo", { opacity: 1, scale: 1, duration: 0.6 })
-        // Draw strokes
         .to(
           shapes,
           {
@@ -62,20 +63,17 @@ function LogoIntro() {
           },
           0.05
         )
-        // Fill in after drawing
         .to(
           shapes,
           {
-            fill: "#ffffff", // ⬅️ final fill color
+            fill: "#ffffff",
             fillOpacity: 1,
             duration: 0.6,
             stagger: 0.015,
           },
           "-=0.6"
         )
-        // Fade out strokes
         .to(shapes, { strokeOpacity: 0, duration: 0.4 }, "+=0.1")
-        // Scale down + fade out logo
         .to(".intro-logo", {
           scale: 0,
           opacity: 0,
