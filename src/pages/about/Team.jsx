@@ -16,6 +16,7 @@ const Team = () => {
   const rightRef = useRef(null);
   const trackRef = useRef(null);
   const sectionHeightRef = useRef(0);
+  const horizontalDistanceRef = useRef(0);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -26,14 +27,17 @@ const Team = () => {
     const compute = () => {
       const rightWidth = right.clientWidth;
       const trackWidth = track.scrollWidth;
-      const horizontalDistance = Math.max(0, trackWidth - rightWidth);
+      const paddingLeftPx = parseFloat(
+        window.getComputedStyle(right).paddingLeft || "0"
+      );
+      const effectiveViewport = Math.max(1, rightWidth - paddingLeftPx);
+      const horizontalDistance = Math.max(0, trackWidth - effectiveViewport);
+      horizontalDistanceRef.current = horizontalDistance;
       const viewportH = window.innerHeight;
-      sectionHeightRef.current = viewportH + horizontalDistance;
+      sectionHeightRef.current = Math.ceil(viewportH + horizontalDistance);
       container.style.minHeight = `${sectionHeightRef.current}px`;
       // Notify smooth scrollers (e.g., Locomotive) to recalc after height change
-      try {
-        window.dispatchEvent(new Event("resize"));
-      } catch (_) {}
+      window.dispatchEvent(new Event("resize"));
     };
 
     let rafId = 0;
@@ -47,13 +51,14 @@ const Team = () => {
       );
       const raw = (0 - rect.top) / totalScroll;
       const progress = Math.min(1, Math.max(0, raw));
-      const rightWidth = right.clientWidth;
-      const trackWidth = track.scrollWidth;
-      const horizontalDistance = Math.max(0, trackWidth - rightWidth);
-      const targetTranslate = -progress * horizontalDistance;
+      const targetTranslate = -progress * horizontalDistanceRef.current;
       const eased = lastTranslate + (targetTranslate - lastTranslate) * 0.2;
       lastTranslate = eased;
-      track.style.transform = `translate3d(${eased}px, 0, 0)`;
+      const clamped = Math.max(
+        -horizontalDistanceRef.current,
+        Math.min(0, eased)
+      );
+      track.style.transform = `translate3d(${clamped}px, 0, 0)`;
       rafId = requestAnimationFrame(loop);
     };
 
