@@ -124,7 +124,7 @@ const Team = () => {
             {imageUrls.map((src, index) => (
               <div
                 key={String(index)}
-                className="relative h-[650px] w-[450px] rounded-[10px] shrink-0 overflow-hidden bg-[#111]"
+                className="relative h-[650px]  w-[450px] rounded-[10px] shrink-0 overflow-hidden bg-[#111]"
               >
                 <img
                   src={src}

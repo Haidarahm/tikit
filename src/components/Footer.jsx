@@ -1,73 +1,76 @@
 import React from "react";
+import SVGComponent from "../assets/logo";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#0b0f14] border-t border-white/10 text-white font-hero-light">
-      <div className="w-6/7 mx-auto py-12 flex flex-col gap-8">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold">Tikit</h3>
-            <p className="text-white/60 text-sm mt-1">
-              Marketing that moves the needle.
-            </p>
-          </div>
-          <nav className="flex flex-wrap gap-6 text-sm text-white/80">
-            <a className="hover:text-white transition-colors" href="#work">
-              Work
-            </a>
-            <a className="hover:text-white transition-colors" href="#services">
-              Services
-            </a>
-            <a className="hover:text-white transition-colors" href="#about">
-              About
-            </a>
-            <a className="hover:text-white transition-colors" href="#contact">
-              Contact
-            </a>
-          </nav>
+    <footer
+      data-scroll-section
+      className="w-full h-[80vh] px-[80px] bg-[#0b0f14] flex flex-col border-t border-white/10 text-white font-hero-light"
+    >
+      <div className="top-section  w-full mx-auto border-b-[1px] border-[#ffffff56] py-8 flex items-center justify-between gap-6">
+        <div className="logo w-[220px] h-[80px]">
+          <SVGComponent />
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
-          <div className="text-white/70">
-            <div className="font-semibold text-white mb-2">Contact</div>
-            <div>hello@tikit.agency</div>
-            <div className="mt-1">+1 (555) 555-5555</div>
+        <nav aria-label="social" className="flex items-center gap-3">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:bg-white/10 transition-colors"
+            aria-label="Facebook"
+          >
+            <FaFacebookF size={18} />
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:bg-white/10 transition-colors"
+            aria-label="Instagram"
+          >
+            <FaInstagram size={18} />
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:bg-white/10 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedinIn size={18} />
+          </a>
+          <a
+            href="https://x.com"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:bg-white/10 transition-colors"
+            aria-label="X (Twitter)"
+          >
+            <FaXTwitter size={18} />
+          </a>
+        </nav>
+      </div>
+      <div className="bottom-section flex flex-1">
+        <div className="left-section flex flex-col justify-around">
+          <p className="text-[24px] text-gray-500 leading-[30px]">
+            If you would like to work with us or just want to get
+            <br /> in touch, we’d love to hear from you!
+          </p>
+          <h1 className=" text-[48px]">
+            <span className="font-bold">Contact –</span> for Client or <br />
+            Influencer throughout
+          </h1>
+          <div className="location flex font-light text-gray-500 gap-[40px] text-[20px]">
+            {" "}
+            <p>Dubai- UAE</p> <p>London - UK</p>
           </div>
-          <div className="text-white/70">
-            <div className="font-semibold text-white mb-2">Office</div>
-            <div>123 Market Street</div>
-            <div>San Francisco, CA</div>
-          </div>
-          <div className="text-white/70">
-            <div className="font-semibold text-white mb-2">Follow</div>
-            <div className="flex gap-4">
-              <a className="hover:text-white" href="#">
-                Twitter
-              </a>
-              <a className="hover:text-white" href="#">
-                Instagram
-              </a>
-              <a className="hover:text-white" href="#">
-                LinkedIn
-              </a>
-            </div>
+          <div className="copyright text-[16px] text-gray-500">
+            © Copyright 2025 | Alrights reserved by Tikit
           </div>
         </div>
-
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-6 border-t border-white/10 text-xs text-white/50">
-          <div>© {new Date().getFullYear()} Tikit. All rights reserved.</div>
-          <div className="flex gap-4">
-            <a className="hover:text-white" href="#">
-              Privacy
-            </a>
-            <a className="hover:text-white" href="#">
-              Terms
-            </a>
-            <a className="hover:text-white" href="#">
-              Cookies
-            </a>
-          </div>
-        </div>
+        <div className="right-section"></div>
       </div>
     </footer>
   );

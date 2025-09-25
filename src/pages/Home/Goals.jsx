@@ -3,6 +3,7 @@ import ScrollStack, { ScrollStackItem } from "../../components/ScrollStackItem";
 import image1 from "../../assets/images/goal-image-1.png";
 import image2 from "../../assets/images/goal-image-2.png";
 import image3 from "../../assets/images/goal-image-3.png";
+import image4 from "../../assets/images/goal-image-4.png";
 
 function Goals() {
   const goalsData = [
@@ -30,10 +31,18 @@ function Goals() {
       image: image3,
       backgroundColor: "bg-[#9D74E5]",
     },
+    {
+      id: 4,
+      title: "Drive real engagement",
+      description:
+        "Reach real audiences with meaningful content. We grow traffic that actually converts.",
+      image: image4,
+      backgroundColor: "bg-[#B46CA7]",
+    },
   ];
 
   return (
-    <div className="section font-hero-light flex mx-auto h-[240vh] z-10 w-6/7">
+    <div className="section font-hero-light flex mx-auto h-[280vh] z-10 w-6/7">
       <ScrollStack
         useWindowScroll={true}
         itemDistance={0}

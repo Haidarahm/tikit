@@ -7,6 +7,8 @@ import AnimatedText from "./AnimatedText";
 import Images from "./images";
 import Strategy from "./Strategy";
 import Team from "./Team";
+import Growth from "./Growth";
+import Footer from "../../components/Footer";
 const AboutUs = () => {
   const containerRef = useRef(null);
 
@@ -38,8 +40,10 @@ const AboutUs = () => {
       <Hero />
       <AnimatedText />
       <Images/>
-      <Team/>
       <Strategy/>
+      <Growth/>
+      <Team/>
+      <Footer/>
     </div>
   );
 };

@@ -30,7 +30,7 @@ const Strategy = () => {
   return (
     <div data-scroll-section className="text-white">
       <div
-        className="title text-[70px] capitalize text-center mt-[80px] loco-text-up"
+        className="title text-[70px] capitalize text-center my-[80px] loco-text-up"
         data-scroll
         data-scroll-class="is-inview"
         data-scroll-repeat

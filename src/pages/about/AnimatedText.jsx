@@ -4,7 +4,7 @@ const AnimatedText = () => {
   return (
     <div
       data-scroll-section
-      className=" relative w-full p-14 overflow-hidden"
+      className=" relative w-full p-14 overflow-hidden mb-16"
     >
       <div
         className="title font-[PlusJakartaSans] relative whitespace-nowrap text-white text-[180px] font-bold"
