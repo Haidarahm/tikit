@@ -12,6 +12,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import AboutUs from "./pages/about/AboutUs";
 import Footer from "./components/Footer";
+import Services from "./pages/services/Services";
 
 const Layout = () => (
   <DarkBackground>
@@ -38,6 +39,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/work" element={<Work />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/services" element={<Services />} />
       </Route>
     </Routes>
   );
