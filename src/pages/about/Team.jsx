@@ -105,7 +105,7 @@ const Team = () => {
         data-scroll-target="#team-section"
       >
         <div
-          className="left-section z-50 absolute left-0 top-0 w-[30%] h-full flex items-center px-[50px] text-[64px] pointer-events-none bg-cover bg-center bg-no-repeat"
+          className="left-section rounded-[10px] z-50 absolute left-0 top-0 w-[30%] h-full flex items-center px-[50px] text-[64px] pointer-events-none bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${background})` }}
         >
           <h1 className="leading-[1.1]">
