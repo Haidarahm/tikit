@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef } from "react";
-
+import background from "../../assets/backgrounds/Team.png";
 const Team = () => {
   const imageUrls = useMemo(() => {
     const modules = import.meta.glob(
@@ -96,7 +96,7 @@ const Team = () => {
       ref={containerRef}
       data-scroll-section
       id="team-section"
-      className="relative mt-[50px] text-white font-hero-light"
+      className="relative overflow-hidden mt-[50px] text-white font-hero-light"
     >
       <div
         className="h-[100vh] flex relative"
@@ -104,7 +104,10 @@ const Team = () => {
         data-scroll-sticky
         data-scroll-target="#team-section"
       >
-        <div className="z-50 bg-black absolute left-0 top-0 w-[30%] h-full flex items-center px-[50px] text-[48px] pointer-events-none">
+        <div
+          className="left-section z-50 absolute left-0 top-0 w-[30%] h-full flex items-center px-[50px] text-[64px] pointer-events-none bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${background})` }}
+        >
           <h1 className="leading-[1.1]">
             Our <br /> creative team
           </h1>
@@ -116,7 +119,7 @@ const Team = () => {
         >
           <div
             ref={trackRef}
-            className="flex items-center gap-8 will-change-transform py-0"
+            className=" flex items-center inset-shadow-amber-100 shadow-amber-100 gap-8 will-change-transform py-0"
           >
             {imageUrls.map((src, index) => (
               <div

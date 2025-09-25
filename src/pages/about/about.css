@@ -24,3 +24,6 @@
   opacity: 1;
   transform: translateY(0);
 }
+#team-section .left-section {
+  box-shadow: 20px 1px 49px 70px rgba(0, 0, 0, 0.5);
+}
