@@ -29,7 +29,12 @@ const Strategy = () => {
   ];
   return (
     <div data-scroll-section className="text-white">
-      <div className="title text-[70px] capitalize text-center mt-[80px]">
+      <div
+        className="title text-[70px] capitalize text-center mt-[80px] loco-text-up"
+        data-scroll
+        data-scroll-class="is-inview"
+        data-scroll-repeat
+      >
         No fluff.
         <br /> Just <span className="font-bold">expert strategy</span>{" "}
       </div>
@@ -37,8 +42,14 @@ const Strategy = () => {
         {cards.map((card, i) => (
           <div
             key={String(i)}
-            className="relative rounded-[14px] overflow-hidden bg-[#0b0b0b]/60 col-span-2 row-span-1 border border-white/10 hover:border-white/20 transition-colors"
-            style={{ backgroundColor: `${card.color}1A` }}
+            className="relative rounded-[14px] overflow-hidden bg-[#0b0b0b]/60 col-span-2 row-span-1 border border-white/10 hover:border-white/20 transition-colors loco-reveal-card"
+            data-scroll
+            data-scroll-class="is-inview"
+            data-scroll-repeat
+            style={{
+              backgroundColor: `${card.color}1A`,
+              transitionDelay: `${i * 120}ms`,
+            }}
           >
             {/* Radial gradient background with subtle blur from card color to white */}
             <div
@@ -48,8 +59,22 @@ const Strategy = () => {
               }}
             />
             <div className="p-5 relative z-10">
-              <div className="text-[36px] font-semibold mb-2">{card.title}</div>
-              <div className="text-white/80 text-[24px] leading-relaxed">
+              <div
+                className="text-[36px] font-semibold mb-2 loco-text-up"
+                data-scroll
+                data-scroll-class="is-inview"
+                data-scroll-repeat
+                style={{ transitionDelay: `${300 + i * 120}ms` }}
+              >
+                {card.title}
+              </div>
+              <div
+                className="text-white/80 text-[24px] leading-relaxed loco-text-up"
+                data-scroll
+                data-scroll-class="is-inview"
+                data-scroll-repeat
+                style={{ transitionDelay: `${450 + i * 120}ms` }}
+              >
                 {card.description}
               </div>
             </div>
