@@ -6,25 +6,25 @@ const Strategy = () => {
       title: "Influencer Marketing",
       description:
         "From concept to final cut, we bring bold ideas to life. Whether it's social content, branded visuals, or full-scale commercial shoots, our production team delivers quality storytelling that captures attention and drives action.",
-      color: "#0ea5e9", // sky-500
+      color: "#548099", // sky-500
     },
     {
       title: "Production",
       description:
         "From concept to final cut, we bring bold ideas to life. Whether it's social content, branded visuals, or full-scale commercial shoots, our production team delivers quality storytelling that captures attention and drives action.",
-      color: "#a78bfa", // violet-400
+      color: "#7E5DB9", // violet-400
     },
     {
       title: "Social Media Management",
       description:
         "From concept to final cut, we bring bold ideas to life. Whether it's social content, branded visuals, or full-scale commercial shoots, our production team delivers quality storytelling that captures attention and drives action.",
-      color: "#f97316", // orange-500
+      color: "#483CB3", // orange-500
     },
     {
       title: "Branding",
       description:
         "From concept to final cut, we bring bold ideas to life. Whether it's social content, branded visuals, or full-scale commercial shoots, our production team delivers quality storytelling that captures attention and drives action.",
-      color: "#22c55e", // green-500
+      color: "#B46CA7", // green-500
     },
   ];
   return (
@@ -37,10 +37,17 @@ const Strategy = () => {
         {cards.map((card, i) => (
           <div
             key={String(i)}
-            className="rounded-[14px] overflow-hidden bg-[#0b0b0b]/60 col-span-2 row-span-1 border border-white/10 hover:border-white/20 transition-colors"
+            className="relative rounded-[14px] overflow-hidden bg-[#0b0b0b]/60 col-span-2 row-span-1 border border-white/10 hover:border-white/20 transition-colors"
             style={{ backgroundColor: `${card.color}1A` }}
           >
-            <div className="p-5">
+            {/* Radial gradient background with subtle blur from card color to white */}
+            <div
+              className="pointer-events-none absolute inset-0 z-0 blur-[24px] opacity-70"
+              style={{
+                backgroundImage: `radial-gradient(120% 100% at 30% 30%, ${card.color}, #ffffff)`,
+              }}
+            />
+            <div className="p-5 relative z-10">
               <div className="text-[36px] font-semibold mb-2">{card.title}</div>
               <div className="text-white/80 text-[24px] leading-relaxed">
                 {card.description}
