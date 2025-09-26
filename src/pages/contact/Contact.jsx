@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
-
+import Hero from "./Hero";
+import AnimatedLines from "./AnimatedLines";
+import Action from "./Action";
+import './contact.css'
 const Contact = () => {
   const containerRef = useRef(null);
 
@@ -30,14 +33,9 @@ const Contact = () => {
       data-scroll-container
       className="contact-section w-full text-white min-h-screen font-hero-light"
     >
-      <section data-scroll-section className="h-screen w-full flex items-center justify-center">
-        <h1 className="text-6xl font-bold text-center py-20">Contact Us</h1>
-        <div data-scroll-section className="max-w-4xl mx-auto px-6">
-          <p className="text-xl text-center">
-            Get in touch with us for your next project
-          </p>
-        </div>
-      </section>
+      <Hero />
+      <AnimatedLines/>
+      <Action/>
     </div>
   );
 };

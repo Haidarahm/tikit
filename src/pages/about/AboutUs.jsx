@@ -39,11 +39,11 @@ const AboutUs = () => {
     >
       <Hero />
       <AnimatedText />
-      <Images/>
-      <Strategy/>
-      <Growth/>
-      <Team/>
-      <Footer/>
+      <Images />
+      <Strategy />
+      <Growth />
+      <Team />
+      <Footer />
     </div>
   );
 };
