@@ -129,7 +129,7 @@ const Services = () => {
         <section
           key={index}
           ref={(el) => (sectionRefs.current[index] = el)}
-          className="snap-section h-screen w-full flex items-center justify-center"
+          className="snap-section  h-screen w-full flex  items-center justify-center"
           style={{ backgroundImage: `url(${src})` }}
           aria-label={`Service slide ${index + 1}`}
         >
