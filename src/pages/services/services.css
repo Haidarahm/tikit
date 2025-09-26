@@ -1,4 +1,16 @@
-/* (Removed) Snap scrolling styles have been deleted on request. */
+/* Title effect styles (SplitType-like) */
+.section-title {
+  text-transform: uppercase;
+  /* approximate Bebas Neue look if not installed; using existing fonts */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  line-height: 5.9rem; /* tuned for large sizes */
+}
+
+.section-title .char {
+  display: inline-block;
+  transform: translateY(115px);
+  transition: transform 0.5s ease;
+}
 .services-section {
   position: relative;
   width: 100%;
