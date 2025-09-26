@@ -3,11 +3,11 @@ import SVGComponent from "../assets/logo";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
-const Footer = () => {
+const Footer = ({className}) => {
   return (
     <footer
       data-scroll-section
-      className="w-full h-[80vh] px-[80px] bg-[#0b0f14] flex flex-col border-t border-white/10 text-white font-hero-light"
+      className={(`w-full  h-[80vh] px-[80px] bg-[#0b0f14] flex flex-col border-t border-white/10 text-white font-hero-light ${className}`)}
     >
       <div className="top-section  w-full mx-auto border-b-[1px] border-[#ffffff56] py-8 flex items-center justify-between gap-6">
         <div className="logo w-[220px] h-[80px]">

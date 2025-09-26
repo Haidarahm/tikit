@@ -14,6 +14,7 @@ import WorkSection from "./WorkSection";
 import Connections from "./Connections";
 import Reviews from "./Reviews";
 import ContactUs from "./ContactUs";
+import Footer from "../../components/Footer";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -83,7 +84,8 @@ function Home() {
       <WorkSection />
       <AboutUs />
       <Reviews />
-      <ContactUs/>
+      <ContactUs />
+      <Footer />
     </div>
   );
 }

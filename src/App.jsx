@@ -13,6 +13,7 @@ import "aos/dist/aos.css";
 import AboutUs from "./pages/about/AboutUs";
 import Footer from "./components/Footer";
 import Services from "./pages/services/Services";
+import Contact from "./pages/contact/Contact";
 
 const Layout = () => (
   <DarkBackground>
@@ -23,7 +24,6 @@ const Layout = () => (
       <div>
         <Outlet />
       </div>
-      <Footer/>
     </div>
   </DarkBackground>
 );
@@ -40,6 +40,7 @@ function App() {
         <Route path="/work" element={<Work />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
       </Route>
     </Routes>
   );

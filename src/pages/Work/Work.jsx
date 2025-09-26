@@ -12,6 +12,7 @@ import "./work.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitText from "../../components/SplitText";
+import Footer from "../../components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -125,6 +126,7 @@ const Work = () => {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 };
