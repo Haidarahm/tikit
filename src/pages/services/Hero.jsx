@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Hero = () => {
-  return (
-    <div data-scroll-section className="h-screen  flex flex-col">
-      
-    </div>
-  )
-}
+  return <div data-scroll-section className="h-screen  flex flex-col"></div>;
+};
 
-export default Hero
+export default Hero;
