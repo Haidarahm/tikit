@@ -4,6 +4,11 @@ import "./services.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import img41 from "../../assets/services/41.png";
+import img42 from "../../assets/services/42.png";
+import img43 from "../../assets/services/43.png";
+import img44 from "../../assets/services/44.png";
+
 const splitTextToSpans = (element) => {
   if (!element || element.dataset.splitDone === "true") return;
   const originalText = element.textContent || "";
@@ -115,16 +120,17 @@ const Services = () => {
     };
   }, []);
 
-  const colors = ["bg-red-500", "bg-green-500", "bg-blue-500", "bg-purple-500"];
+  const images = [img41, img42, img43, img44];
 
   return (
     <div className="services-section w-full font-hero-light">
       <Hero />
-      {colors.map((bg, index) => (
+      {images.map((src, index) => (
         <section
           key={index}
           ref={(el) => (sectionRefs.current[index] = el)}
-          className={`snap-section h-screen w-full ${bg} flex items-center justify-center`}
+          className="snap-section h-screen w-full flex items-center justify-center"
+          style={{ backgroundImage: `url(${src})` }}
           aria-label={`Service slide ${index + 1}`}
         >
           <div className="max-w-3xl text-white text-center px-6">
