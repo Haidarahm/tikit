@@ -2,10 +2,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div
-      data-scroll-section
-      className="h-screen font-hero-light text-white justify-center items-center  flex flex-col"
-    >
+    <div className="snap-section h-screen font-hero-light text-white justify-center items-center  flex flex-col">
       <div className="texts mt-12 text-center">
         <h1 className="text-[96px] leading-[100px] mb-8 capitalize">
           {" "}
