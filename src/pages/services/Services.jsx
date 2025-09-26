@@ -67,10 +67,10 @@ const Services = () => {
             skewY: 0,
             scale: 1,
             filter: "blur(0px)",
-            duration: 0.35,
-            stagger: { each: 0.06, from: "start" },
-            delay: 0.1,
-            ease: "back.out(1.7)",
+            duration: 0.7,
+            stagger: { each: 0.12, from: "start" },
+            delay: 0.15,
+            ease: "power3.out",
           }
         );
       };
