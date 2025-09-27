@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <section
       data-scroll-section
-      className="h-screen w-full flex items-center justify-center"
+      className="snap-start snap-always h-screen w-full flex items-center justify-center"
     >
       <h1 className="text-[70px] mt-[104px] leading-[110px] capitalize text-center py-20">
         Any questions? simply ask us.

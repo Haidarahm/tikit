@@ -42,13 +42,12 @@ function Goals() {
   ];
 
   return (
-    <div className="section font-hero-light flex mx-auto h-[280vh] z-10 w-6/7">
+    <div className="section font-hero-light flex mx-auto h-[320vh] z-10 w-6/7">
       <ScrollStack
         useWindowScroll={true}
         itemDistance={0}
         itemStackDistance={50}
         stackPosition="100"
-      
       >
         {goalsData.map((goal) => (
           <ScrollStackItem

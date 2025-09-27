@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
 const Action = () => {
   return (
-    <div ata-scroll-section className='h-screen'>
-      
-    </div>
-  )
-}
+    <div ata-scroll-section className="snap-start snap-always h-screen"></div>
+  );
+};
 
-export default Action
+export default Action;

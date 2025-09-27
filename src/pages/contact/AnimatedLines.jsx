@@ -50,7 +50,7 @@ const AnimatedLines = () => {
   }, []);
 
   return (
-    <section className="h-screen w-full flex flex-col">
+    <section className="snap-start snap-always h-screen w-full flex flex-col">
       <div className="details flex gap-[50px] max-w-7xl mx-auto">
         <h1 className="title uppercase font-bold text-[24px] w-1/7">
           We've been waiting for you!
