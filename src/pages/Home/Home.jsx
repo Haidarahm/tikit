@@ -80,7 +80,7 @@ function Home() {
       <Numbers />
       <Goals />
       <Services />
-      <Connections /> {/* Sticky pinned work section */}
+      <Connections />
       <WorkSection />
       <AboutUs />
       <Reviews />
