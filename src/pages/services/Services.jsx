@@ -9,6 +9,7 @@ import img42 from "../../assets/services/42.png";
 import img43 from "../../assets/services/43.png";
 import img44 from "../../assets/services/44.png";
 import Footer from "../../components/Footer";
+import ContactUs from "../Home/ContactUs";
 
 const splitTextToSpans = (element) => {
   if (!element || element.dataset.splitDone === "true") return;
@@ -197,6 +198,7 @@ const Services = () => {
           </section>
         ))}
       </div>
+      <ContactUs/>
       <Footer className="snap-start snap-always" />
     </div>
   );

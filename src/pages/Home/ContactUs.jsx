@@ -44,7 +44,7 @@ const ContactUs = () => {
     { src: b5, alt: "Brand 5" },
   ];
   return (
-    <div className="relative  gap-3.5  overflow-hidden text-white h-[80vh] font-hero-light rounded-[25px] flex flex-col mx-auto py-[60px] px-[50px]  w-[95vw] bg-black">
+    <div className="relative my-10 gap-3.5 snap-start snap-always overflow-hidden text-white  font-hero-light rounded-[25px] flex flex-col mx-auto py-[60px] px-[50px]  w-[95vw] bg-black">
       <div className="overlay absolute w-full h-full bg-[#00000076] z-10"></div>
       <div className="w-full h-full absolute z-0">
         <Hyperspeed
