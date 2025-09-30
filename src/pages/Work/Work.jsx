@@ -49,7 +49,21 @@ const Work = () => {
             trigger: el,
             start: "top 90%",
             end: "top 20%",
-            scrub: true,
+            scrub: 0.5,
+          },
+        }
+      );
+      gsap.fromTo(
+        ".content-work",
+        { height: "10%" },
+        {
+          height: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            end: "top 20%",
+            scrub: 0.5,
           },
         }
       );
@@ -114,7 +128,7 @@ const Work = () => {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className=" content-work absolute h-[10%] inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <h3 className="text-white text-[30px] font-bold mb-2">
                 {item.title}
               </h3>
