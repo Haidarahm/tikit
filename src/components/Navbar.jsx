@@ -18,7 +18,6 @@ function Navbar() {
     { to: "/work", label: "work" },
     { to: "/about", label: "About Us" },
     { to: "/services", label: "Services" },
-    { to: "/contact", label: "Contact" },
   ];
 
   useEffect(() => {
@@ -222,7 +221,7 @@ function Navbar() {
           </div>
         </div>
         <div className="w-[137px]">
-          <TikitButton text="Get Quetion" />
+          <TikitButton text="Contact Us" />
         </div>
       </div>
     </nav>
