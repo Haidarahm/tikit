@@ -86,7 +86,7 @@ const Connections = () => {
         <ScrollFloat
           animationDuration={1}
           ease="back.inOut(2)"
-          textClassName="text-[44px]  max-w-[600px] leading-[60px]"
+          textClassName="text-[44px] pointer-events-none max-w-[600px] leading-[60px]"
           scrollStart="center bottom+=20%"
           scrollEnd="bottom bottom-=50%"
           stagger={0.06}
@@ -104,14 +104,14 @@ const Connections = () => {
             colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
             animationSpeed={5}
             showBorder={false}
-            className="gradient-text text-[64px] capitalize font-bold max-w-[600px]"
+            className="gradient-text pointer-events-none text-[64px] capitalize font-bold max-w-[600px]"
           >
             Join our list today!
           </GradientText>
         </div>
 
         <p
-          className="description text-[32px] font-light leading-[35px] mt-[20px]"
+          className="description pointer-events-none text-[32px] font-light leading-[35px] mt-[20px]"
           data-aos="fade-right"
           data-aos-duration="900"
           data-aos-easing="ease-out-cubic"
@@ -121,7 +121,9 @@ const Connections = () => {
           blend data with creativity to help brands reach and resonate with the
           right audience
         </p>
-        <button className="uppercase mt-[40px] text-[16px] py-1 bg-white rounded-full px-4 text-black w-fit">contact us</button>
+        <button className="uppercase mt-[40px] text-[16px] hover:text-white hover:bg-transparent border border-white transition cursor-pointer py-1 bg-white rounded-full px-4 text-black w-fit">
+          contact us
+        </button>
       </div>
     </div>
   );
