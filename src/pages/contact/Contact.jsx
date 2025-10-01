@@ -9,7 +9,7 @@ const Contact = () => {
   return (
     <div
   
-      className="contact-section w-full text-white min-h-screen font-hero-light"
+      className="contact-section snap-mandatory snap-y w-full text-white min-h-screen font-hero-light"
     >
       <Hero />
       <AnimatedLines/>

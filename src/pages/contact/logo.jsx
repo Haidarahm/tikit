@@ -34,7 +34,7 @@ const SVGComponent = (props) => {
       const originalFill = window.getComputedStyle(el).fill;
 
       gsap.set(el, {
-        stroke: el.classList.contains("logo-jump-1") ? "#35d3cf" : "#373737",
+        stroke: el.classList.contains("logo-jump-1") ? "#35d3cf" : "#FFFFFF",
         strokeWidth: 2,
         fill: originalFill,
         fillOpacity: 0, // start invisible
@@ -87,7 +87,7 @@ const SVGComponent = (props) => {
     >
       <defs>
         <style>
-          {`.cls-2{fill:#373737;}
+          {`.cls-2{fill:#FFFFFF;}
             .logo-jump-1{fill:#35d3cf;}`}
         </style>
       </defs>

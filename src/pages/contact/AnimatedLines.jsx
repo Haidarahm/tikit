@@ -50,8 +50,8 @@ const AnimatedLines = () => {
   }, []);
 
   return (
-    <section className="snap-start snap-always h-screen w-full flex flex-col">
-      <div className="details flex gap-[50px] max-w-7xl mx-auto">
+    <section className="contact-section snap-start snap-always h-screen w-full flex flex-col">
+      <div className="details relative z-20  flex gap-[50px] max-w-7xl mx-auto">
         <h1 className="title uppercase font-bold text-[24px] w-1/7">
           We've been waiting for you!
         </h1>
@@ -63,7 +63,7 @@ const AnimatedLines = () => {
       </div>
       <div
         ref={containerRef}
-        className="main-content bg-blue-50 flex-1 flex relative  overflow-hidden"
+        className="main-content  flex-1 flex relative  overflow-hidden"
       >
         <div className="section-1 relative w-1/3 ">
           <div className="line-container absolute  top-0 -left-24  w-[1000px] -rotate-[18deg] h-[100px]">
