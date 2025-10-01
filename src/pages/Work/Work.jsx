@@ -11,7 +11,6 @@ import image3 from "../../assets/images/card-3.jpg";
 import "./work.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SplitText from "../../components/SplitText";
 import Footer from "../../components/Footer";
 import ContactUs from "../Home/ContactUs";
 
@@ -34,7 +33,10 @@ const imagesArr = [
 
 const Work = () => {
   const imagesRef = useRef([]);
-  const paragraphRef = useRef();
+  const paragraphContainerRef = useRef(null);
+  const paragraphRef = useRef(null);
+  const titleContainerRef = useRef(null);
+  const titleRef = useRef(null);
 
   useEffect(() => {
     imagesRef.current.forEach((el) => {
@@ -57,46 +59,45 @@ const Work = () => {
     });
   }, []);
 
-  const handleAnimationComplete = () => {
-    if (paragraphRef.current) {
-      gsap.fromTo(
-        paragraphRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        }
-      );
-    }
-  };
+  useEffect(() => {
+    if (!titleContainerRef.current || !titleRef.current) return;
+    gsap.set(titleRef.current, { yPercent: 100 });
+    gsap.to(titleRef.current, {
+      yPercent: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      delay: 0.3,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!paragraphContainerRef.current || !paragraphRef.current) return;
+    gsap.set(paragraphRef.current, { yPercent: 100, opacity: 1 });
+    gsap.to(paragraphRef.current, {
+      yPercent: 0,
+      duration: 0.9,
+      ease: "power2.out",
+      delay: 0.5,
+    });
+  }, []);
 
   return (
     <div className="work-section font-hero-light flex flex-col h-[calc(100%+10vh)]">
       <div className="h-[75vh] flex flex-col justify-center items-center w-full description text-white mt-[104px]">
-        <SplitText
-          text="Featured Work"
-          className="title font-bold text-[64px] mb-[20px]"
-          delay={100}
-          duration={0.6}
-          ease="power3.out"
-          splitType="chars"
-          from={{ opacity: 0, y: 40 }}
-          to={{ opacity: 1, y: 0 }}
-          threshold={0.1}
-          rootMargin="-100px"
-          textAlign="center"
-          onLetterAnimationComplete={handleAnimationComplete}
-        />
-        <p
-          ref={paragraphRef}
-          className="paragraph font-light text-[32px] w-[900px] text-center leading-[40px]"
-          style={{ opacity: 0, transform: "translateY(40px)" }}
-        >
-          We take a similar approach to design commercial we do impactfully
-          approache, over the flowchart of user friendly wireframe.
-        </p>
+        <div ref={titleContainerRef} className="overflow-hidden">
+          <h1 ref={titleRef} className="title font-bold text-[64px] mb-[20px]">
+            Featured Work
+          </h1>
+        </div>
+        <div ref={paragraphContainerRef} className="overflow-hidden">
+          <p
+            ref={paragraphRef}
+            className="paragraph font-light text-[32px] w-[900px] text-center leading-[40px]"
+          >
+            We take a similar approach to design commercial we do impactfully
+            approache, over the flowchart of user friendly wireframe.
+          </p>
+        </div>
       </div>
 
       {/* Image Grid */}
