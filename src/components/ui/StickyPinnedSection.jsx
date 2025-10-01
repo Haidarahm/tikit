@@ -250,9 +250,9 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
     >
       <div
         ref={stickyRef}
-        className="sticky top-0 flex h-screen items-center justify-center gap-10 px-10"
+        className="sticky top-0 flex h-screen items-center justify-between gap-10 px-10"
       >
-        <div className=" text-white px-16 flex  w-full font-bold absolute top-32 left-1/2 -translate-x-1/2 uppercase  items-center justify-between gap-4 ">
+        <div className=" text-white px-10 flex  w-full font-bold absolute top-25 left-1/2 -translate-x-1/2 uppercase  items-center justify-between gap-4 ">
           <div>
             {Array.from("Featured Work").map((ch, i) => (
               <span key={i} className="fw-letter text-[32px]  inline-block">
@@ -323,7 +323,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 }) {
         </div>
 
         {/* Media column */}
-        <div className="sticky z-10 top-10 mt-20 h-[50vh] w-[40rem] shrink-0 overflow-hidden rounded-xl">
+        <div className="sticky z-10 top-10 mt-20 h-[55vh] w-[35rem] shrink-0 overflow-hidden rounded-xl">
           <div className="relative h-full w-full">
             {items.map((it, i) => (
               <div
