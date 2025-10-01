@@ -121,13 +121,13 @@ const ContactUs = () => {
           </div>
           <div className="inputs flex justify-between gap-[20px]">
             <FloatingInput
-              id="contact-standard"
-              label="name"
+              id="name"
+              label="Name"
               containerClassName="mt-8 flex-1"
             />
             <FloatingInput
-              id="contact-standard"
-              label="email"
+              id="email"
+              label="Email"
               containerClassName="mt-8 flex-1"
             />
           </div>
