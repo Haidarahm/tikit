@@ -1,4 +1,5 @@
 export default function GradientText({
+  ref,
   children,
   className = "",
   colors = ["#ffaa40", "#9c40ff", "#ffaa40"],
@@ -12,6 +13,7 @@ export default function GradientText({
 
   return (
     <div
+    ref={ref}
       className={`relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-[1.25rem]  backdrop-blur transition-shadow duration-500 overflow-hidden  ${className}`}
     >
       {showBorder && (
