@@ -198,7 +198,7 @@ const Services = () => {
           </section>
         ))}
       </div>
-      <ContactUs/>
+      <ContactUs  className="snap-start snap-always"/>
       <Footer className="snap-start snap-always" />
     </div>
   );
