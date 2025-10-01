@@ -82,7 +82,7 @@ const Connections = () => {
         alt="Decorative element 2"
         className="element2-c absolute top-[55vh] right-12 grayscale-75 rotate-90 z-0 w-auto h-auto max-w-[300px] max-h-[300px]"
       />
-      <div className="flex flex-col justify-center relative z-10 w-[80vw]  mx-auto text-center">
+      <div className="flex items-center flex-col justify-center relative z-10 w-[80vw]  mx-auto text-center">
         <ScrollFloat
           animationDuration={1}
           ease="back.inOut(2)"
@@ -93,24 +93,35 @@ const Connections = () => {
         >
           Are you an influencer?
         </ScrollFloat>
-        <GradientText
-          colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-          animationSpeed={3}
-          showBorder={false}
-          revealOnScroll={true}
-          revealOffset={32}
-          revealDuration={0.9}
-          revealOnce={true}
-          className="text-[64px] capitalize font-bold max-w-[600px]"
+        <div
+          data-aos="fade-left"
+          data-aos-duration="900"
+          data-aos-easing="ease-out-cubic"
+          data-aos-once="false"
+          data-aos-offset="120"
         >
-          Join our list today!
-        </GradientText>
+          <GradientText
+            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+            animationSpeed={5}
+            showBorder={false}
+            className="gradient-text text-[64px] capitalize font-bold max-w-[600px]"
+          >
+            Join our list today!
+          </GradientText>
+        </div>
 
-        <p className="description text-[32px] font-light leading-[35px] mt-[20px]">
+        <p
+          className="description text-[32px] font-light leading-[35px] mt-[20px]"
+          data-aos="fade-right"
+          data-aos-duration="900"
+          data-aos-easing="ease-out-cubic"
+          data-aos-once="false"
+          data-aos-offset="120"
+        >
           blend data with creativity to help brands reach and resonate with the
           right audience
         </p>
-        <button></button>
+        <button className="uppercase mt-[40px] text-[16px] py-1 bg-white rounded-full px-4 text-black w-fit">contact us</button>
       </div>
     </div>
   );
