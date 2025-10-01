@@ -4,43 +4,43 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SVGComponent from "./logo";
 
 const AnimatedLines = () => {
-  const lineFromLeft = useRef(null);
-  const lineFromRight = useRef(null);
+  // We'll target multiple lines via class selectors instead of single refs
   const containerRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    if (
-      !lineFromLeft.current ||
-      !lineFromRight.current ||
-      !containerRef.current
-    )
-      return;
+    if (!containerRef.current) return;
 
-    // Set initial position
-    gsap.set(lineFromLeft.current, { left: "-90%" });
-    gsap.set(lineFromRight.current, { right: "-70%" });
+    // Set initial positions for groups
+    gsap.set(containerRef.current.querySelectorAll(".line-from-left"), {
+      left: "-90%",
+    });
+    gsap.set(containerRef.current.querySelectorAll(".line-from-right"), {
+      right: "-70%",
+    });
 
     // Create scroll trigger animation
-    gsap.to(lineFromLeft.current, {
-      left: "70%", // Move from left -50% to right 50%
+    gsap.to(containerRef.current.querySelectorAll(".line-from-left"), {
+      left: "70%",
       ease: "none",
+      stagger: 0.15,
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 0.1, // Faster scrubbing (0.1 = very fast, 1 = smooth, 2 = slower)
+        scrub: 0.1,
       },
     });
-    gsap.to(lineFromRight.current, {
-      right: "80%", // Move from left -50% to right 50%
+    gsap.to(containerRef.current.querySelectorAll(".line-from-right"), {
+      right: "80%",
       ease: "none",
+      stagger: 0.15,
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 0.1, // Faster scrubbing (0.1 = very fast, 1 = smooth, 2 = slower)
+        scrub: 0.1,
       },
     });
 
@@ -63,25 +63,30 @@ const AnimatedLines = () => {
       </div>
       <div
         ref={containerRef}
-        className="main-content bg-blue-50 flex-1 flex relative justify-center flex-col overflow-hidden"
+        className="main-content bg-blue-50 flex-1 flex relative  overflow-hidden"
       >
-        <div className="logo w-[500px]">
-          <SVGComponent />
-        </div>
-        <div className="line-container absolute w-[140%] rotate-[20deg] h-[100px]">
-          <div
-            ref={lineFromLeft}
-            className="line w-full pr-[100px]  h-[100px] absolute justify-end text-[100px] text-end flex items-center  text-black font-bold bg-white"
-          >
-            contact us now
+        <div className="section-1 relative w-1/3 ">
+          <div className="line-container absolute  top-0 -left-24  w-[1000px] -rotate-[15deg] h-[100px]">
+            <div className="line line-from-left w-full pr-[100px]  h-[100px] absolute justify-end text-[100px] text-end flex items-center  text-black font-bold bg-white">
+              contact us now
+            </div>
+          </div>
+          <div className="line-container absolute -bottom-[10%] left-2/3 w-[1000px] rotate-[15deg] h-[100px]">
+            <div className="line line-from-left w-full pr-[100px]  h-[100px] absolute justify-end text-[100px] text-end flex items-center  text-black font-bold bg-white">
+              contact us now
+            </div>
           </div>
         </div>
-        <div className="line-container absolute w-[140%] -rotate-[20deg] h-[100px]">
-          <div
-            ref={lineFromRight}
-            className="line w-full pl-[200px]  h-[100px] absolute justify-start text-[100px] text-end flex items-center  text-black font-bold bg-white"
-          >
-            contact us now
+        <div className="section-2 w-1/3">
+          <div className="logo w-[500px]">
+            <SVGComponent />
+          </div>
+        </div>
+        <div className="section-3 w-1/3">
+          <div className="line-container absolute w-[140%] -rotate-[20deg] h-[100px]">
+            <div className="line line-from-right w-full pl-[200px]  h-[100px] absolute justify-start text-[100px] text-end flex items-center  text-black font-bold bg-white">
+              contact us now
+            </div>
           </div>
         </div>
       </div>

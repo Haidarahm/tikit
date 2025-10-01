@@ -6,6 +6,7 @@ import element1 from "../../assets/elements/5.png";
 import element2 from "../../assets/elements/6.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import GradientText from "../../components/GradientText";
 gsap.registerPlugin(ScrollTrigger);
 
 // Helper function to split text into words
@@ -81,34 +82,31 @@ const Connections = () => {
         alt="Decorative element 2"
         className="element2-c absolute top-[55vh] right-12 grayscale-75 rotate-90 z-0 w-auto h-auto max-w-[300px] max-h-[300px]"
       />
-      <div className="flex flex-col justify-center w-[60vw]  mx-auto text-center">
+      <div className="flex flex-col justify-center relative z-10 w-[80vw]  mx-auto text-center">
         <ScrollFloat
           animationDuration={1}
           ease="back.inOut(2)"
-          textClassName="text-[64px] font-bold max-w-[600px] leading-[60px]"
+          textClassName="text-[44px]  max-w-[600px] leading-[60px]"
           scrollStart="center bottom+=20%"
           scrollEnd="bottom bottom-=50%"
           stagger={0.06}
         >
-          Bold, Data-Led Marketing Crafted By Experts
+          Are you an influencer?
         </ScrollFloat>
+        <GradientText
+          colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+          animationSpeed={3}
+          showBorder={false}
+          className="text-[64px] capitalize font-bold max-w-[600px]"
+        >
+          Join our list today!
+        </GradientText>
 
         <p className="description text-[32px] font-light leading-[35px] mt-[20px]">
-          {splitText(
-            "blend data with creativity to help brands reach and resonate with the right audience."
-          ).map((word, index) => (
-            <span
-              key={index}
-              data-aos="fade-up"
-              data-aos-duration="600"
-              data-aos-delay={`${200 + index * 50}`}
-              data-aos-easing="ease-out-cubic"
-              className="inline-block mr-2"
-            >
-              {word}
-            </span>
-          ))}
+          blend data with creativity to help brands reach and resonate with the
+          right audience
         </p>
+        <button></button>
       </div>
     </div>
   );
