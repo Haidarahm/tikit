@@ -97,6 +97,10 @@ const Connections = () => {
           colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
           animationSpeed={3}
           showBorder={false}
+          revealOnScroll={true}
+          revealOffset={32}
+          revealDuration={0.9}
+          revealOnce={true}
           className="text-[64px] capitalize font-bold max-w-[600px]"
         >
           Join our list today!
