@@ -66,25 +66,30 @@ const AnimatedLines = () => {
         className="main-content bg-blue-50 flex-1 flex relative  overflow-hidden"
       >
         <div className="section-1 relative w-1/3 ">
-          <div className="line-container absolute  top-0 -left-24  w-[1000px] -rotate-[15deg] h-[100px]">
+          <div className="line-container absolute  top-0 -left-24  w-[1000px] -rotate-[18deg] h-[100px]">
             <div className="line line-from-left w-full pr-[100px]  h-[100px] absolute justify-end text-[100px] text-end flex items-center  text-black font-bold bg-white">
               contact us now
             </div>
           </div>
-          <div className="line-container absolute -bottom-[10%] left-2/3 w-[1000px] rotate-[15deg] h-[100px]">
-            <div className="line line-from-left w-full pr-[100px]  h-[100px] absolute justify-end text-[100px] text-end flex items-center  text-black font-bold bg-white">
+          <div className="line-container absolute z-20 -bottom-[22%] left-[75%] w-[1000px] rotate-[18deg] h-[100px]">
+            <div className="line line-from-left  w-full pr-[100px]  h-[100px] absolute justify-end text-[100px] text-end flex items-center  text-black font-bold bg-white">
               contact us now
             </div>
           </div>
         </div>
-        <div className="section-2 w-1/3">
-          <div className="logo w-[500px]">
+        <div className="section-2 flex items-center w-1/3">
+          <div className="logo mx-auto w-[500px]">
             <SVGComponent />
           </div>
         </div>
-        <div className="section-3 w-1/3">
-          <div className="line-container absolute w-[140%] -rotate-[20deg] h-[100px]">
-            <div className="line line-from-right w-full pl-[200px]  h-[100px] absolute justify-start text-[100px] text-end flex items-center  text-black font-bold bg-white">
+        <div className="section-3  relative w-1/3 ">
+          <div className="line-container absolute  top-12 -right-[50%]  w-[1000px] rotate-[18deg] h-[100px]">
+            <div className="line line-from-right w-full pr-[100px]  h-[100px] absolute justify-end text-[100px] text-end flex items-center  text-black font-bold bg-white">
+              contact us now
+            </div>
+          </div>
+          <div className="line-container absolute -bottom-[20%] z-10 right-[50%] w-[1000px] -rotate-[18deg] h-[100px]">
+            <div className="line line-from-right w-full pr-[100px]  h-[100px] absolute justify-start text-[100px] text-end flex items-center  text-black font-bold bg-white">
               contact us now
             </div>
           </div>
