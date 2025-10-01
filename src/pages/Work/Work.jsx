@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import hiddenImg from "../../assets/work/hidden.jpg";
-import kraveImg from "../../assets/work/krave.jpg";
-import porscheImg from "../../assets/work/porsche.jpg";
-import rangeRoverImg from "../../assets/work/range-rover.jpg";
-import theReveImg from "../../assets/work/the-reve.jpg";
+import hiddenImg from "../../assets/work/hidden.webp";
+import kraveImg from "../../assets/work/krave.webp";
+import porscheImg from "../../assets/work/porsche.webp";
+import rangeRoverImg from "../../assets/work/range-rover.webp";
+import theReveImg from "../../assets/work/the-reve.webp";
 import image1 from "../../assets/images/card-1.jpg";
 import image2 from "../../assets/images/card-2.jpg";
 import image3 from "../../assets/images/card-3.jpg";

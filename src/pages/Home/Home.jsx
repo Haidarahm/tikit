@@ -84,7 +84,7 @@ function Home() {
       <WorkSection />
       <AboutUs />
       <Reviews />
-      <ContactUs />
+      {/* <ContactUs /> */}
       <Footer />
     </div>
   );

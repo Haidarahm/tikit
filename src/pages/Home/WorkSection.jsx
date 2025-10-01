@@ -1,9 +1,9 @@
 import React from "react";
 import StickyPinnedSection from "../../components/ui/StickyPinnedSection";
 
-import hiddenImg from "../../assets/work/hidden.jpg";
-import kraveImg from "../../assets/work/krave.jpg";
-import porscheImg from "../../assets/work/porsche.jpg";
+import hiddenImg from "../../assets/work/hidden.webp";
+import kraveImg from "../../assets/work/krave.webp";
+import porscheImg from "../../assets/work/porsche.webp";
 
 const content = [
   {
