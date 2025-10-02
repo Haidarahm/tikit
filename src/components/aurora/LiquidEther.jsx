@@ -1197,7 +1197,7 @@ export default function LiquidEther({
   return (
     <div
       ref={mountRef}
-      className={`w-full h-full relative overflow-hidden pointer-events-none touch-none ${
+      className={`w-full hidden md:block h-full relative overflow-hidden pointer-events-none touch-none ${
         className || ""
       }`}
       style={style}

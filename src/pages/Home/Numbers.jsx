@@ -48,10 +48,10 @@ function Numbers() {
   ];
 
   return (
-    <div className="section font-hero-light flex flex-col mx-auto  h-screen  z-10 w-6/7 justify-center">
-      <div className="texts text-center  mt-[104px]">
+    <div className="section font-hero-light flex flex-col mx-auto h-screen z-10 w-[98%] sm:w-[95%] md:w-6/7 justify-center px-4 md:px-0">
+      <div className="texts text-center mt-[60px] md:mt-[104px]">
         <h1
-          className="text-[32px] font-bold"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-bold mb-4 md:mb-6"
           data-aos="fade-up"
           data-aos-delay="0"
           style={{
@@ -65,39 +65,69 @@ function Numbers() {
           The best measure of success?
         </h1>
         <h3
-          className="text-[25px] font-light"
+          className="text-sm sm:text-base md:text-lg lg:text-[25px] font-light px-4 md:px-0 max-w-4xl mx-auto"
           data-aos="fade-up"
           data-aos-delay="100"
         >
           Clients who stay. Most of ours work with us well beyond one project
         </h3>
 
-        <div className="numbers relative flex justify-center mt-8 h-[45vh] items-stretch">
-          {data.map(({ count, text1, text2, bottom, plus }, idx) => (
-            <div
-              key={idx}
-              className={`circle w-[200px] h-[200px] rounded-full bg-[#e9e7e518] text-center flex flex-col items-center justify-center backdrop-blur-md ${
-                bottom ? "self-end" : "self-start"
-              }`}
-              data-aos="fade-up"
-              data-aos-delay={idx * 200} // stagger delay for each element
-            >
-              <span className="font-light text-center h-[65px] flex items-center text-[46px]">
-                <CountUp
-                  from={0}
-                  to={count}
-                  separator=","
-                  direction="up"
-                  duration={1}
-                  className="count-up-text"
-                />
-                {plus ? "+" : ""}
-              </span>
-              <h2 className="text-[16px] leading-tight">
-                {text1} <br /> {text2}
-              </h2>
-            </div>
-          ))}
+        <div className="numbers relative mt-6 md:mt-8">
+          {/* Mobile Layout - 2x2 Grid */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:hidden">
+            {data.map(({ count, text1, text2, bottom, plus }, idx) => (
+              <div
+                key={idx}
+                className="circle w-full aspect-square max-w-[140px] sm:max-w-[160px] mx-auto rounded-full bg-[#e9e7e518] text-center flex flex-col items-center justify-center backdrop-blur-md"
+                data-aos="fade-up"
+                data-aos-delay={idx * 100}
+              >
+                <span className="font-light text-center flex items-center text-2xl sm:text-3xl">
+                  <CountUp
+                    from={0}
+                    to={count}
+                    separator=","
+                    direction="up"
+                    duration={1}
+                    className="count-up-text"
+                  />
+                  {plus ? "+" : ""}
+                </span>
+                <h2 className="text-xs sm:text-sm leading-tight mt-1">
+                  {text1} <br /> {text2}
+                </h2>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Layout - Flex with alternating heights */}
+          <div className="hidden md:flex justify-center items-stretch h-[45vh] gap-4 lg:gap-6">
+            {data.map(({ count, text1, text2, bottom, plus }, idx) => (
+              <div
+                key={idx}
+                className={`circle w-[160px] h-[160px] lg:w-[180px] lg:h-[180px] xl:w-[200px] xl:h-[200px] rounded-full bg-[#e9e7e518] text-center flex flex-col items-center justify-center backdrop-blur-md ${
+                  bottom ? "self-end" : "self-start"
+                }`}
+                data-aos="fade-up"
+                data-aos-delay={idx * 200}
+              >
+                <span className="font-light text-center h-[50px] lg:h-[60px] xl:h-[65px] flex items-center text-3xl lg:text-4xl xl:text-[46px]">
+                  <CountUp
+                    from={0}
+                    to={count}
+                    separator=","
+                    direction="up"
+                    duration={1}
+                    className="count-up-text"
+                  />
+                  {plus ? "+" : ""}
+                </span>
+                <h2 className="text-sm lg:text-base xl:text-[16px] leading-tight">
+                  {text1} <br /> {text2}
+                </h2>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -42,7 +42,7 @@ function Goals() {
   ];
 
   return (
-    <div className="section font-hero-light flex mx-auto h-[370vh]  z-10 w-6/7">
+    <div className="section font-hero-light flex mx-auto h-[370vh]  z-10 w-full md:w-6/7">
       <ScrollStack
         useWindowScroll={true}
         itemDistance={0}
@@ -56,7 +56,7 @@ function Goals() {
           >
             <div className="text">
               {/* ❌ REMOVED backdrop-blur-lg — it’s expensive in scroll animations */}
-              <h2 className="font-bold max-w-[500px] text-[52px] leading-[50px] mb-[22px]">
+              <h2 className="font-bold w-full md:max-w-[500px] text-[20px] md:text-[52px] leading-[24px] md:leading-[50px] mb-[22px]">
                 {goal.title}
               </h2>
               <p className="text-[32px] leading-[35px]">{goal.description}</p>

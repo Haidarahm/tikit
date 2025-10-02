@@ -91,32 +91,30 @@ function Hero() {
   return (
     <div
       ref={sectionRef}
-      className="section h-screen rounded-[15px] md:rounded-[25px] overflow-hidden mx-auto gpu-transform w-[98vw] sm:w-[96vw] md:w-[95vw]"
+      className="section  h-screen rounded-[15px] md:rounded-[25px] overflow-hidden mx-auto gpu-transform w-[98vw] sm:w-[96vw] md:w-[95vw]"
     >
       {/* Background layer */}
-      <div className="pointer-events-none h-full mt-[8px] md:mt-[16px] w-full mx-auto overflow-hidden bg-[#101b22] rounded-[15px] md:rounded-[25px] absolute inset-0 z-0">
+      <div className="pointer-events-none  h-full mt-[8px] md:mt-[16px] w-full mx-auto overflow-hidden bg-[#101b22] rounded-[15px] md:rounded-[25px] absolute inset-0 z-0">
         {showLiquid && (
-          <div className="hidden md:block">
-            <Suspense fallback={null}>
-              <LiquidEther
-                colors={["#142236", "#5d6fa1", "#769cb6"]}
-                mouseForce={20}
-                cursorSize={100}
-                isViscous={false}
-                viscous={30}
-                iterationsViscous={32}
-                iterationsPoisson={32}
-                resolution={0.5}
-                isBounce={false}
-                autoDemo={true}
-                autoSpeed={0.5}
-                autoIntensity={2.2}
-                takeoverDuration={0.25}
-                autoResumeDelay={1000}
-                autoRampDuration={0.6}
-              />
-            </Suspense>
-          </div>
+          <Suspense fallback={null}>
+            <LiquidEther
+              colors={["#142236", "#5d6fa1", "#769cb6"]}
+              mouseForce={20}
+              cursorSize={100}
+              isViscous={false}
+              viscous={30}
+              iterationsViscous={32}
+              iterationsPoisson={32}
+              resolution={0.5}
+              isBounce={false}
+              autoDemo={true}
+              autoSpeed={0.5}
+              autoIntensity={2.2}
+              takeoverDuration={0.25}
+              autoResumeDelay={1000}
+              autoRampDuration={0.6}
+            />
+          </Suspense>
         )}
       </div>
 
