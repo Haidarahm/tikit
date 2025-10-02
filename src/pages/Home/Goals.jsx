@@ -42,7 +42,7 @@ function Goals() {
   ];
 
   return (
-    <div className="section font-hero-light flex mx-auto h-[370vh]  z-10 w-full md:w-6/7">
+    <div className="section font-hero-light flex mx-auto h-[240vh] md:h-[370vh]  z-10 w-full md:w-6/7">
       <ScrollStack
         useWindowScroll={true}
         itemDistance={0}
@@ -52,22 +52,20 @@ function Goals() {
         {goalsData.map((goal) => (
           <ScrollStackItem
             key={goal.id}
-            itemClassName={`flex relative items-center overflow-hidden ${goal.backgroundColor} `}
+            itemClassName={`flex relative mx-[4px] items-center overflow-hidden ${goal.backgroundColor} `}
           >
             <div className="text">
               {/* ❌ REMOVED backdrop-blur-lg — it’s expensive in scroll animations */}
-              <h2 className="font-bold w-full md:max-w-[500px] text-[20px] md:text-[52px] leading-[24px] md:leading-[50px] mb-[22px]">
+              <h2 className="font-bold w-full md:max-w-[500px] text-[20px] md:text-[52px] leading-[24px] md:leading-[50px] mb-[10px] md:mb-[22px]">
                 {goal.title}
               </h2>
-              <p className="text-[32px] leading-[35px]">{goal.description}</p>
+              <p className=" text:[14px] md:text-[32px] leading-[20px] md:leading-[35px]">{goal.description}</p>
             </div>
             {/* ✅ Optimized image with size + lazy load */}
             <img
               src={goal.image}
               alt={goal.title}
-              className="rounded-[39px] object-cover"
-              width={500}
-              height={400}
+              className="rounded-[15px] md:rounded-[39px] w-[120px] md:w-[500px] object-cover"
               loading="lazy"
             />
           </ScrollStackItem>

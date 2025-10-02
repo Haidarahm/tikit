@@ -204,7 +204,7 @@ function Navbar() {
       el._onLeave = onLeave;
     });
 
-    // scroll handler: hide on scroll down, show on scroll up
+    // scroll handler: hide on scroll down, show on scroll up (desktop only)
     const handleScroll = () => {
       const currentY = window.scrollY || window.pageYOffset;
 
@@ -214,8 +214,11 @@ function Navbar() {
         return;
       }
 
-      if (currentY > lastScrollY.current && currentY > 80) {
-        // scrolling down -> hide
+      // Only apply scroll hide effect on desktop (lg breakpoint and above)
+      const isDesktop = window.innerWidth >= 1024; // lg breakpoint in Tailwind
+
+      if (isDesktop && currentY > lastScrollY.current && currentY > 80) {
+        // scrolling down -> hide (desktop only)
         if (!hidden.current && navRef.current) {
           gsap.to(navRef.current, {
             y: -120,
@@ -224,8 +227,8 @@ function Navbar() {
           });
           hidden.current = true;
         }
-      } else {
-        // scrolling up -> show
+      } else if (isDesktop || (!isDesktop && hidden.current)) {
+        // scrolling up -> show (always show on mobile, show on desktop when scrolling up)
         if (hidden.current && navRef.current) {
           gsap.to(navRef.current, {
             y: 0,
@@ -247,9 +250,25 @@ function Navbar() {
       }
     };
 
+    // Handle window resize to ensure navbar is visible on mobile
+    const handleResize = () => {
+      const isDesktop = window.innerWidth >= 1024;
+      if (!isDesktop && hidden.current && navRef.current) {
+        // Ensure navbar is visible on mobile
+        gsap.to(navRef.current, {
+          y: 0,
+          duration: 0.35,
+          ease: "power2.out",
+        });
+        hidden.current = false;
+      }
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", handleResize);
       tl.kill();
       // cleanup hover listeners
       const cleanupItems = queryNavItems();

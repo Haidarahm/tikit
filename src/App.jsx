@@ -15,7 +15,7 @@ const Work = lazy(() => import("./pages/Work/Work"));
 const AboutUs = lazy(() => import("./pages/about/AboutUs"));
 const Services = lazy(() => import("./pages/services/Services"));
 const Contact = lazy(() => import("./pages/contact/Contact"));
-const LogoIntro = lazy(() => import("./components/LogoIntro2"));
+const LogoIntro = lazy(() => import("./components/LogoIntro"));
 
 // Loading component
 const LoadingSpinner = () => (
