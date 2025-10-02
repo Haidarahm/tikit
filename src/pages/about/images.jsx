@@ -1,7 +1,7 @@
 import React from "react";
-import image1 from "../../assets/aboutus/about-1.png";
-import image2 from "../../assets/aboutus/about-2.jpg";
-import image3 from "../../assets/aboutus/about-3.jpg";
+import image1 from "../../assets/aboutus/about-1.webp";
+import image2 from "../../assets/aboutus/about-2.webp";
+import image3 from "../../assets/aboutus/about-3.webp";
 
 const Images = () => {
   return (

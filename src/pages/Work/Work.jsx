@@ -40,10 +40,8 @@ const Work = () => {
 
   useEffect(() => {
     imagesRef.current.forEach((el) => {
-      const img = el.querySelector("img");
-
       gsap.fromTo(
-        img,
+        el,
         { height: "10%" },
         {
           height: "100%",
@@ -107,12 +105,12 @@ const Work = () => {
             key={i}
             ref={(el) => (imagesRef.current[i] = el)}
             className="group relative shadow-lg  rounded-lg overflow-hidden"
+            style={{ height: "10%" }}
           >
             <img
               src={item.src}
               alt={item.title}
-              className="w-full object-cover  rounded-lg"
-              style={{ height: "10%" }} // start height
+              className="w-full h-full object-cover  rounded-lg"
             />
 
             {/* Overlay */}
