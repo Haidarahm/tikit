@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SVGComponent from "../assets/logo";
 import AOS from "aos";
@@ -9,9 +9,12 @@ import TikitButton from "./TikitButton";
 function Navbar() {
   const navRef = useRef();
   const logoRef = useRef();
+  const mobileMenuRef = useRef();
+  const hamburgerRef = useRef();
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
   const hidden = useRef(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const links = [
     { to: "/home", label: "Home" },
@@ -19,6 +22,97 @@ function Navbar() {
     { to: "/about", label: "About Us" },
     { to: "/services", label: "Services" },
   ];
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Animate hamburger icon
+  const animateHamburger = (isOpen) => {
+    const lines = hamburgerRef.current?.querySelectorAll(".hamburger-line");
+    if (!lines) return;
+
+    if (isOpen) {
+      gsap.to(lines[0], {
+        rotation: 45,
+        y: 8,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+      gsap.to(lines[1], { opacity: 0, duration: 0.2, ease: "power2.out" });
+      gsap.to(lines[2], {
+        rotation: -45,
+        y: -8,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    } else {
+      gsap.to(lines[0], {
+        rotation: 0,
+        y: 0,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+      gsap.to(lines[1], {
+        opacity: 1,
+        duration: 0.2,
+        delay: 0.1,
+        ease: "power2.out",
+      });
+      gsap.to(lines[2], {
+        rotation: 0,
+        y: 0,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
+  };
+
+  // Animate mobile menu
+  const animateMobileMenu = (isOpen) => {
+    if (!mobileMenuRef.current) return;
+
+    if (isOpen) {
+      gsap.set(mobileMenuRef.current, { display: "flex" });
+      gsap.fromTo(
+        mobileMenuRef.current,
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
+      );
+
+      const menuItems =
+        mobileMenuRef.current.querySelectorAll(".mobile-nav-item");
+      gsap.fromTo(
+        menuItems,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.1,
+          delay: 0.2,
+          ease: "power2.out",
+        }
+      );
+    } else {
+      gsap.to(mobileMenuRef.current, {
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => {
+          gsap.set(mobileMenuRef.current, { display: "none" });
+        },
+      });
+    }
+  };
+
+  // Handle mobile menu animations
+  useEffect(() => {
+    animateHamburger(isMobileMenuOpen);
+    animateMobileMenu(isMobileMenuOpen);
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     AOS.init({ duration: 750, once: true });
@@ -174,57 +268,101 @@ function Navbar() {
   }, []);
 
   return (
-    <nav
-      ref={navRef}
-      className="fixed top-10 inset-x-0 z-50 gpu-transform"
-      data-aos="fade-down"
-      style={{ transform: "translateY(0)" }}
-    >
-      <div className="w-6/7 mx-auto rounded-full h-16 justify-between flex items-center  px-6 py-2 bg-white/5 backdrop-blur-md shadow-sm text-white">
-        {/* left spacer for logo (keeps layout balanced) */}
-        <div
-          className="w-12 h-12 mr-4 flex items-center justify-center"
-          aria-hidden
-        >
-          <div ref={logoRef} className="w-12 h-12 transform-gpu">
-            <SVGComponent className="p-2 h-full overflow-visible" />
+    <>
+      <nav
+        ref={navRef}
+        className="fixed top-4 md:top-10 inset-x-0 z-50 gpu-transform"
+        data-aos="fade-down"
+        style={{ transform: "translateY(0)" }}
+      >
+        <div className="w-[95%] md:w-6/7 mx-auto rounded-full h-14 md:h-16 justify-between flex items-center px-4 md:px-6 py-2 bg-white/5 backdrop-blur-md shadow-sm text-white">
+          {/* Logo */}
+          <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
+            <div
+              ref={logoRef}
+              className="w-10 h-10 md:w-12 md:h-12 transform-gpu"
+            >
+              <SVGComponent className="p-1 md:p-2 h-full overflow-visible" />
+            </div>
           </div>
-        </div>
 
-        <div className=" flex justify-end">
-          <div className="flex gap-6">
-            {links.map(({ to, label }) => (
-              <Link
-                key={to}
-                to={to}
-                className="nav-item uppercase font-light text-sm opacity-0 text-white relative inline-block"
-              >
-                <span className="relative inline-block ">
-                  {label}
-                  <span
-                    className="nav-underline"
-                    style={{
-                      position: "absolute",
-                      left: 0,
-                      right: 0,
-                      bottom: -2,
-                      height: 1,
-                      backgroundColor: "currentColor",
-                      transform: "scaleX(0)",
-                      transformOrigin: "left",
-                      display: "block",
-                    }}
-                  />
-                </span>
-              </Link>
-            ))}
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex justify-end">
+            <div className="flex gap-6">
+              {links.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="nav-item uppercase font-light text-sm opacity-0 text-white relative inline-block"
+                >
+                  <span className="relative inline-block">
+                    {label}
+                    <span
+                      className="nav-underline"
+                      style={{
+                        position: "absolute",
+                        left: 0,
+                        right: 0,
+                        bottom: -2,
+                        height: 1,
+                        backgroundColor: "currentColor",
+                        transform: "scaleX(0)",
+                        transformOrigin: "left",
+                        display: "block",
+                      }}
+                    />
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
+
+          {/* Desktop Contact Button */}
+          <div className="hidden lg:block w-[137px]">
+            <TikitButton text="Contact Us" />
+          </div>
+
+          {/* Mobile Hamburger */}
+          <button
+            ref={hamburgerRef}
+            onClick={toggleMobileMenu}
+            className="lg:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1 focus:outline-none"
+            aria-label="Toggle mobile menu"
+          >
+            <span className="hamburger-line w-6 h-0.5 bg-white transform transition-all duration-300"></span>
+            <span className="hamburger-line w-6 h-0.5 bg-white transform transition-all duration-300"></span>
+            <span className="hamburger-line w-6 h-0.5 bg-white transform transition-all duration-300"></span>
+          </button>
         </div>
-        <div className="w-[137px]">
-          <TikitButton text="Contact Us" />
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        ref={mobileMenuRef}
+        className="fixed inset-0 z-40 bg-[#101b22] hidden flex-col items-center justify-center lg:hidden"
+        style={{ display: "none" }}
+      >
+        <div className="flex flex-col items-center space-y-8">
+          {links.map(({ to, label }, index) => (
+            <Link
+              key={to}
+              to={to}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="mobile-nav-item text-white text-3xl md:text-4xl font-light uppercase tracking-wider hover:text-gray-300 transition-colors duration-300"
+            >
+              {label}
+            </Link>
+          ))}
+
+          <div className="mobile-nav-item mt-8">
+            <TikitButton
+              text="Contact Us"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+          </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 }
 

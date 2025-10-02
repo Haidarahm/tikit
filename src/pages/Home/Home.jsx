@@ -26,10 +26,19 @@ function Home() {
     htmlEl.classList.remove("has-scroll-smooth", "has-scroll-init");
     document.body.style.removeProperty("overflow");
 
-    // Animate Element 1
+    // Function to get responsive values
+    const getResponsiveValues = () => {
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth < 1024;
+      return { isMobile, isTablet };
+    };
+
+    // Initial setup
+    const { isMobile, isTablet } = getResponsiveValues();
+
     gsap.to(".element1", {
-      top: "900px",
-      left: "1000px",
+      top: isMobile ? "400px" : isTablet ? "600px" : "900px",
+      left: isMobile ? "200px" : isTablet ? "500px" : "1000px",
       filter: "grayscale(100%)",
       rotation: 100,
       duration: 1.5,
@@ -41,10 +50,10 @@ function Home() {
       },
     });
 
-    // Animate Element 2
+    // Animate Element 2 - Responsive
     gsap.to(".element2", {
-      top: "90vh",
-      right: "70%",
+      top: isMobile ? "70vh" : isTablet ? "80vh" : "90vh",
+      right: isMobile ? "40%" : isTablet ? "55%" : "70%",
       filter: "grayscale(100%)",
       rotation: 100,
       duration: 1.5,
@@ -55,10 +64,18 @@ function Home() {
         scrub: 1.5,
       },
     });
+
+    // Handle window resize for responsive animations
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener("resize", handleResize);
 
     // Cleanup on unmount
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -68,13 +85,13 @@ function Home() {
       <img
         src={element2}
         alt="Decorative element 1"
-        className="element1 fade-in-delay-1s pointer-events-none absolute top-4 left-8 z-10 w-auto h-auto max-w-[300px] max-h-[300px]"
+        className="element1 fade-in-delay-1s pointer-events-none absolute top-2 left-4 sm:top-4 sm:left-8 z-10 w-auto h-auto max-w-[150px] max-h-[150px] sm:max-w-[200px] sm:max-h-[200px] md:max-w-[250px] md:max-h-[250px] lg:max-w-[300px] lg:max-h-[300px]"
       />
       {/* Element 2 */}
       <img
         src={element1}
         alt="Decorative element 2"
-        className="element2 fade-in-delay-1s pointer-events-none absolute top-[55vh] right-12 rotate-90 z-10 w-auto h-auto max-w-[300px] max-h-[300px]"
+        className="element2 fade-in-delay-1s pointer-events-none absolute top-[50vh] right-6 sm:top-[55vh] sm:right-12 rotate-90 z-10 w-auto h-auto max-w-[120px] max-h-[120px] sm:max-w-[180px] sm:max-h-[180px] md:max-w-[220px] md:max-h-[220px] lg:max-w-[300px] lg:max-h-[300px]"
       />
       <Hero />
       <Numbers />
