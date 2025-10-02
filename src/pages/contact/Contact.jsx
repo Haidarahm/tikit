@@ -3,6 +3,7 @@ import Hero from "./Hero";
 import AnimatedLines from "./AnimatedLines";
 import Action from "./Action";
 import './contact.css'
+import Footer from "../../components/Footer";
 const Contact = () => {
 
 
@@ -14,6 +15,8 @@ const Contact = () => {
       <Hero />
       <AnimatedLines/>
       <Action/>
+            <Footer className="snap-start snap-always" />
+
     </div>
   );
 };
