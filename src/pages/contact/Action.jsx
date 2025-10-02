@@ -9,12 +9,11 @@ const Action = () => {
         <p className="text-[24px] h-[58px] leading-[1] font-light ">We want to hear from you. let’s us know how we can help!</p>
       </div>
       <div className="right-section w-1/2 h-full flex flex-col">
-        <div className="swiper w-full"> 
-          <div className="swiper-wrapper">
-             <div className="swiper-slide">Slide 1</div>
-            <div className="swiper-slide">Slide 2</div>
+          <div className="swiper-wrapper w-full border flex relative border-white h-[50px] rounded-full  ">
+             <div className="move-item absolute w-1/2 h-full bg-white rounded-full left-0 z-0"></div>
+             <div className="swiper-slide w-1/2 flex justify-center items-center relative z-10 text-black">Slide 1</div>
+            <div className="swiper-slide w-1/2 flex justify-center items-center relative z-10">Slide 2</div>
           </div>
-        </div>
       </div>
     </div>
   );
