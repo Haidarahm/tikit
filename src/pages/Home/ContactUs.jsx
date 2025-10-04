@@ -9,12 +9,7 @@ import b2 from "../../assets/brands/2.svg";
 import b3 from "../../assets/brands/3.svg";
 import b4 from "../../assets/brands/4.svg";
 import b5 from "../../assets/brands/5.svg";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
-} from "react-icons/si";
+
 
 const ContactUs = (className) => {
   useEffect(() => {
@@ -46,7 +41,7 @@ const ContactUs = (className) => {
   return (
     <div className={(`relative my-10 gap-3.5  overflow-hidden text-white  font-hero-light rounded-[25px] flex flex-col mx-auto py-[60px] px-[50px]  w-[95vw] bg-black ${className}`)}>
       <div className="overlay absolute w-full h-full bg-[#00000076] z-10"></div>
-      <div className="w-full h-full absolute z-0">
+      <div className="w-full h-full absolute bg-red z-0">
         <Hyperspeed
           effectOptions={{
             onSpeedUp: () => {},

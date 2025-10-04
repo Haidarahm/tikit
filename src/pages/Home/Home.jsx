@@ -9,7 +9,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Goals from "./Goals";
 import Services from "./Services";
 import AboutUs from "./AboutUs";
-import StickyPinnedSection from "../../components/ui/StickyPinnedSection";
 import WorkSection from "./WorkSection";
 import Connections from "./Connections";
 import Reviews from "./Reviews";

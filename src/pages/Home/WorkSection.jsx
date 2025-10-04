@@ -61,8 +61,71 @@ const items = content.map(
 
 export default function WorkSection() {
   return (
-    <div className="relative z-10 w-full overflow-visible">
-      <StickyPinnedSection items={items} heightPerItemVh={200} />
-    </div>
+    <>
+      <div className="relative hidden md:block z-10 w-full overflow-visible">
+        <StickyPinnedSection items={items} heightPerItemVh={200} />
+      </div>
+      <div className="mobile-view gap-[30px] relative text-white  flex flex-col w-full px-[20px]">
+        <div className="headline sticky top-0 flex w-full justify-between mt-[40px]">
+          <h1 className="text-[18px] font-bold">Featured Work</h1>{" "}
+          <button className="bg-white md:hidden text-[11px] text-black rounded-full uppercase">
+            Explore Projects
+          </button>
+        </div>
+        <div className="main-content w-full flex flex-col  gap-[20px]">
+          <div className="element-wrapper flex flex-col w-full gap-[30px]">
+            <div className="text flex flex-col gap-[10px]">
+              <h1 className="title text-[20px] font-bold">Hidden</h1>
+              <div className="subtitle text-[16px]">rand Campaign</div>
+              <div className="description text-[14px]">
+                See changes as they happen. With our platform, you can track
+                every modification in real time.
+              </div>
+            </div>
+            <div className="image relative w-full h-[300px] rounded-[20px] overflow-hidden">
+              <img
+                src={porscheImg}
+                alt=""
+                className="w-full object-cover h-full"
+              />
+            </div>
+          </div>
+          <div className="element-wrapper flex flex-col w-full gap-[30px]">
+            <div className="text flex flex-col gap-[10px]">
+              <h1 className="title text-[20px] font-bold">Hidden</h1>
+              <div className="subtitle text-[16px]">rand Campaign</div>
+              <div className="description text-[14px]">
+                See changes as they happen. With our platform, you can track
+                every modification in real time.
+              </div>
+            </div>
+            <div className="image relative w-full h-[300px] rounded-[20px] overflow-hidden">
+              <img
+                src={porscheImg}
+                alt=""
+                className="w-full object-cover h-full"
+              />
+            </div>
+          </div>
+          <div className="element-wrapper flex flex-col w-full gap-[30px]">
+            <div className="text flex flex-col gap-[10px]">
+              <h1 className="title text-[20px] font-bold">Hidden</h1>
+              <div className="subtitle text-[16px]">rand Campaign</div>
+              <div className="description text-[14px]">
+                See changes as they happen. With our platform, you can track
+                every modification in real time.
+              </div>
+            </div>
+            <div className="image relative w-full h-[300px] rounded-[20px] overflow-hidden">
+              <img
+                src={porscheImg}
+                alt=""
+                className="w-full object-cover h-full"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

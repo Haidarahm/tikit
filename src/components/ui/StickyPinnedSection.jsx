@@ -246,7 +246,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 ,clas
     <section
       ref={sectionRef}
       style={{ height: "100vh" }}
-      className="relative hidden md:block font-hero-light w-full overflow-visible"
+      className="relative  font-hero-light w-full overflow-visible"
     >
       <div
         ref={stickyRef}

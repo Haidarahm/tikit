@@ -44,31 +44,31 @@ const Reviews = () => {
     },
   ];
   return (
-    <div className="reviews relative w-full min-h-screen font-hero-light py-20">
+    <div className="reviews relative w-full min-h-screen font-hero-light py-10 md:py-20">
       <ThreeDScrollTriggerContainer>
         <ThreeDScrollTriggerRow baseVelocity={3} direction={1}>
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="flex gap-[23px] h-[300px] w-[600px] ml-[20px]  p-7 rounded-xl text-white border border-white/15 bg-white/10 backdrop-blur-md shadow-xl"
+              className="flex gap-[23px] h-[180px] md:h-[300px] w-[320px] md:w-[600px] ml-[20px] p-2 md:p-7 rounded-xl text-white border border-white/15 bg-white/10 backdrop-blur-md shadow-xl"
             >
               <div className="icon h-full">
-                <img src={quote} alt="" className="h-[40px]  w-[40px]" />
+                <img src={quote} alt="" className="mh-[20px] d:h-[40px] w-[20px]  md:w-[40px]" />
               </div>
 
               <div className="content flex-col flex-1 justify-between w-full flex">
-                <p className="relative block text-wrap text-[24px] font-light">
+                <p className="relative block text-wrap text-[14px] md:text-[24px] font-light">
                   {testimonial.text}
                 </p>
                 <div className="user flex items-center">
                   <img
                     src={testimonial.avatar}
                     alt=""
-                    className="w-[75px] h-[75px] rounded-full "
+                    className=" w-[31px] md:w-[75px] h-[31px] md:h-[75px] rounded-full "
                   />
                   <div className="name-specialist flex flex-col ml-[20px]">
-                    <div className="text-[20px]">{testimonial.name}</div>
-                    <div className="specialist text-[18px] text-gray-400">
+                    <div className="text-[16px] md:text-[20px]">{testimonial.name}</div>
+                    <div className="specialist text-[12px] md:text-[18px] text-gray-400">
                       {testimonial.company}
                     </div>
                   </div>
@@ -81,27 +81,27 @@ const Reviews = () => {
       <ThreeDScrollTriggerContainer>
         <ThreeDScrollTriggerRow baseVelocity={3} direction={-1}>
           {testimonials.map((testimonial, index) => (
-            <div
+             <div
               key={index}
-              className="flex gap-[23px] h-[300px] w-[600px] ml-[20px]  p-7 rounded-xl text-white border border-white/15 bg-white/10 backdrop-blur-md shadow-xl"
+              className="flex gap-[23px] h-[180px] md:h-[300px] w-[320px] md:w-[600px] ml-[20px] p-2 md:p-7 rounded-xl text-white border border-white/15 bg-white/10 backdrop-blur-md shadow-xl"
             >
               <div className="icon h-full">
-                <img src={quote} alt="" className="h-[40px]  w-[40px]" />
+                <img src={quote} alt="" className="mh-[20px] d:h-[40px] w-[20px]  md:w-[40px]" />
               </div>
 
               <div className="content flex-col flex-1 justify-between w-full flex">
-                <p className="relative block text-wrap text-[24px] font-light">
+                <p className="relative block text-wrap text-[14px] md:text-[24px] font-light">
                   {testimonial.text}
                 </p>
                 <div className="user flex items-center">
                   <img
                     src={testimonial.avatar}
                     alt=""
-                    className="w-[75px] h-[75px] rounded-full "
+                    className=" w-[31px] md:w-[75px] h-[31px] md:h-[75px] rounded-full "
                   />
                   <div className="name-specialist flex flex-col ml-[20px]">
-                    <div className="text-[20px]">{testimonial.name}</div>
-                    <div className="specialist text-[18px] text-gray-400">
+                    <div className="text-[16px] md:text-[20px]">{testimonial.name}</div>
+                    <div className="specialist text-[12px] md:text-[18px] text-gray-400">
                       {testimonial.company}
                     </div>
                   </div>

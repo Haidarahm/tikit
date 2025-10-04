@@ -104,7 +104,7 @@ const AboutUs = () => {
   return (
     <div
       ref={sectionRef}
-      className="section overflow-visible font-hero-light flex-col mx-auto z-10 w-6/7 "
+      className="section overflow-visible mt-4 md:mt-0 font-hero-light flex-col mx-auto z-10 w-[95%] md:w-6/7 "
     >
       <div className="w-full">
         <h2
@@ -112,7 +112,7 @@ const AboutUs = () => {
           data-aos="fade-right"
           data-aos-duration="500"
           data-aos-delay="100"
-          className="text-white text-3xl text-center md:text-4xl font-bold mb-8"
+          className="text-white text-[18px] text-center md:text-4xl font-bold mb-4 md:mb-8"
         >
           Who We Are
         </h2>
@@ -121,7 +121,7 @@ const AboutUs = () => {
           data-aos="fade-left"
           data-aos-duration="500"
           data-aos-delay="200"
-          className="text-[36px] font-light text-center mb-[40px]"
+          className="text-[16px] md:text-[36px] font-light text-center mb-[40px]"
         >
           We create and innovate digital experiences through strategic
           collaboration and creativity. Each project engages and inspires,
