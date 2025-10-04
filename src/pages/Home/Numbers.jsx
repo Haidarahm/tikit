@@ -48,7 +48,7 @@ function Numbers() {
   ];
 
   return (
-    <div className="section font-hero-light flex flex-col mx-auto h-screen z-10 w-[98%] sm:w-[95%] md:w-6/7 justify-center px-4 md:px-0">
+    <div className="section font-hero-light my-10 md:my-0 flex flex-col mx-auto md:h-screen z-10 w-[98%] sm:w-[95%] md:w-6/7 justify-center px-4 md:px-0">
       <div className="texts text-center  md:mt-[104px]">
         <h1
           className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-bold mb-4 md:mb-6"

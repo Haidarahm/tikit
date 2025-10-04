@@ -69,24 +69,24 @@ const Connections = () => {
   return (
     <div
       ref={sectionContainerRef}
-      className=" relative text-white  h-[100vh] flex flex-col w-full justify-center font-hero-light section-container-scroll    mt-[60px]"
+      className=" relative text-white  md:h-[100vh] flex flex-col w-full justify-center font-hero-light section-container-scroll    mt-[60px]"
     >
       <img
         src={element2}
         alt="Decorative element 1"
-        className="element1-c absolute top-4 left-8 z-0  grayscale-75 w-auto h-auto max-w-[300px] max-h-[300px]"
+        className="element1-c hidden md:block absolute top-4 left-8 z-0  grayscale-75 w-auto h-auto max-w-[300px] max-h-[300px]"
       />
       {/* Element 2 */}
       <img
         src={element1}
         alt="Decorative element 2"
-        className="element2-c absolute top-[55vh] right-12 grayscale-75 rotate-90 z-0 w-auto h-auto max-w-[300px] max-h-[300px]"
+        className="element2-c absolute hidden md:block top-[55vh] right-12 grayscale-75 rotate-90 z-0 w-auto h-auto max-w-[300px] max-h-[300px]"
       />
-      <div className="flex items-center flex-col justify-center relative z-10 w-[80vw]  mx-auto text-center">
+      <div className="flex items-center flex-col justify-center relative z-10 w-[90vw] md:w-[80vw]  mx-auto text-center">
         <ScrollFloat
           animationDuration={1}
           ease="back.inOut(2)"
-          textClassName="text-[44px] pointer-events-none max-w-[600px] leading-[60px]"
+          textClassName="text-[24px] md:text-[44px] pointer-events-none max-w-[600px] leading-[60px]"
           scrollStart="center bottom+=20%"
           scrollEnd="bottom bottom-=50%"
           stagger={0.06}
@@ -104,14 +104,14 @@ const Connections = () => {
             colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
             animationSpeed={5}
             showBorder={false}
-            className="gradient-text pointer-events-none text-[64px] capitalize font-bold max-w-[600px]"
+            className="gradient-text pointer-events-none text-[32px] md:text-[64px] capitalize font-bold max-w-[600px]"
           >
             Join our list today!
           </GradientText>
         </div>
 
         <p
-          className="description pointer-events-none text-[32px] font-light leading-[35px] mt-[20px]"
+          className="description pointer-events-none text-[16px] md:text-[32px] font-light leading-[35px] mt-[20px]"
           data-aos="fade-right"
           data-aos-duration="900"
           data-aos-easing="ease-out-cubic"
@@ -121,7 +121,7 @@ const Connections = () => {
           blend data with creativity to help brands reach and resonate with the
           right audience
         </p>
-        <button className="uppercase mt-[40px] text-[16px] hover:text-white hover:bg-transparent border border-white transition cursor-pointer py-1 bg-white rounded-full px-4 text-black w-fit">
+        <button className="uppercase mt-[40px] text-[11px] md:text-[16px] hover:text-white hover:bg-transparent border border-white transition cursor-pointer py-1 bg-white rounded-full px-4 text-black w-fit">
           contact us
         </button>
       </div>
