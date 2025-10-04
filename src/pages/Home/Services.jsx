@@ -26,7 +26,7 @@ const demoItems = [
 const Services = () => {
   return (
     <div className="section mt-16 relative font-hero-light flex flex-col mx-auto  md:h-[70vh]   z-10 w-full justify-center">
-      <h1 className="text-center font-bold text-[32px] mb-[38px]">What We Do Best</h1>
+      <h1 className="text-center font-bold text-[18ox] md:text-[32px] mb-[38px]">What We Do Best</h1>
       <div style={{ position: "relative" ,height:'100%'}} >
         <FlowingMenu items={demoItems} />
       </div>
