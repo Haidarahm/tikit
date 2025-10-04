@@ -65,10 +65,10 @@ export default function WorkSection() {
       <div className="relative hidden md:block z-10 w-full overflow-visible">
         <StickyPinnedSection items={items} heightPerItemVh={200} />
       </div>
-      <div className="mobile-view gap-[30px] relative text-white  flex flex-col w-full px-[20px]">
+      <div className="mobile-view gap-[30px] md:hidden relative text-white  flex flex-col w-full px-[20px]">
         <div className="headline sticky top-0 flex w-full justify-between mt-[40px]">
           <h1 className="text-[18px] font-bold">Featured Work</h1>{" "}
-          <button className="bg-white md:hidden text-[11px] text-black rounded-full uppercase">
+          <button className="bg-white px-2 md:hidden text-[11px] text-black rounded-full uppercase">
             Explore Projects
           </button>
         </div>

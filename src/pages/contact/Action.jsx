@@ -71,10 +71,10 @@ const Action = () => {
             />
             
 <button
-class="px-5 h-[50px] cursor-pointer py-2.5 relative col-span-2 row-span-1 rounded-full group overflow-hidden font-medium bg-transparent text-white border border-white flex items-center justify-center">
+className="px-5 h-[50px] cursor-pointer py-2.5 relative col-span-2 row-span-1 rounded-full group overflow-hidden font-medium bg-transparent text-white border border-white flex items-center justify-center">
 <span
-class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out rounded-full transform translate-y-0 bg-white group-hover:h-full opacity-90"></span>
-<span class="relative uppercase group-hover:text-black text-base font-semibold">Contact Us</span>
+className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out rounded-full transform translate-y-0 bg-white group-hover:h-full opacity-90"></span>
+<span className="relative uppercase group-hover:text-black text-base font-semibold">Contact Us</span>
 </button>
             {/* <button className=" col-span-2 row-span-1 rounded-full border h-[50px] border-white ">
 Contact Us

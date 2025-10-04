@@ -198,7 +198,7 @@ const Services = () => {
           </section>
         ))}
       </div>
-      <ContactUs  className="snap-start snap-always"/>
+      <ContactUs  className=" snap-start snap-always h-screen"/>
       <Footer className="snap-start snap-always" />
     </div>
   );
