@@ -31,13 +31,16 @@ const Hero = () => {
   return (
     <div data-scroll-section className="h-screen  flex flex-col">
       <div style={{ height: "500px", position: "relative" }}>
+        <div className="overlay absolute h-full w-full bg-black opacity-50 z-20 "></div>
+
         <div
-          className="title z-20 w-full pl-[60px] absolute text-[64px] capitalize  flex items-center  font-bold leading-[60px] h-full text-white"
+          className="title z-30 w-full md:pl-[60px] text-center md:text-start absolute text-[32px] md:text-[64px] capitalize  flex items-center  font-bold leading-[60px] h-full text-white"
           data-aos="fade-up"
           data-aos-duration="1000"
           data-aos-delay="200"
         >
-          We are Tikit — a full-service <br /> marketing agency
+          We are Tikit — a full-service <br className="hidden md:block" />{" "}
+          marketing agency
         </div>
         <InfiniteScroll
           items={items}
@@ -50,13 +53,15 @@ const Hero = () => {
         />
       </div>
       <div
-        className="description flex-1 flex text-white px-[60px]  gap-14 justify-center items-center"
+        className="description text-center md:text-start flex-1 flex md:flex-row flex-col text-white px-[20px] md:px-[60px] gap-4 md:gap-14 justify-center items-center"
         data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-delay="600"
       >
-        <div className="title font-bold text-[38px] w-2/7 ">About Us</div>
-        <div className="paragraph text-[32px] ">
+        <div className="title font-bold text-[20px] md:text-[38px] w-2/7 ">
+          About Us
+        </div>
+        <div className="paragraph text-[16px] md:text-[32px] ">
           Driven by insight and creativity: the story behind "Tikit" — a
           regional agency powering brands, building trust, and delivering
           results.
