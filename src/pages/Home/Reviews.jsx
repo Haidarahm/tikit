@@ -44,7 +44,7 @@ const Reviews = () => {
     },
   ];
   return (
-    <div className="reviews relative w-full min-h-screen font-hero-light py-10 md:py-20">
+    <div className="reviews relative w-full md:min-h-screen font-hero-light py-10 md:py-20">
       <ThreeDScrollTriggerContainer>
         <ThreeDScrollTriggerRow baseVelocity={3} direction={1}>
           {testimonials.map((testimonial, index) => (

@@ -45,9 +45,9 @@ const ContactUs = (className) => {
   ];
   return (
     <div
-      className={`relative my-10 gap-3.5  overflow-hidden text-white  font-hero-light rounded-[25px] flex flex-col mx-auto py-[40px] md:py-[60px] px-[40px] md:px-[50px]  w-[95vw] bg-black ${className}`}
+      className={`relative my-5 md:my-10 gap-3.5  overflow-hidden text-white  font-hero-light rounded-[25px] flex flex-col mx-auto py-[40px] md:py-[60px] px-[40px] md:px-[50px]  w-[95vw] bg-black ${className}`}
     >
-      <div className="overlay absolute w-full h-full bg-[#00000076] z-10"></div>
+     
 
       <div className="email  w-full flex flex-col md:flex-row h-2/3 justify-between items-center md:items-stretch relative z-10 ">
         <div className="texts flex justify-between flex-col relative   ">
