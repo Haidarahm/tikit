@@ -32,7 +32,7 @@ const Services = () => {
       </div>
       <div className="mobile-view flex flex-col md:hidden">
         {demoItems.map((item, index) => (
-          <div key={index} className="flex justify-center text-[20px]  mb-4">
+          <div key={index} className="flex border-white border-b-2 pb-4 justify-center text-[20px]  mb-4">
             <h2 className="text-lg font-semibold mt-2">{item.text}</h2>
           </div>
         ))}
