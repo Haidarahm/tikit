@@ -44,7 +44,7 @@ function Hero() {
   return (
     <div
       ref={sectionRef}
-      className="section h-screen rounded-[15px] md:rounded-[25px] overflow-hidden mx-auto gpu-transform w-[98vw] sm:w-[96vw] md:w-[95vw]"
+      className="section h-[80vh] md:h-screen  rounded-[15px] md:rounded-[25px] overflow-hidden mx-auto gpu-transform w-[98vw] sm:w-[96vw] md:w-[95vw]"
     >
       {/* Background layer */}
       <div className="pointer-events-none h-full mt-[8px] md:mt-[16px] w-full mx-auto overflow-hidden bg-[#101b22] rounded-[15px] md:rounded-[25px] absolute inset-0 z-0">
