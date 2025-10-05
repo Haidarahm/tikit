@@ -39,6 +39,10 @@ const Work = () => {
   const titleRef = useRef(null);
 
   useEffect(() => {
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const start = isMobile ? "top 80%" : "top 90%";
+    const end = isMobile ? "top 60%" : "top 20%";
+
     imagesRef.current.forEach((el) => {
       gsap.fromTo(
         el,
@@ -48,8 +52,8 @@ const Work = () => {
           ease: "none",
           scrollTrigger: {
             trigger: el,
-            start: "top 90%",
-            end: "top 20%",
+            start,
+            end,
             scrub: 0.5,
           },
         }
@@ -83,7 +87,10 @@ const Work = () => {
     <div className="work-section font-hero-light flex flex-col h-[calc(100%+10vh)]">
       <div className="h-[75vh] flex flex-col justify-center items-center w-full description text-white mt-[104px]">
         <div ref={titleContainerRef} className="overflow-hidden">
-          <h1 ref={titleRef} className="title font-bold text-[40px] md:text-[64px] mb-[20px]">
+          <h1
+            ref={titleRef}
+            className="title font-bold text-[40px] md:text-[64px] mb-[20px]"
+          >
             Featured Work
           </h1>
         </div>
