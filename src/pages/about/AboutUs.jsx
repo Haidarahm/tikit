@@ -53,7 +53,7 @@ const AboutUs = () => {
       <AnimatedText />
       <Images />
       <Strategy />
-      {/* <Growth /> */}
+      <Growth />
       <Team />
       <Footer />
     </div>
