@@ -121,7 +121,7 @@ const Work = () => {
             />
 
             {/* Overlay */}
-            <div className=" content-work absolute  inset-0 flex flex-col items-center overflow-hidden justify-center bg-black/60 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+            <div className=" content-work absolute  inset-0 flex flex-col items-center overflow-hidden justify-center bg-black/30 md:bg-black/60 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
               <h3 className="text-white text-[30px] font-bold mb-2">
                 {item.title}
               </h3>
