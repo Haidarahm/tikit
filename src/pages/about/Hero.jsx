@@ -6,7 +6,7 @@ import InfiniteScroll from "../../components/InfiniteScroll";
 const Hero = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 3000,
       once: true,
       offset: 100,
     });
@@ -29,7 +29,7 @@ const Hero = () => {
     { content: <p>Paragraph Item 14</p> },
   ];
   return (
-    <div data-scroll-section className="h-screen  flex flex-col">
+    <div data-scroll-section className="  flex flex-col">
       <div style={{ height: "500px", position: "relative" }}>
         <div className="overlay absolute h-full w-full bg-black opacity-50 z-20 "></div>
 
@@ -52,12 +52,7 @@ const Hero = () => {
           pauseOnHover={true}
         />
       </div>
-      <div
-        className="description text-center md:text-start flex-1 flex md:flex-row flex-col text-white px-[20px] md:px-[60px] gap-4 md:gap-14 justify-center items-center"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        data-aos-delay="600"
-      >
+      <div className="description relative z-30 text-center md:text-start flex-1 flex md:flex-row flex-col text-white px-[20px] md:px-[60px] gap-4 md:gap-14 justify-center items-center">
         <div className="title font-bold text-[20px] md:text-[38px] w-2/7 ">
           About Us
         </div>

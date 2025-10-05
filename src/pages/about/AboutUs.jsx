@@ -15,9 +15,19 @@ const AboutUs = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Temporarily disable global scroll-snap which breaks Locomotive
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const prevHtmlSnap = htmlEl.style.scrollSnapType;
+    const prevBodySnap = bodyEl.style.scrollSnapType;
+    htmlEl.style.scrollSnapType = "none";
+    bodyEl.style.scrollSnapType = "none";
+
     const scroll = new LocomotiveScroll({
       el: containerRef.current,
       smooth: true,
+      smartphone: { smooth: true },
+      tablet: { smooth: true },
     });
 
     return () => {
@@ -25,9 +35,11 @@ const AboutUs = () => {
         scroll.destroy();
         // eslint-disable-next-line no-unused-vars, no-empty
       } catch (_) {}
-      const htmlEl = document.documentElement;
       htmlEl.classList.remove("has-scroll-smooth", "has-scroll-init");
       document.body.style.removeProperty("overflow");
+      // Restore scroll-snap
+      htmlEl.style.scrollSnapType = prevHtmlSnap;
+      bodyEl.style.scrollSnapType = prevBodySnap;
     };
   }, []);
 
