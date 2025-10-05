@@ -30,7 +30,7 @@ const Strategy = () => {
   return (
     <div data-scroll-section className="text-white">
       <div
-        className="title text-[70px] capitalize text-center my-[80px] loco-text-up"
+        className="title text-[28px] sm:text-[40px] md:text-[70px] capitalize text-center my-[40px] md:my-[80px] loco-text-up px-4"
         data-scroll
         data-scroll-class="is-inview"
         data-scroll-repeat
@@ -38,7 +38,7 @@ const Strategy = () => {
         No fluff.
         <br /> Just <span className="font-bold">expert strategy</span>{" "}
       </div>
-      <div className="container-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 px-6">
+      <div className="container-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 md:mt-10 px-4 md:px-6">
         {cards.map((card, i) => (
           <div
             key={String(i)}
@@ -58,9 +58,9 @@ const Strategy = () => {
                 backgroundImage: `radial-gradient(120% 100% at 30% 30%, ${card.color}, #ffffff)`,
               }}
             />
-            <div className="p-5 relative z-10">
+            <div className="p-4 md:p-5 relative z-10">
               <div
-                className="text-[36px] font-semibold mb-2 loco-text-up"
+                className="text-[22px] sm:text-[28px] md:text-[36px] font-semibold mb-2 loco-text-up"
                 data-scroll
                 data-scroll-class="is-inview"
                 data-scroll-repeat
@@ -69,7 +69,7 @@ const Strategy = () => {
                 {card.title}
               </div>
               <div
-                className="text-white/80 text-[24px] leading-relaxed loco-text-up"
+                className="text-white/80 text-[16px] sm:text-[18px] md:text-[24px] leading-relaxed loco-text-up"
                 data-scroll
                 data-scroll-class="is-inview"
                 data-scroll-repeat
