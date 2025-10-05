@@ -83,14 +83,14 @@ const Work = () => {
     <div className="work-section font-hero-light flex flex-col h-[calc(100%+10vh)]">
       <div className="h-[75vh] flex flex-col justify-center items-center w-full description text-white mt-[104px]">
         <div ref={titleContainerRef} className="overflow-hidden">
-          <h1 ref={titleRef} className="title font-bold text-[64px] mb-[20px]">
+          <h1 ref={titleRef} className="title font-bold text-[40px] md:text-[64px] mb-[20px]">
             Featured Work
           </h1>
         </div>
         <div ref={paragraphContainerRef} className="overflow-hidden">
           <p
             ref={paragraphRef}
-            className="paragraph font-light text-[32px] w-[900px] text-center leading-[40px]"
+            className="paragraph font-light text-[16px] md:text-[32px] md:w-[900px] text-center leading-[40px]"
           >
             We take a similar approach to design commercial we do impactfully
             approache, over the flowchart of user friendly wireframe.
@@ -99,7 +99,7 @@ const Work = () => {
       </div>
 
       {/* Image Grid */}
-      <div className="images grid grid-cols-2 grid-rows-4 gap-4 h-[300vh] p-4">
+      <div className="images grid grid-cols-1 md:grid-cols-2 grid-rows-4 gap-4 md:h-[300vh] p-4">
         {imagesArr.map((item, i) => (
           <div
             key={i}
