@@ -89,6 +89,8 @@ function Goals() {
               data-aos-delay={animationDelay}
               data-aos-duration="800"
               data-aos-easing="ease-out-cubic"
+              data-aos-once="false"
+              data-aos-mirror="true"
             >
               <div className="text">
                 {/* ❌ REMOVED backdrop-blur-lg — it’s expensive in scroll animations */}
