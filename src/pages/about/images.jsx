@@ -7,11 +7,11 @@ const Images = () => {
   return (
     <div
       data-scroll-section
-      className="text-white px-[60px] font-hero-light grid gap-[15px] grid-cols-7 grid-rows-4"
+      className="text-white px-4 md:px-[60px] font-hero-light grid gap-[10px] md:gap-[15px] grid-cols-1 md:grid-cols-7 auto-rows-[200px] md:grid-rows-4"
     >
       {/* Image 1 */}
       <div
-        className="reveal-img col-span-3 row-span-2"
+        className="reveal-img md:col-span-3 md:row-span-2"
         data-scroll
         data-scroll-class="is-inview"
         data-scroll-repeat
@@ -19,13 +19,13 @@ const Images = () => {
         <img
           src={image1}
           alt="image-1"
-          className="rounded-[15px] h-full w-full object-cover"
+          className="rounded-[15px] w-full h-full object-cover"
         />
       </div>
 
       {/* Text 1 with scroll speed */}
       <div
-        className="text reveal-text col-span-2 capitalize bg-[#00000019] rounded-[15px] row-span-2 font-light text-[42px] flex justify-center items-center px-[60px]"
+        className="text reveal-text md:col-span-2 md:row-span-2 capitalize bg-[#00000019] rounded-[15px] font-light text-[22px] sm:text-[28px] md:text-[42px] flex justify-center items-center px-4 md:px-[60px]"
         data-scroll
         data-scroll-class="is-inview"
         data-scroll-repeat
@@ -38,7 +38,7 @@ const Images = () => {
 
       {/* Image 2 */}
       <div
-        className="reveal-img col-span-2 row-span-2"
+        className="reveal-img md:col-span-2 md:row-span-2"
         data-scroll
         data-scroll-class="is-inview"
         data-scroll-repeat
@@ -46,13 +46,13 @@ const Images = () => {
         <img
           src={image2}
           alt="image-2"
-          className="rounded-[15px] h-full w-full object-cover"
+          className="rounded-[15px] w-full h-full object-cover"
         />
       </div>
 
       {/* Text 2 with slower speed */}
       <div
-        className="text reveal-text col-span-2 bg-[#00000019] capitalize rounded-[15px] row-span-2 font-light text-[42px] flex justify-center items-center px-[60px]"
+        className="text reveal-text md:col-span-2 md:row-span-2 bg-[#00000019] capitalize rounded-[15px] font-light text-[22px] sm:text-[28px] md:text-[42px] flex justify-center items-center px-4 md:px-[60px]"
         data-scroll
         data-scroll-class="is-inview"
         data-scroll-repeat
@@ -66,7 +66,7 @@ const Images = () => {
 
       {/* Image 3 */}
       <div
-        className="reveal-img col-span-5 row-span-2"
+        className="reveal-img md:col-span-5 md:row-span-2"
         data-scroll
         data-scroll-class="is-inview"
         data-scroll-repeat
@@ -74,7 +74,7 @@ const Images = () => {
         <img
           src={image3}
           alt="image-3"
-          className="rounded-[15px] h-full w-full object-cover"
+          className="rounded-[15px] w-full h-full object-cover"
         />
       </div>
     </div>
