@@ -113,10 +113,7 @@ function Hero() {
           data-aos-delay="3000"
         >
           <AvatarGroupDemo />
-          <div
-            className="text text-center mt-2 md:mt-[10px]"
-            
-          >
+          <div className="text text-center mt-2 md:mt-[10px]">
             <span className="font-bold font-hero-light text-sm sm:text-base">
               +300 Happy
             </span>{" "}
