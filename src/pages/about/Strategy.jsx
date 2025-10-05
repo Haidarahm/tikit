@@ -1,4 +1,5 @@
 import React from "react";
+import TickWhite from "../../assets/TickWhite";
 
 const Strategy = () => {
   const cards = [
@@ -66,6 +67,7 @@ const Strategy = () => {
                 data-scroll-repeat
                 style={{ transitionDelay: `${300 + i * 120}ms` }}
               >
+                <TickWhite  className="text-[#] w-[60px] md:w-[60px] inline-block h-[50x] px-4 md:px-2 md:h-[60px]"/>
                 {card.title}
               </div>
               <div
