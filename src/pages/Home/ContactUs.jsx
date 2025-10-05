@@ -10,7 +10,7 @@ import b3 from "../../assets/brands/3.svg";
 import b4 from "../../assets/brands/4.svg";
 import b5 from "../../assets/brands/5.svg";
 
-const ContactUs = (className) => {
+const ContactUs = ({ className = "" }) => {
   const [isSecondSlide, setIsSecondSlide] = useState(false);
 
   const handleSlideClick = (slideNumber) => {
@@ -47,8 +47,6 @@ const ContactUs = (className) => {
     <div
       className={`relative my-5 md:my-10 gap-3.5  overflow-hidden text-white  font-hero-light rounded-[25px] flex flex-col mx-auto py-[40px] md:py-[60px] px-[40px] md:px-[50px]  w-[95vw] bg-black ${className}`}
     >
-     
-
       <div className="email  w-full flex flex-col md:flex-row h-2/3 justify-between items-center md:items-stretch relative z-10 ">
         <div className="texts flex justify-between flex-col relative   ">
           <h3

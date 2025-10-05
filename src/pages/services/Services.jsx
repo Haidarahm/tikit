@@ -15,15 +15,38 @@ const splitTextToSpans = (element) => {
   if (!element || element.dataset.splitDone === "true") return;
   const originalText = element.textContent || "";
   element.innerHTML = "";
-  originalText.split("").forEach((char) => {
-    const span = document.createElement("span");
-    span.textContent = char === " " ? "\u00A0" : char;
-    span.style.display = "inline-block";
-    span.style.opacity = "0";
-    span.style.transform = "translateY(100%)";
-    span.style.willChange = "transform, opacity";
-    element.appendChild(span);
-  });
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+  if (isMobile) {
+    // Split by words on mobile; preserve spaces as text nodes so wrapping occurs between words
+    const tokens = originalText.split(/(\s+)/);
+    tokens.forEach((token) => {
+      if (/^\s+$/.test(token)) {
+        element.appendChild(document.createTextNode(token));
+      } else if (token.length > 0) {
+        const span = document.createElement("span");
+        span.textContent = token;
+        span.style.display = "inline-inline";
+        // Use inline-block to keep the word together while allowing wrap between words
+        span.style.display = "inline-block";
+        span.style.opacity = "0";
+        span.style.transform = "translateY(100%)";
+        span.style.willChange = "transform, opacity";
+        element.appendChild(span);
+      }
+    });
+  } else {
+    // Desktop: keep letter-based split/animation
+    originalText.split("").forEach((char) => {
+      const span = document.createElement("span");
+      span.textContent = char === " " ? "\u00A0" : char;
+      span.style.display = "inline-block";
+      span.style.opacity = "0";
+      span.style.transform = "translateY(100%)";
+      span.style.willChange = "transform, opacity";
+      element.appendChild(span);
+    });
+  }
   element.dataset.splitDone = "true";
 };
 
@@ -185,8 +208,8 @@ const Services = () => {
             }}
             aria-label={`${section.title} service`}
           >
-            <div className="relative z-10 w-full  text-white text-center px-6">
-              <h2 className="section-title text-7xl md:text-8xl font-extrabold mb-8 leading-[5.9rem]">
+            <div className="relative z-10 w-full  text-white text-center px-2 md:px-6">
+              <h2 className="section-title text-[40px]  md:text-8xl font-extrabold mb-8 leading-[5.9rem]">
                 {section.title}
               </h2>
               <ul className="section-list space-y-3 text-2xl md:text-3xl">
@@ -198,8 +221,8 @@ const Services = () => {
           </section>
         ))}
       </div>
-      <ContactUs  className=" snap-start snap-always "/>
-      <Footer className="snap-start snap-always" />
+      <ContactUs className="snap-section snap-start h-screen flex items-center justify-center" />
+      <Footer className="snap-section snap-start h-screen flex items-center" />
     </div>
   );
 };
