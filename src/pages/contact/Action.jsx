@@ -12,7 +12,7 @@ const FloatingInput = ({ id, label, containerClassName }) => (
       />
       <label
         htmlFor={id}
-        className="absolute left-4 -top-2.5 bg-[#121212] px-1 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm"
+        className="absolute left-4 -top-2.5 bg-[#000] px-1 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm"
       >
         {label}
       </label>

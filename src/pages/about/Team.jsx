@@ -141,6 +141,10 @@ const Team = () => {
                   className="h-full w-full object-cover select-none"
                   draggable={false}
                 />
+                <div className="details flex flex-col justify-center items-center absolute bottom-12 left-1/2 -translate-1/2 bg-black/40 rounded-[10px] w-3/4 h-[120px]">
+                <div className="name text-[24px]">Haidar Ahmad</div>
+                <div className="jop text-[16px]"> Gamer</div>
+                </div>
               </div>
             ))}
           </div>
