@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import Hero from "./Hero";
-
+import './details.css'
+import Content from "./Content";
 const Details = () => {
   const scrollRef = useRef(null);
 
@@ -25,6 +26,7 @@ const Details = () => {
       className="min-h-screen bg-black text-white"
     >
      <Hero/>
+     <Content/>
     </div>
   );
 };
