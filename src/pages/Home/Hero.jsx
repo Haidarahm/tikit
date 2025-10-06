@@ -75,7 +75,7 @@ function Hero() {
       <div className="relative mx-auto h-[calc(100%-104px)] mt-[60px] md:mt-[104px] z-10 w-full px-4 sm:px-6 md:w-6/7 flex items-center flex-col justify-center">
         {/* Title */}
         <div
-          className="title flex flex-col gap-2 md:gap-4 items-center text-center"
+          className="title flex flex-col  items-center text-center"
           data-aos="fade-down"
           data-aos-delay="1000"
         >
