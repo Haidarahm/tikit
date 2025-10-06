@@ -45,8 +45,7 @@ const ContactUs = ({ className = "" }) => {
   ];
   return (
     <div
-
-    data-scroll-section
+      data-scroll-section
       className={`relative my-5 md:my-10 gap-3.5  overflow-hidden text-white  font-hero-light rounded-[25px] flex flex-col mx-auto py-[40px] md:py-[60px] px-[40px] md:px-[50px]  w-[95vw] bg-black ${className}`}
     >
       <div className="email  w-full flex flex-col md:flex-row h-2/3 justify-between items-center md:items-stretch relative z-10 ">
@@ -58,11 +57,10 @@ const ContactUs = ({ className = "" }) => {
           >
             Kick it off with Tikit!
           </h3>
-          <h1
-            className="title text-[32px] text-center md:text-start md:text-[70px] font-bold"
+          <h1 
             data-aos="fade-up"
             data-aos-delay="150"
-          >
+          className="title text-[32px] text-center md:text-start md:text-[70px] font-bold bg-gradient-to-r from-[#07D9F5] via-[#06AEC4] via-[#4E7CC6] to-[#CE88C6] bg-clip-text text-transparent">
             contact us now
           </h1>
           <p

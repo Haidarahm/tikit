@@ -57,10 +57,10 @@ function Goals() {
           >
             <div className="text">
               {/* ❌ REMOVED backdrop-blur-lg — it’s expensive in scroll animations */}
-              <h2 className="font-bold w-full md:max-w-[500px] text-[20px] md:text-[52px] leading-[24px] md:leading-[50px] mb-[10px] md:mb-[22px]">
+              <h2 className=" w-full md:max-w-[500px] text-[20px] md:text-[52px] leading-[24px] md:leading-[50px] mb-[10px] md:mb-[22px]">
                 {goal.title}
               </h2>
-              <p className=" text:[14px] md:text-[32px] leading-[20px] md:leading-[35px]">
+              <p className=" font-light text:[14px] md:text-[32px] leading-[20px] md:leading-[35px]">
                 {goal.description}
               </p>
             </div>
@@ -94,10 +94,10 @@ function Goals() {
             >
               <div className="text">
                 {/* ❌ REMOVED backdrop-blur-lg — it’s expensive in scroll animations */}
-                <h2 className="font-bold w-] text-[20px] md:text-[52px] leading-[24px] md:leading-[50px] mb-[10px] md:mb-[22px]">
+                <h2 className=" w-] text-[20px] md:text-[52px] leading-[24px] md:leading-[50px] mb-[10px] md:mb-[22px]">
                   {goal.title}
                 </h2>
-                <p className=" text:[14px] ] leading-[20px]">
+                <p className=" text:[14px] font-light leading-[20px]">
                   {goal.description}
                 </p>
               </div>
