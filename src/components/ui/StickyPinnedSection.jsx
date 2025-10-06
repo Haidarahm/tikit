@@ -299,7 +299,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 ,clas
                   ))}
                 </p>
               ) : null}
-              <p className="mt-6 w-full text-white text-[24px]">
+              <p className="mt-6 w-full font-light text-white text-[24px]">
                 {Array.from(it.description ?? "").map((ch, j) => (
                   <span key={j} className="letter letter-desc inline-block">
                     {ch === " " ? "\u00A0" : ch}
@@ -311,7 +311,7 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 ,clas
                   {Array.from("View Work").map((ch, j) => (
                     <span
                       key={j}
-                      className="letter text-[14px] letter-btn inline-block"
+                      className="letter  text-[14px] letter-btn inline-block"
                     >
                       {ch === " " ? "\u00A0" : ch}
                     </span>

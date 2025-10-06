@@ -115,7 +115,7 @@ const AboutUs = () => {
           data-aos="fade-right"
           data-aos-duration="500"
           data-aos-delay="100"
-          className="text-white text-[18px] text-center md:text-4xl font-bold mb-4 md:mb-8"
+          className="text-white text-[18px] text-center md:text-4xl font-bold mb-2 md:mb-4"
         >
           Who We Are
         </h2>
@@ -124,7 +124,7 @@ const AboutUs = () => {
           data-aos="fade-left"
           data-aos-duration="500"
           data-aos-delay="200"
-          className="text-[16px] md:text-[36px] font-light text-center mb-[40px]"
+          className="text-[16px] md:text-[32px] font-light text-center mb-[40px]"
         >
           We create and innovate digital experiences through strategic
           collaboration and creativity. Each project engages and inspires,

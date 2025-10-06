@@ -81,7 +81,7 @@ export default function WorkSection() {
               <div className="text flex flex-col gap-[10px]">
                 <h1 className="title text-[20px] font-bold">{item.title}</h1>
                 <div className="subtitle text-[16px]">{item.subtitle}</div>
-                <div className="description text-[14px]">
+                <div className=" description text-[14px]">
                   {item.description}
                 </div>
               </div>

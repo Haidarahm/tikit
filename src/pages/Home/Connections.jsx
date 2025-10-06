@@ -86,7 +86,7 @@ const Connections = () => {
         <ScrollFloat
           animationDuration={1}
           ease="back.inOut(2)"
-          textClassName="text-[24px] md:text-[44px] pointer-events-none max-w-[600px] leading-[60px]"
+          textClassName="text-[24px] md:h-[55px] md:text-[35px] pointer-events-none max-w-[600px] "
           scrollStart="center bottom+=20%"
           scrollEnd="bottom bottom-=50%"
           stagger={0.06}

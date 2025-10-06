@@ -26,9 +26,15 @@ const demoItems = [
 const Services = () => {
   return (
     <div className="section mt-16 relative font-hero-light flex flex-col mx-auto  md:h-[70vh]   z-10 w-full justify-center">
-      <h1 className="text-center font-bold text-[18px] md:text-[32px] mb-[38px]">
-        What We Do Best
-      </h1>
+      <div className="headline mb-4 px-6 md:px-10 flex w-full justify-between items-center">
+        <h1 className=" md:text-center font-bold text-[18px] md:text-[32px] ">
+          What We Do Best
+        </h1>
+        <button className="bg-white hover:bg-transparent transition duration-75 ease-in hover:text-white border border-white px-2 h-8 md:h-10 text-[11px] text-black rounded-full uppercase">
+            Explore Projects
+          </button>
+      </div>
+
       <div
         className="hidden md:block"
         style={{ position: "relative", height: "100%" }}
