@@ -1,5 +1,7 @@
 import React from "react";
 import TickWhite from "../../assets/TickWhite";
+import RotatingText from "../../components/RotatingText";
+import TextChanger from "../../components/TextChanger";
 
 const Strategy = () => {
   const cards = [
@@ -37,7 +39,34 @@ const Strategy = () => {
         data-scroll-repeat
       >
         No fluff.
-        <br /> Just <span className="font-bold">expert strategy</span>{" "}
+        <div className="flex justify-center md:h-[75px] items-center">
+          <span className="transition">Just</span>
+          <h1 className=" font-bold text-white overflow-hidden flex items-center ml-4">
+            <TextChanger
+              texts={[
+                "expert strategy",
+                "creative firepower",
+                "flawless execution",
+              ]}
+              duration={3}
+              diagonal={false}
+              textClassName="bg-gradient-to-r from-[#07D9F5] to-[#CE88C6] bg-clip-text text-transparent"
+            />
+          </h1>
+          {/* <RotatingText
+          
+            texts={["expert strategy", "creative firepower", "flawless execution"]}
+            mainClassName=" bg-gradient-text px-2 sm:px-2 md:px-3 text-white font-bold text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+            staggerFrom={"last"}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-120%" }}
+            staggerDuration={0.025}
+            splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+            transition={{ type: "spring", damping: 30, stiffness: 400 }}
+            rotationInterval={3000}
+          /> */}
+        </div>
       </div>
       <div className="container-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 md:mt-10 px-4 md:px-6">
         {cards.map((card, i) => (
@@ -67,7 +96,7 @@ const Strategy = () => {
                 data-scroll-repeat
                 style={{ transitionDelay: `${300 + i * 120}ms` }}
               >
-                <TickWhite  className="text-[#] w-[60px] md:w-[60px] inline-block h-[50x] px-4 md:px-2 md:h-[60px]"/>
+                <TickWhite className="text-[#] w-[60px] md:w-[60px] inline-block h-[50x] px-4 md:px-2 md:h-[60px]" />
                 {card.title}
               </div>
               <div
