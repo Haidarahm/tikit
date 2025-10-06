@@ -13,6 +13,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from "../../components/Footer";
 import ContactUs from "../Home/ContactUs";
+import GradientText from "../../components/GradientText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,16 +86,30 @@ const Work = () => {
 
   return (
     <div className="work-section font-hero-light flex flex-col h-[calc(100%+10vh)]">
-      <div className="h-[75vh] flex flex-col justify-center items-center w-full description text-white mt-[104px]">
+      <div className="h-[75vh] flex flex-col justify-around items-center w-full description text-white mt-[104px]">
+        <div className="w-full"></div>
         <div ref={titleContainerRef} className="overflow-hidden">
-          <h1
-            ref={titleRef}
-            className="title font-bold text-[40px] md:text-[64px] mb-[20px]"
-          >
-            Featured Work
-          </h1>
+          <div ref={titleRef} className="title">
+            <GradientText
+              colors={["#07D9F5", "#06AEC4", "#4E7CC6", "#CE88C6", "#40ffaa"]}
+              animationSpeed={5}
+              showBorder={false}
+              className="text-[32px] md:text-[96px] leading-[40px] md:leading-[100px] mb-8 capitalize font-bold"
+            >
+              Featured Work
+            </GradientText>
+          </div>
         </div>
-        <div ref={paragraphContainerRef} className="overflow-hidden">
+        <div className="description relative z-30 text-center md:text-start flex md:flex-row flex-col text-white px-[20px] md:px-[30px] gap-4 md:gap-12 justify-center items-center">
+          <div className="title font-bold mt-4 md:mt-0 text-[20px] md:text-[24px] w-[20%] ">
+            what makes us special
+          </div>
+          <div className="paragraph text-[16px] md:text-[22px] ">
+            We take a similar approach to design commercial we do impactfully
+            approache, over the flowchart of user friendly wireframe.
+          </div>
+        </div>
+        {/* <div ref={paragraphContainerRef} className="overflow-hidden">
           <p
             ref={paragraphRef}
             className="paragraph font-light text-[16px] md:text-[32px] md:w-[900px] text-center leading-[40px]"
@@ -102,7 +117,7 @@ const Work = () => {
             We take a similar approach to design commercial we do impactfully
             approache, over the flowchart of user friendly wireframe.
           </p>
-        </div>
+        </div> */}
       </div>
 
       {/* Image Grid */}
@@ -122,7 +137,7 @@ const Work = () => {
 
             {/* Overlay */}
             <div className=" content-work absolute  inset-0 flex flex-col items-center overflow-hidden justify-center bg-black/30 md:bg-black/60 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-              <h3 className="text-white text-[30px] font-bold mb-2">
+              <h3 className="text-white text-[30px] font-bold ">
                 {item.title}
               </h3>
               <p className="text-gray-200 text-[20px] mb-4">{item.subtitle}</p>

@@ -53,10 +53,10 @@ const Hero = () => {
         />
       </div>
       <div className="description relative z-30 text-center md:text-start flex-1 flex md:flex-row flex-col text-white px-[20px] md:px-[60px] gap-4 md:gap-14 justify-center items-center">
-        <div className="title font-bold mt-4 md:mt-0 text-[20px] md:text-[38px] w-2/7 ">
+        <div className="title uppercase font-bold mt-4 md:mt-0 text-[20px] md:text-[34px] w-2/7 ">
           About Us
         </div>
-        <div className="paragraph text-[16px] md:text-[32px] ">
+        <div className="paragraph text-[16px] md:text-[28px] ">
           Driven by insight and creativity: the story behind "Tikit" — a
           regional agency powering brands, building trust, and delivering
           results.
