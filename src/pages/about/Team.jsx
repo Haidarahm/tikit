@@ -21,7 +21,14 @@ const Team = () => {
     const track = trackRef.current;
     if (!container || !right || !track) return;
 
-    // Single (desktop-style) behavior only; no responsive branching
+    const isMobile = window.innerWidth < 768;
+
+    // On mobile, we stack items vertically and make the left section sticky via CSS only
+    if (isMobile) {
+      // Ensure minimal heights are not forced on mobile
+      container.style.minHeight = "";
+      return () => {};
+    }
 
     const compute = () => {
       const rightWidth = right.clientWidth;
@@ -98,35 +105,35 @@ const Team = () => {
       ref={containerRef}
       data-scroll-section
       id="team-section"
-      className="relative overflow-hidden mt-[50px] text-white font-hero-light"
+      className="relative overflow-visible md:overflow-hidden mt-[50px] text-white font-hero-light"
     >
       <div
-        className="h-[100vh] flex relative"
+        className="flex flex-col md:flex-row relative md:h-[100vh]"
         data-scroll
         data-scroll-sticky
         data-scroll-target="#team-section"
       >
         <div
-          className="left-section rounded-[10px] z-50 absolute left-0 top-0 w-[30%] h-full flex items-center px-[50px] text-[64px] pointer-events-none bg-cover bg-center bg-no-repeat"
+          className="left-section rounded-[10px] z-20 md:z-50 md:absolute md:left-0 md:top-0 w-full md:w-[30%] md:h-full sticky top-0 flex items-center px-6 md:px-[50px] py-6 md:py-0 text-[28px] sm:text-[40px] md:text-[64px] bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${background})` }}
         >
-          <h1 className="leading-[1.1] ">
+          <h1 className="leading-[1.1]">
             Our <br /> creative team
           </h1>
         </div>
 
         <div
           ref={rightRef}
-          className="relative z-0 flex flex-1 overflow-hidden h-screen pl-[30%] "
+          className="relative z-0 flex flex-col md:flex-row flex-1 overflow-visible md:overflow-hidden h-auto md:h-screen md:pl-[30%] gap-4 md:gap-0"
         >
           <div
             ref={trackRef}
-            className=" flex items-center inset-shadow-amber-100 shadow-amber-100 gap-8 will-change-transform py-0"
+            className="flex flex-col md:flex-row items-center inset-shadow-amber-100 shadow-amber-100 gap-4 md:gap-8 will-change-transform py-0 w-full"
           >
             {imageUrls.map((src, index) => (
               <div
                 key={String(index)}
-                className="relative h-[650px]  w-[450px] rounded-[10px] shrink-0 overflow-hidden bg-[#111]"
+                className="relative w-full md:w-[450px] h-[220px] sm:h-[320px] md:h-[650px] rounded-[10px] shrink-0 overflow-hidden bg-[#111]"
               >
                 <img
                   src={src}
