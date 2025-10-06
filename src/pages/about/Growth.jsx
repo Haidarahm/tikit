@@ -57,7 +57,7 @@ const Growth = () => {
         </div>
         <div
           key={data[1].id}
-          className="flex px-4 bottom-0 md:bottom-auto md:left-1/2 left-auto right-0 items-center justify-center text-center flex-col w-[150px] h-[150px] md:w-[170px] md:h-[170px] rounded-full absolute bg-[#ffffff29] loco-growth-circle"
+          className="flex px-4 bottom-0 md:bottom-0 md:left-1/2 left-auto right-0 items-center justify-center text-center flex-col w-[150px] h-[150px] md:w-[170px] md:h-[170px] rounded-full absolute bg-[#ffffff29] loco-growth-circle"
           data-scroll
           data-scroll-class="is-inview"
           data-scroll-repeat
