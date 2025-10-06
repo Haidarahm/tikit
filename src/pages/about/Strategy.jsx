@@ -88,7 +88,7 @@ const Strategy = () => {
                 backgroundImage: `radial-gradient(120% 100% at 30% 30%, ${card.color}, #ffffff)`,
               }}
             />
-            <div className="p-4 md:p-5 relative z-10">
+            <div className="p-4 md:px-4 md:py-8 relative z-10">
               <div
                 className="text-[22px] sm:text-[28px] md:text-[36px] font-semibold mb-2 loco-text-up"
                 data-scroll
@@ -100,7 +100,7 @@ const Strategy = () => {
                 {card.title}
               </div>
               <div
-                className="text-white/80 text-[16px] sm:text-[18px] md:text-[24px] leading-relaxed loco-text-up"
+                className="text-white/80 text-[16px] sm:text-[18px] md:text-[24px]  loco-text-up leading-[30px]"
                 data-scroll
                 data-scroll-class="is-inview"
                 data-scroll-repeat
