@@ -1,6 +1,31 @@
 import React, { useState } from "react";
-import FloatingInput from "../../components/ui/FloatingInput";
-import GradientText from "../../components/GradientText";
+
+// FloatingInput Component (placeholder - replace with your actual component)
+const FloatingInput = ({ id, label, containerClassName }) => (
+  <div className={containerClassName}>
+    <div className="relative">
+      <input
+        type="text"
+        id={id}
+        className="w-full px-4 py-3 bg-transparent border border-white/30 rounded-lg text-white placeholder-transparent focus:border-white focus:outline-none peer"
+        placeholder={label}
+      />
+      <label
+        htmlFor={id}
+        className="absolute left-4 -top-2.5 bg-[#121212] px-1 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm"
+      >
+        {label}
+      </label>
+    </div>
+  </div>
+);
+
+// GradientText Component (placeholder - replace with your actual component)
+const GradientText = ({ children, className }) => (
+  <h1 className={`${className} bg-gradient-to-r from-[#40ffaa] via-[#4079ff] to-[#40ffaa] bg-clip-text text-transparent`}>
+    {children}
+  </h1>
+);
 
 const Action = () => {
   const [isSecondSlide, setIsSecondSlide] = useState(false);
@@ -12,34 +37,32 @@ const Action = () => {
   return (
     <div
       data-scroll-section
-      className="snap-start snap-always gap-[30px] md:gap-[120px] h-screen flex flex-col md:flex-row py-8 md:py-20 px-4 md:px-14"
+      className="snap-start snap-always min-h-screen justify-center flex flex-col lg:flex-row gap-8 md:gap-16 lg:gap-24 xl:gap-32 py-8 md:py-12 lg:py-20 px-4 md:px-8 lg:px-14"
     >
-      <div className="left-section w-1/2 h-full flex flex-col justify-start items-start">
-        <h2 className="subtitle  h-[45px] text-[16px] md:text-[40px] ">
+      {/* Left Section */}
+      <div className="w-full lg:w-1/2 flex flex-col justify-start items-start space-y-4 md:space-y-6">
+        <h2 className="text-base md:text-2xl lg:text-3xl xl:text-4xl text-white/80">
           Kick it off with Tikit!
         </h2>
-        <GradientText
-          colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-          animationSpeed={5}
-          showBorder={false}
-          className="title ml-0 text-[62px] font-bold"
-        >
+        <GradientText className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
           Contact Us Now
         </GradientText>
-
-        <p className="text-[24px] h-[58px] leading-[1] font-light ">
-          We want to hear from you. let's us know how we can help!
+        <p className="text-base md:text-lg lg:text-xl xl:text-2xl font-light text-white/90 leading-snug">
+          We want to hear from you. Let us know how we can help!
         </p>
       </div>
-      <div className="right-section w-1/2 h-full flex flex-col gap-[40px]">
-        <div className="swiper-wrapper w-full border flex relative border-white h-[50px] rounded-full">
+
+      {/* Right Section */}
+      <div className="w-full lg:w-1/2 flex flex-col gap-6 md:gap-8 lg:gap-10">
+        {/* Toggle Switch */}
+        <div className="w-full border flex relative border-white h-12 md:h-14 rounded-full">
           <div
             className={`move-item absolute w-1/2 h-full bg-white rounded-full transition-all duration-300 ease-in-out ${
               isSecondSlide ? "left-1/2" : "left-0"
             }`}
           />
           <div
-            className={`swiper-slide w-1/2 flex justify-center items-center relative z-10 cursor-pointer ${
+            className={`swiper-slide w-1/2 flex justify-center items-center relative z-10 cursor-pointer text-sm md:text-base font-medium transition-colors duration-300 ${
               !isSecondSlide ? "text-black" : "text-white"
             }`}
             onClick={() => handleSlideClick(1)}
@@ -47,7 +70,7 @@ const Action = () => {
             Client
           </div>
           <div
-            className={`swiper-slide w-1/2 flex justify-center items-center relative z-10 cursor-pointer ${
+            className={`swiper-slide w-1/2 flex justify-center items-center relative z-10 cursor-pointer text-sm md:text-base font-medium transition-colors duration-300 ${
               isSecondSlide ? "text-black" : "text-white"
             }`}
             onClick={() => handleSlideClick(2)}
@@ -55,37 +78,37 @@ const Action = () => {
             Influencer
           </div>
         </div>
-        <div className="inputs  grid-rows-3 gap-[30px] grid grid-cols-2 flex-1">
+
+        {/* Form Inputs */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 lg:gap-8 flex-1">
           <FloatingInput
-            id="contact-standard"
+            id="contact-name"
             label="Name"
-            containerClassName="col-span-1 my-6 row-span-1"
+            containerClassName="col-span-1"
           />
           <FloatingInput
-            id="contact-standard"
+            id="contact-email"
             label="Email"
-            containerClassName="col-span-1 my-6 row-span-1 "
+            containerClassName="col-span-1"
           />
           <FloatingInput
-            id="contact-standard"
+            id="contact-phone"
             label="Phone"
-            containerClassName="col-span-1 my-6 row-span-1"
+            containerClassName="col-span-1"
           />
           <FloatingInput
-            id="contact-standard"
+            id="contact-subject"
             label="Subject"
-            containerClassName="col-span-1 my-6 row-span-1 "
+            containerClassName="col-span-1"
           />
 
-          <button className="px-5 h-[50px] cursor-pointer py-2.5 relative col-span-2 row-span-1 rounded-full group overflow-hidden font-medium bg-transparent text-white border border-white flex items-center justify-center">
+          {/* Submit Button */}
+          <button className="px-5 h-12 md:h-14 cursor-pointer relative col-span-1 sm:col-span-2 rounded-full group  font-medium bg-transparent text-white border border-white flex items-center justify-center transition-all hover:scale-105 overflow-hidden">
             <span className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out rounded-full transform translate-y-0 bg-white group-hover:h-full opacity-90"></span>
-            <span className="relative uppercase group-hover:text-black text-base font-semibold">
+            <span className="relative uppercase group-hover:text-black text-sm md:text-base font-semibold">
               Contact Us
             </span>
           </button>
-          {/* <button className=" col-span-2 row-span-1 rounded-full border h-[50px] border-white ">
-Contact Us
-            </button> */}
         </div>
       </div>
     </div>

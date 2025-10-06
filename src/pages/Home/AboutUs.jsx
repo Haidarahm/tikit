@@ -2,14 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// Import all images from assets/who-we-are (jpg, jpeg, png, webp)
-// Vite will inline URLs for us
-const whoWeAreImages = Object.values(
-  import.meta.glob("../../assets/who-we-are/*.{jpg,jpeg,png,webp}", {
-    eager: true,
-    as: "url",
-  })
-);
+import img1 from "../../assets/who-we-are/1.webp";
+import img2 from "../../assets/who-we-are/2.webp";
+import img3 from "../../assets/who-we-are/3.webp";
+import img4 from "../../assets/who-we-are/4.webp";
+import img5 from "../../assets/who-we-are/5.webp";
+import img6 from "../../assets/who-we-are/6.webp";
+import img7 from "../../assets/who-we-are/7.webp";
+import img8 from "../../assets/who-we-are/8.webp";
+import img9 from "../../assets/who-we-are/9.webp";
+
+const whoWeAreImages = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
 
 const AboutUs = () => {
   const sectionRef = useRef(null);

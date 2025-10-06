@@ -2,21 +2,15 @@ import React from "react";
 import Hero from "./Hero";
 import AnimatedLines from "./AnimatedLines";
 import Action from "./Action";
-import './contact.css'
+import "./contact.css";
 import Footer from "../../components/Footer";
 const Contact = () => {
-
-
   return (
-    <div
-  
-      className="contact-section snap-mandatory snap-y w-full text-white  font-hero-light"
-    >
+    <div className="contact-section snap-mandatory snap-y w-full text-white   font-hero-light">
       <Hero />
-      <AnimatedLines/>
-      <Action/>
-            <Footer className="snap-start snap-always" />
-
+      <AnimatedLines />
+      <Action />
+      <Footer className="snap-start snap-always" />
     </div>
   );
 };

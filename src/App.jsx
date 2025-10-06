@@ -8,6 +8,7 @@ import AOSRefresher from "./components/AOSRefresher";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Details from "./pages/details/Details"; // Add this import at the top
 
 // Lazy load components
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -51,6 +52,8 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/details/:id" element={<Details />} />{" "}
+          {/* <-- Add this line */}
         </Route>
       </Routes>
     </Suspense>
