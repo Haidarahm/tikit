@@ -10,7 +10,7 @@ const Contact = () => {
   return (
     <div
   
-      className="contact-section snap-mandatory snap-y w-full text-white min-h-screen font-hero-light"
+      className="contact-section snap-mandatory snap-y w-full text-white  font-hero-light"
     >
       <Hero />
       <AnimatedLines/>

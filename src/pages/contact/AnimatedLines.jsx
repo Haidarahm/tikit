@@ -50,15 +50,14 @@ const AnimatedLines = () => {
   }, []);
 
   return (
-    <section className="contact-section snap-start snap-always h-screen w-full flex flex-col">
-      <div className="details relative z-20  flex gap-[50px] max-w-7xl mx-auto">
-        <h1 className="title uppercase font-bold text-[24px] w-1/7">
+    <section className="contact-section hidden snap-start snap-always h-screen w-full md:flex flex-col">
+      <div className="details relative z-20  flex flex-col md:flex-row gap-4 md:gap-0 justify-between w-full px-4 md:px-12 mx-auto">
+        <h1 className="title uppercase font-bold text-[20px] md:text-[24px] w-full text-center md:text-start  md:w-1/7">
           We've been waiting for you!
         </h1>
-        <p className="description flex-1 text-[24px]">
+        <p className="description font-light text-[16px] text-center md:text-start md:ml-12 flex-1 md:text-[22px]">
           Add the best talent on the market, an agile skilled management &
-          seamless
-          <br /> involvement
+          seamless involvement
         </p>
       </div>
       <div

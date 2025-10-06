@@ -12,10 +12,10 @@ const Action = () => {
   return (
     <div
       data-scroll-section
-      className="snap-start snap-always gap-[120px] h-screen flex py-20 px-14"
+      className="snap-start snap-always gap-[30px] md:gap-[120px] h-screen flex flex-col md:flex-row py-8 md:py-20 px-4 md:px-14"
     >
       <div className="left-section w-1/2 h-full flex flex-col justify-start items-start">
-        <h2 className="subtitle h-[45px] text-[40px] ">
+        <h2 className="subtitle  h-[45px] text-[16px] md:text-[40px] ">
           Kick it off with Tikit!
         </h2>
         <GradientText

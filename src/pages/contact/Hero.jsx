@@ -28,13 +28,13 @@ const Hero = () => {
   return (
     <section
       data-scroll-section
-      className="snap-start snap-always h-screen w-full flex items-center justify-center"
+      className="snap-start snap-always h-[50vh] md:h-screen w-full flex items-center justify-center"
     >
       <div className="text-center mt-[104px]">
         <div ref={h1WrapRef} className="overflow-hidden">
           <h1
             ref={h1Ref}
-            className="text-[70px] leading-[110px] capitalize py-2 will-change-transform translate-y-full"
+            className="text-[32px] md:text-[70px] leading-[40px] md:leading-[110px] capitalize py-2 will-change-transform translate-y-full"
           >
             Any questions? simply ask us.
           </h1>
@@ -45,7 +45,7 @@ const Hero = () => {
               colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
               animationSpeed={5}
               showBorder={false}
-              className="text-[96px] leading-[100px] mb-8 capitalize font-bold"
+              className="text-[32px] md:text-[96px] leading-[40px] md:leading-[100px] mb-8 capitalize font-bold"
             >
               This is you, home!
             </GradientText>
