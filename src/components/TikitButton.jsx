@@ -2,14 +2,13 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
-function TikitButton({ text }) {
-  const navigate = useNavigate();
+function TikitButton({ text ,onClick}) {
   return (
     <button
       onMouseDown={(e) => {
         e.currentTarget.blur();
       }}
-      onClick={() => navigate("/contact")}
+       onClick={onClick}
       className="group cursor-pointer relative inline-flex items-center gap-2 font-hero-light text-sm bg-primary text-background px-4 py-2 rounded-full transition-[transform,background-color] duration-300 focus:outline-none hover:scale-[1.03] active:scale-[0.98]"
     >
       <span className="whitespace-nowrap transition-transform duration-300 group-hover:translate-x-1">

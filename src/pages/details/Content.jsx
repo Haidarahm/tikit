@@ -31,7 +31,7 @@ const Content = () => {
   return (
     <div
       data-scroll-section
-      className="min-h-screen flex flex-col gap-16 text-white relative font-hero-light py-20 px-4 md:px-16"
+      className="min-h-screen flex flex-col gap-20 text-white relative font-hero-light py-20 px-4 md:px-16"
     >
       {items.map((item, idx) => (
         <div
@@ -40,17 +40,35 @@ const Content = () => {
             idx % 2 === 1 ? "md:flex-row-reverse" : ""
           }`}
         >
-          <img
-            src={item.image}
-            alt={item.title}
-            className="w-full md:w-1/3 rounded-2xl shadow-lg object-cover"
-          />
-          <div className="flex-1 flex flex-col gap-2">
-            <h2 className="text-3xl font-bold">{item.title}</h2>
-            <h3 className="text-xl font-semibold text-[#40ffaa]">
+          {/* Image reveal animation */}
+          <div
+            className="reveal-img w-full md:w-1/3"
+            data-scroll
+            data-scroll-class="is-inview"
+            data-scroll-repeat
+          >
+            <img
+              src={item.image}
+              alt={item.title}
+              className="rounded-[15px] w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Text reveal animation */}
+          <div
+            className="reveal-text flex-1 flex flex-col gap-2"
+            data-scroll
+            data-scroll-class="is-inview"
+            data-scroll-repeat
+            data-scroll-speed={idx % 2 === 0 ? "1" : "-1"}
+          >
+            <h2 className="text-3xl md:text-5xl font-bold">{item.title}</h2>
+            <h3 className="text-xl md:text-2xl font-semibold text-[#40ffaa]">
               {item.subtitle}
             </h3>
-            <p className="text-base text-white/80">{item.description}</p>
+            <p className="text-base md:text-lg text-white/80 max-w-[600px]">
+              {item.description}
+            </p>
           </div>
         </div>
       ))}

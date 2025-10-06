@@ -4,6 +4,8 @@ import "locomotive-scroll/dist/locomotive-scroll.css";
 import Hero from "./Hero";
 import './details.css'
 import Content from "./Content";
+import ContactUs from "./ContactUs";
+import Footer from "../../components/Footer";
 const Details = () => {
   const scrollRef = useRef(null);
 
@@ -27,6 +29,8 @@ const Details = () => {
     >
      <Hero/>
      <Content/>
+     <ContactUs/>
+     <Footer/>
     </div>
   );
 };

@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FloatingInput from "../../components/ui/FloatingInput";
 import Hyperspeed from "../../components/Hyperspeed";
 import LogoLoop from "../../components/LogoLoop";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import b1 from "../../assets/brands/1.svg";
 import b2 from "../../assets/brands/2.svg";
 import b3 from "../../assets/brands/3.svg";
@@ -17,25 +15,6 @@ const ContactUs = ({ className = "" }) => {
     setIsSecondSlide(slideNumber === 2);
   };
 
-  useEffect(() => {
-    AOS.init({ duration: 750, once: true });
-  }, []);
-  // const techLogos = [
-  //   { node: <SiReact />, title: "React", href: "https://react.dev" },
-  //   { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
-  //   {
-  //     node: <SiTypescript />,
-  //     title: "TypeScript",
-  //     href: "https://www.typescriptlang.org",
-  //   },
-  //   {
-  //     node: <SiTailwindcss />,
-  //     title: "Tailwind CSS",
-  //     href: "https://tailwindcss.com",
-  //   },
-  // ];
-
-  // Alternative with image sources
   const imageLogos = [
     { src: b1, alt: "Brand 1" },
     { src: b2, alt: "Brand 2" },
@@ -45,40 +24,23 @@ const ContactUs = ({ className = "" }) => {
   ];
   return (
     <div
-
-    data-scroll-section
+     data-scroll-section
       className={`relative my-5 md:my-10 gap-3.5  overflow-hidden text-white  font-hero-light rounded-[25px] flex flex-col mx-auto py-[40px] md:py-[60px] px-[40px] md:px-[50px]  w-[95vw] bg-black ${className}`}
     >
       <div className="email  w-full flex flex-col md:flex-row h-2/3 justify-between items-center md:items-stretch relative z-10 ">
         <div className="texts flex justify-between flex-col relative   ">
-          <h3
-            className="subtitle text-center md:text-start text-[16px] md:text-[50px]"
-            data-aos="fade-up"
-            data-aos-delay="0"
-          >
+          <h3 className="subtitle text-center md:text-start text-[16px] md:text-[50px]">
             Kick it off with Tikit!
           </h3>
-          <h1
-            className="title text-[32px] text-center md:text-start md:text-[70px] font-bold"
-            data-aos="fade-up"
-            data-aos-delay="150"
-          >
+          <h1 className="title text-[32px] text-center md:text-start md:text-[70px] font-bold">
             contact us now
           </h1>
-          <p
-            className="description hidden md:block text-[16px] md:text-[24px] font-light w-full"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
+          <p className="description hidden md:block text-[16px] md:text-[24px] font-light w-full">
             We want to hear from you. let’s us know{" "}
             <br className="hidden md:block" /> how we can help!
           </p>
         </div>
-        <div
-          className="action w-full md:w-[45%] gap-[20px] md:gap-0 flex-col flex justify-between"
-          data-aos="fade-left"
-          data-aos-delay="0"
-        >
+        <div className="action w-full md:w-[45%] gap-[20px] md:gap-0 flex-col flex justify-between">
           <div className="title text-center font-light md:font-medium md:text-start text-[20px] md:text-[24px]">
             let’s us know how we can help!
           </div>

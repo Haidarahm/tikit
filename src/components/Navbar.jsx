@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SVGComponent from "../assets/logo";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import TikitButton from "./TikitButton";
 
 function Navbar() {
+  const navigate = useNavigate();
   const navRef = useRef();
   const logoRef = useRef();
   const mobileMenuRef = useRef();
@@ -338,7 +339,10 @@ function Navbar() {
 
           {/* Desktop Contact Button */}
           <div className="hidden lg:block w-[137px]">
-            <TikitButton text="Contact Us" />
+            <TikitButton
+              text="Contact Us"
+              onClick={() => navigate("/contact")}
+            />
           </div>
 
           {/* Mobile Hamburger */}
@@ -376,7 +380,9 @@ function Navbar() {
           <div className="mobile-nav-item mt-8">
             <TikitButton
               text="Contact Us"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                navigate("/contact");
+                setIsMobileMenuOpen(false)}}
             />
           </div>
         </div>

@@ -84,13 +84,13 @@ function Home() {
       <img
         src={element2}
         alt="Decorative element 1"
-        className="hidden md:block element1 fade-in-delay-1s pointer-events-none absolute top-2 left-4 sm:top-4 sm:left-8 z-10 w-auto h-auto max-w-[150px] max-h-[150px] sm:max-w-[200px] sm:max-h-[200px] md:max-w-[250px] md:max-h-[250px] lg:max-w-[300px] lg:max-h-[300px]"
+        className="hidden md:block element1 fade-in-delay-1s pointer-events-none absolute top-2 left-4 z-10 w-auto h-auto max-w-[250px] max-h-[250px]"
       />
       {/* Element 2 */}
       <img
         src={element1}
         alt="Decorative element 2"
-        className="element2 hidden md:block fade-in-delay-1s pointer-events-none absolute top-[50vh] right-6 sm:top-[55vh] sm:right-12 rotate-90 z-10 w-auto h-auto max-w-[120px] max-h-[120px] sm:max-w-[180px] sm:max-h-[180px] md:max-w-[220px] md:max-h-[220px] lg:max-w-[300px] lg:max-h-[300px]"
+        className="element2 hidden md:block fade-in-delay-1s pointer-events-none absolute top-[50vh] right-6 rotate-90 z-10 w-auto h-auto max-w-[220px] max-h-[220px]"
       />
       <Hero />
       <Numbers />
