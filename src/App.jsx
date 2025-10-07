@@ -10,6 +10,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Details from "./pages/details/Details"; // Add this import at the top
 import LogoIntro from "./components/LogoIntro";
+import TickLoader from "./components/TickLoader";
 
 // Lazy load components
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -19,11 +20,7 @@ const Services = lazy(() => import("./pages/services/Services"));
 const Contact = lazy(() => import("./pages/contact/Contact"));
 
 // Loading component
-const LoadingSpinner = () => (
-  <div className="min-h-screen flex items-center justify-center bg-black">
-    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white"></div>
-  </div>
-);
+const LoadingSpinner = () => <TickLoader />;
 
 const Layout = () => (
   <DarkBackground>
