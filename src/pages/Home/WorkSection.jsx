@@ -1,65 +1,33 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import StickyPinnedSection from "../../components/ui/StickyPinnedSection";
-
-import hiddenImg from "../../assets/work/hidden.webp";
-import kraveImg from "../../assets/work/krave.webp";
-import porscheImg from "../../assets/work/porsche.webp";
-
-const content = [
-  {
-    title: "Hidden",
-    subtitle: "Brand Campaign",
-    description:
-      "See changes as they happen. With our platform, you can track every modification in real time..",
-    content: (
-      <img
-        src={hiddenImg}
-        alt="Hidden — Brand visuals, campaign assets and art direction"
-        className="h-full rounded-[20px] w-full object-cover"
-        loading="lazy"
-      />
-    ),
-  },
-  {
-    title: "Krave",
-    subtitle: "Digital Launch",
-    description:
-      "See changes as they happen. With our platform, you can track every modification in real time.",
-    content: (
-      <img
-        src={kraveImg}
-        alt="Krave — Content system and digital launch materials"
-        className="h-full rounded-[20px] w-full object-cover"
-        loading="lazy"
-      />
-    ),
-  },
-  {
-    title: "Porsche",
-    subtitle: "Editorial Series",
-    description:
-      "See changes as they happen. With our platform, you can track every modification in real time.",
-    content: (
-      <img
-        src={porscheImg}
-        alt="Porsche — Editorial layouts and social creatives"
-        className="h-full rounded-[20px] w-full object-cover"
-        loading="lazy"
-      />
-    ),
-  },
-];
-
-const items = content.map(
-  ({ title, subtitle, description, content: media }) => ({
-    title,
-    subtitle,
-    description,
-    media,
-  })
-);
+import { useWorkStore } from "../../store/workStore";
 
 export default function WorkSection() {
+  const { works, loadWorks, loading } = useWorkStore();
+
+  useEffect(() => {
+    if (!works || works.length === 0) {
+      loadWorks();
+    }
+  }, [works, loadWorks]);
+
+  const items = useMemo(() => {
+    console.log(works);
+    return (works || []).map((w) => ({
+      title: w.title ?? "",
+      subtitle: w.subtitle ?? "",
+      description: w.description ?? "",
+      media: w.media ? (
+        <img
+          src={w.media}
+          alt={w.title ?? "work"}
+          className="h-full rounded-[20px] w-full object-cover"
+          loading="lazy"
+        />
+      ) : null,
+    }));
+  }, [works]);
+
   return (
     <>
       <div className="relative hidden md:block z-10 w-full overflow-visible">
@@ -73,23 +41,36 @@ export default function WorkSection() {
           </button>
         </div>
         <div className="main-content w-full flex flex-col gap-[20px]">
-          {content.map((item, index) => (
+          {(items || []).map((item, index) => (
             <div
-              key={item.title}
+              key={(item.title || "") + String(index)}
               className="element-wrapper flex flex-col w-full gap-[30px]"
             >
               <div className="text flex flex-col gap-[10px]">
-                <h1 className="title text-[20px] font-bold">{item.title}</h1>
-                <div className="subtitle text-[16px]">{item.subtitle}</div>
-                <div className=" description text-[14px]">
-                  {item.description}
+                {item.title ? (
+                  <h1 className="title text-[20px] font-bold">{item.title}</h1>
+                ) : null}
+                {item.subtitle ? (
+                  <div className="subtitle text-[16px]">{item.subtitle}</div>
+                ) : null}
+                {item.description ? (
+                  <div className=" description text-[14px]">
+                    {item.description}
+                  </div>
+                ) : null}
+              </div>
+              {item.media ? (
+                <div className="image relative w-full h-[250px] rounded-[20px] overflow-hidden">
+                  {item.media}
                 </div>
-              </div>
-              <div className="image relative w-full h-[250px] rounded-[20px] overflow-hidden">
-                {item.content}
-              </div>
+              ) : null}
             </div>
           ))}
+          {(!items || items.length === 0) && !loading ? (
+            <div className="text-center text-sm opacity-70">
+              No works found.
+            </div>
+          ) : null}
         </div>
       </div>
     </>

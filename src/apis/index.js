@@ -1,8 +1,8 @@
 import { api } from "../config/backend";
 
-// GET /api/work  (with optional lang param)
-export const fetchAllWorks = async (params = {}) => {
-  const response = await api.get("/api/work", { params });
+// POST /api/work  (send lang in body; defaults to "en")
+export const fetchAllWorks = async (lang) => {
+  const response = await api.get("/api/works", { lang: lang ?? "en" });
   return response.data;
 };
 

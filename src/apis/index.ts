@@ -2,7 +2,7 @@ import { api } from "../config/backend";
 
 // GET /api/work  (with optional lang param)
 export const fetchAllWorks = async (params: { lang?: string } = {}) => {
-  const response = await api.get("/api/work", { params });
+  const response = await api.get("/api/works", { params });
   return response.data;
 };
 
