@@ -5,6 +5,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { gsap } from "gsap";
 import TikitButton from "./TikitButton";
+import { useI18nLanguage } from "../store/I18nLanguageContext.jsx";
+import { useTranslation } from "react-i18next";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -16,12 +18,15 @@ function Navbar() {
   const ticking = useRef(false);
   const hidden = useRef(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage ,isRtl } = useI18nLanguage();
+  const { t } = useTranslation();
+  const [isLangOpen, setIsLangOpen] = useState(false);
 
   const links = [
-    { to: "/home", label: "Home" },
-    { to: "/work", label: "work" },
-    { to: "/about", label: "About Us" },
-    { to: "/services", label: "Services" },
+    { to: "/home", key: "nav.home" },
+    { to: "/work", key: "nav.work" },
+    { to: "/about", key: "nav.about" },
+    { to: "/services", key: "nav.services" },
   ];
 
   // Toggle mobile menu
@@ -291,13 +296,22 @@ function Navbar() {
     <>
       <nav
         ref={navRef}
-        className="fixed top-4 md:top-10 inset-x-0 z-50 gpu-transform"
+        className={`fixed top-4 md:top-10 inset-x-0 z-50 gpu-transform ${
+          language === "ar" ? "font-cairo" : ""
+        }`}
         data-aos="fade-down"
         style={{ transform: "translateY(0)" }}
+        dir={language === "ar" ? "rtl" : "ltr"}
       >
-        <div className="w-[95%] md:w-6/7 mx-auto rounded-full h-14 md:h-16 justify-between flex items-center px-4 md:px-6 py-2 bg-white/5 backdrop-blur-md shadow-sm text-white">
+        <div
+          className={`${isRtl ? "flex-row-reverse" : ""} w-[95%] md:w-6/7 mx-auto rounded-full h-14 md:h-16 justify-between flex items-center px-4 md:px-6 py-2 bg-white/5 backdrop-blur-md shadow-sm text-white`}
+        >
           {/* Logo */}
-          <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
+          <div
+            className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center ${
+              language === "ar" ? "order-4" : ""
+            }`}
+          >
             <div
               ref={logoRef}
               className="w-10 h-10 md:w-12 md:h-12 transform-gpu"
@@ -307,16 +321,20 @@ function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex justify-end">
-            <div className="flex gap-6">
-              {links.map(({ to, label }) => (
+          <div
+            className={`hidden lg:flex justify-end ${
+              language === "ar" ? "order-2" : ""
+            }`}
+          >
+            <div className="flex gap-6 items-center">
+              {links.map(({ to, key }) => (
                 <Link
                   key={to}
                   to={to}
                   className="nav-item uppercase font-light text-sm opacity-0 text-white relative inline-block"
                 >
                   <span className="relative inline-block">
-                    {label}
+                    {t(key)}
                     <span
                       className="nav-underline"
                       style={{
@@ -334,13 +352,87 @@ function Navbar() {
                   </span>
                 </Link>
               ))}
+              <div className="relative">
+                <button
+                  onClick={() => setIsLangOpen((v) => !v)}
+                  className="nav-item uppercase font-light text-sm opacity-0 text-white relative inline-flex items-center gap-2"
+                  aria-haspopup="listbox"
+                  aria-expanded={isLangOpen}
+                >
+                  <span className="relative inline-block">
+                    {language === "en" ? "En" : language === "fr" ? "Fn" : "Ar"}
+                    <span
+                      className="nav-underline"
+                      style={{
+                        position: "absolute",
+                        left: 0,
+                        right: 0,
+                        bottom: -2,
+                        height: 1,
+                        backgroundColor: "currentColor",
+                        transform: "scaleX(0)",
+                        transformOrigin: "left",
+                        display: "block",
+                      }}
+                    />
+                  </span>
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{
+                      transform: isLangOpen ? "rotate(90deg)" : "rotate(0deg)",
+                      transition: "transform 0.2s ease",
+                    }}
+                  >
+                    <path
+                      d="M8 5l8 7-8 7"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+                {isLangOpen && (
+                  <div
+                    className="absolute right-0 mt-3 min-w-[120px] rounded-md bg-white/5 backdrop-blur-md shadow-sm border border-white/10"
+                    role="listbox"
+                  >
+                    {[
+                      { value: "en", label: "En" },
+                      { value: "fr", label: "Fn" },
+                      { value: "ar", label: "Ar" },
+                    ].map((opt) => (
+                      <button
+                        key={opt.value}
+                        className="block w-full text-left px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 uppercase text-sm"
+                        onClick={() => {
+                          setLanguage(opt.value);
+                          setIsLangOpen(false);
+                        }}
+                        role="option"
+                        aria-selected={language === opt.value}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
           {/* Desktop Contact Button */}
-          <div className="hidden lg:block w-[137px]">
+          <div
+            className={`hidden lg:block w-[137px] ${
+              language === "ar" ? "order-1" : ""
+            }`}
+          >
             <TikitButton
-              text="Contact Us"
+              text={t("nav.contact") || "Contact Us"}
               onClick={() => navigate("/contact")}
             />
           </div>
@@ -349,7 +441,9 @@ function Navbar() {
           <button
             ref={hamburgerRef}
             onClick={toggleMobileMenu}
-            className="lg:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1 focus:outline-none"
+            className={`lg:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1 focus:outline-none ${
+              language === "ar" ? "order-3" : ""
+            }`}
             aria-label="Toggle mobile menu"
           >
             <span className="hamburger-line w-6 h-0.5 bg-white transform transition-all duration-300"></span>
@@ -366,24 +460,75 @@ function Navbar() {
         style={{ display: "none" }}
       >
         <div className="flex flex-col items-center space-y-8">
-          {links.map(({ to, label }, index) => (
+          {links.map(({ to, key }, index) => (
             <Link
               key={to}
               to={to}
               onClick={() => setIsMobileMenuOpen(false)}
               className="mobile-nav-item text-white text-3xl md:text-4xl font-light uppercase tracking-wider hover:text-gray-300 transition-colors duration-300"
             >
-              {label}
+              {t(key)}
             </Link>
           ))}
 
           <div className="mobile-nav-item mt-8">
             <TikitButton
-              text="Contact Us"
+              text={t("nav.contact") || "Contact Us"}
               onClick={() => {
                 navigate("/contact");
-                setIsMobileMenuOpen(false)}}
+                setIsMobileMenuOpen(false);
+              }}
             />
+          </div>
+          {/* Mobile Language selector */}
+          <div className="mobile-nav-item w-full px-6 mt-6">
+            <button
+              onClick={() => setIsLangOpen((v) => !v)}
+              className="w-full flex items-center justify-between text-white text-2xl md:text-3xl font-light uppercase tracking-wider"
+            >
+              <span>
+                {language === "en" ? "En" : language === "fr" ? "Fn" : "Ar"}
+              </span>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{
+                  transform: isLangOpen ? "rotate(90deg)" : "rotate(0deg)",
+                  transition: "transform 0.2s ease",
+                }}
+              >
+                <path
+                  d="M8 5l8 7-8 7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            {isLangOpen && (
+              <div className="mt-3 flex flex-col gap-2">
+                {[
+                  { value: "en", label: "En" },
+                  { value: "fr", label: "Fn" },
+                  { value: "ar", label: "Ar" },
+                ].map((opt) => (
+                  <button
+                    key={opt.value}
+                    className="text-white/90 hover:text-white text-xl md:text-2xl font-light uppercase tracking-wider"
+                    onClick={() => {
+                      setLanguage(opt.value);
+                      setIsLangOpen(false);
+                    }}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

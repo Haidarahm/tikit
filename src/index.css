@@ -46,6 +46,26 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Cairo";
+  src: url("./assets/fonts/Cairo-VariableFont_slnt,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Utility to apply Cairo font */
+.font-cairo {
+  font-family: "Cairo", "Source Sans 3", sans-serif;
+}
+
+/* Utility to apply HeroLight font globally */
+.font-hero-light {
+  font-family: "HeroLight", "Source Sans 3", sans-serif;
+}
+
+
+
 * {
   box-sizing: border-box;
 }
@@ -54,6 +74,8 @@
   --font-hero-light: "HeroLight", sans-serif;
   --font-hero-regular: "HeroRegular", sans-serif;
   --font-hero-bold: "HeroBold", sans-serif;
+  --font-cairo: "Cairo", sans-serif;
+
 }
 html {
   scroll-behavior: smooth;

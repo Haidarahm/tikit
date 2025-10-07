@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, Suspense } from "react";
 import gsap from "gsap";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useTranslation } from "react-i18next";
 
 const LiquidEther = React.lazy(() =>
   import("../../components/aurora/LiquidEther")
@@ -11,6 +12,7 @@ import AvatarGroupDemo from "../../components/ui/AvatarGroupDemo";
 function Hero() {
   const sectionRef = useRef(null);
   const [showLiquid, setShowLiquid] = useState(false);
+  const { t } = useTranslation();
 
   // GSAP background intro animation
   useEffect(() => {
@@ -80,14 +82,14 @@ function Hero() {
           data-aos-delay="1000"
         >
           <h2
-            className="font-hero-light font-light text-lg sm:text-xl md:text-2xl lg:text-[27px]"
+            className=" font-light text-lg sm:text-xl md:text-2xl lg:text-[27px]"
             data-aos="fade-down"
             data-aos-delay="1500"
           >
-            Marketing Agency
+            {t("home.hero.tagline")}
           </h2>
           <h1
-            className="font-hero-light font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] leading-tight"
+            className=" font-bold text-3xl font-hero-light sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] leading-tight"
             data-aos="fade-down"
             data-aos-delay="2000"
           >
@@ -101,8 +103,8 @@ function Hero() {
           data-aos="fade-down"
           data-aos-delay="2500"
         >
-          <h3 className="font-hero-light font-light text-xl sm:text-2xl md:text-3xl lg:text-[36px] text-center px-4">
-            Fueling brands with influence
+          <h3 className=" font-light text-xl sm:text-2xl md:text-3xl lg:text-[36px] text-center px-4">
+            {t("home.hero.subtitle")}
           </h3>
         </div>
 
@@ -114,10 +116,9 @@ function Hero() {
         >
           <AvatarGroupDemo />
           <div className="text text-center mt-2 md:mt-[10px]">
-            <span className="font-bold font-hero-light text-sm sm:text-base">
-              +300 Happy
-            </span>{" "}
-            Clients
+            <span className="font-bold  text-sm sm:text-base">
+              {t("home.hero.clients")}
+            </span>
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ function TikitButton({ text ,onClick}) {
         e.currentTarget.blur();
       }}
        onClick={onClick}
-      className="group cursor-pointer relative inline-flex items-center gap-2 font-hero-light text-sm bg-primary text-background px-4 py-2 rounded-full transition-[transform,background-color] duration-300 focus:outline-none hover:scale-[1.03] active:scale-[0.98]"
+      className="group cursor-pointer relative inline-flex items-center gap-2  text-sm bg-primary text-background px-4 py-2 rounded-full transition-[transform,background-color] duration-300 focus:outline-none hover:scale-[1.03] active:scale-[0.98]"
     >
       <span className="whitespace-nowrap transition-transform duration-300 group-hover:translate-x-1">
         {text}
