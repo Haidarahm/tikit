@@ -9,6 +9,7 @@ import b2 from "../../assets/brands/2.svg";
 import b3 from "../../assets/brands/3.svg";
 import b4 from "../../assets/brands/4.svg";
 import b5 from "../../assets/brands/5.svg";
+import GradientText from "../../components/GradientText";
 
 const ContactUs = ({ className = "" }) => {
   const [isSecondSlide, setIsSecondSlide] = useState(false);
@@ -57,12 +58,15 @@ const ContactUs = ({ className = "" }) => {
           >
             Kick it off with Tikit!
           </h3>
-          <h1 
-            data-aos="fade-up"
-            data-aos-delay="150"
-          className="title text-[32px] text-center md:text-start md:text-[70px] font-bold bg-gradient-to-r from-[#07D9F5] via-[#06AEC4] via-[#4E7CC6] to-[#CE88C6] bg-clip-text text-transparent">
-            contact us now
-          </h1>
+          <GradientText
+          colors={["#07D9F5", "#06AEC4", "#4E7CC6", "#CE88C6", "#FB8DEF"]}
+          animationSpeed={5}
+          showBorder={false}
+          className="title text-[32px] text-center md:text-start md:text-[70px] font-bold "
+        >
+          Contact Us Now{" "}
+        </GradientText>
+          
           <p
             className="description hidden md:block text-[16px] md:text-[24px] font-light w-full"
             data-aos="fade-up"

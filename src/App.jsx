@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Details from "./pages/details/Details"; // Add this import at the top
+import LogoIntro from "./components/LogoIntro";
 
 // Lazy load components
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -16,7 +17,6 @@ const Work = lazy(() => import("./pages/Work/Work"));
 const AboutUs = lazy(() => import("./pages/about/AboutUs"));
 const Services = lazy(() => import("./pages/services/Services"));
 const Contact = lazy(() => import("./pages/contact/Contact"));
-const LogoIntro = lazy(() => import("./components/LogoIntro"));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -43,20 +43,25 @@ function App() {
     AOS.init({ once: false, duration: 700 });
   }, []);
   return (
-    <Suspense fallback={<LoadingSpinner />}>
+    <>
+      {/* LogoIntro rendered outside Suspense */}
       <Routes>
         <Route path="/" element={<LogoIntro />} />
-        <Route element={<Layout />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/details/:id" element={<Details />} />{" "}
-          {/* <-- Add this line */}
-        </Route>
       </Routes>
-    </Suspense>
+      {/* Lazy-loaded routes inside Suspense */}
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/details/:id" element={<Details />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </>
   );
 }
 
