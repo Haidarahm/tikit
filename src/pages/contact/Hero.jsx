@@ -42,7 +42,7 @@ const Hero = () => {
         <div ref={h2WrapRef} className="overflow-hidden">
           <div ref={h2Ref} className="will-change-transform translate-y-full">
             <GradientText
-              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              colors={["#07D9F5", "#06AEC4", "#4E7CC6", "#CE88C6", "#FB8DEF"]}
               animationSpeed={5}
               showBorder={false}
               className="text-[32px] md:text-[96px] leading-[40px] md:leading-[100px] mb-8 capitalize font-bold"

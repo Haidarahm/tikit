@@ -14,6 +14,7 @@ export default function WorkSection() {
   const items = useMemo(() => {
     console.log(works);
     return (works || []).map((w) => ({
+      id: w.id,
       title: w.title ?? "",
       subtitle: w.subtitle ?? "",
       description: w.description ?? "",

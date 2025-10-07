@@ -1,5 +1,6 @@
 // StickyPinnedSection.jsx
 import React, { useLayoutEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,11 +12,16 @@ gsap.registerPlugin(ScrollTrigger);
  * - items: Array<{ title: string; subtitle?: string; description: string; media?: React.ReactNode }>
  * - heightPerItemVh: number (default 300)
  */
-export default function StickyPinnedSection({ items, heightPerItemVh = 300 ,className}) {
+export default function StickyPinnedSection({
+  items,
+  heightPerItemVh = 300,
+  className,
+}) {
   const sectionRef = useRef(null);
   const stickyRef = useRef(null);
   const mediaRefs = useRef([]);
   const textRefs = useRef([]);
+  const navigate = useNavigate();
 
   const count = items?.length ?? 0;
 
@@ -307,7 +313,17 @@ export default function StickyPinnedSection({ items, heightPerItemVh = 300 ,clas
                 ))}
               </p>
               <div className="mt-8">
-                <button className="font-light rounded-full border border-white bg-transparent px-5 py-2 text-white transition-colors hover:bg-white hover:text-black">
+                <button
+                  className="font-light rounded-full border border-white bg-transparent px-5 py-2 text-white transition-colors hover:bg-white hover:text-black"
+                  onClick={() => {
+                    try {
+                      const id = items?.[i]?.id;
+                      if (id != null) {
+                        navigate(`/details/${encodeURIComponent(id)}`);
+                      }
+                    } catch (_) {}
+                  }}
+                >
                   {Array.from("View Work").map((ch, j) => (
                     <span
                       key={j}

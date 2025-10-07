@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GradientText from "../../components/GradientText";
 
 // FloatingInput Component (placeholder - replace with your actual component)
 const FloatingInput = ({ id, label, containerClassName }) => (
@@ -21,11 +22,7 @@ const FloatingInput = ({ id, label, containerClassName }) => (
 );
 
 // GradientText Component (placeholder - replace with your actual component)
-const GradientText = ({ children, className }) => (
-  <h1 className={`${className} bg-gradient-to-r from-[#40ffaa] via-[#4079ff] to-[#40ffaa] bg-clip-text text-transparent`}>
-    {children}
-  </h1>
-);
+
 
 const Action = () => {
   const [isSecondSlide, setIsSecondSlide] = useState(false);
@@ -41,12 +38,18 @@ const Action = () => {
     >
       {/* Left Section */}
       <div className="w-full lg:w-1/2 flex flex-col justify-start items-start space-y-4 md:space-y-6">
-        <h2 className="text-base md:text-2xl lg:text-3xl xl:text-4xl text-white/80">
+        <h2 className="text-base md:text-2xl mb-0 lg:text-3xl xl:text-4xl text-white/80">
           Kick it off with Tikit!
         </h2>
-        <GradientText className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-          Contact Us Now
+        <GradientText
+          colors={["#07D9F5", "#06AEC4", "#4E7CC6", "#CE88C6", "#FB8DEF"]}
+          animationSpeed={5}
+          showBorder={false}
+          className="text-4xl md:text-5xl ml-0 lg:text-6xl text-center md:text-start font-bold leading-tight"
+        >
+          Contact Us Now{" "}
         </GradientText>
+        {/* text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight */}
         <p className="text-base md:text-lg lg:text-xl xl:text-2xl font-light text-white/90 leading-snug">
           We want to hear from you. Let us know how we can help!
         </p>
