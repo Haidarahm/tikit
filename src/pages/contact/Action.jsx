@@ -23,7 +23,6 @@ const FloatingInput = ({ id, label, containerClassName }) => (
 
 // GradientText Component (placeholder - replace with your actual component)
 
-
 const Action = () => {
   const [isSecondSlide, setIsSecondSlide] = useState(false);
 
@@ -104,6 +103,24 @@ const Action = () => {
             label="Subject"
             containerClassName="col-span-1"
           />
+
+          {/* Responsive Message Textarea */}
+          <div className="col-span-1 sm:col-span-2">
+            <div className="relative">
+              <textarea
+                id="contact-message"
+                rows={4}
+                className="w-full px-4 py-3 bg-transparent border border-white/30 rounded-lg text-white placeholder-transparent focus:border-white focus:outline-none peer resize-y min-h-[120px] md:min-h-[160px]"
+                placeholder="Message"
+              />
+              <label
+                htmlFor="contact-message"
+                className="absolute left-4 -top-2.5 bg-[#000] px-1 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-sm"
+              >
+                Message
+              </label>
+            </div>
+          </div>
 
           {/* Submit Button */}
           <button className="px-5 h-12 md:h-14 cursor-pointer relative col-span-1 sm:col-span-2 rounded-full group  font-medium bg-transparent text-white border border-white flex items-center justify-center transition-all hover:scale-105 overflow-hidden">
