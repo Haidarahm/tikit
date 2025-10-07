@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import image from "../../assets/who-we-are/1.webp";
-import { useWorkStore } from "../../store/workStore";
+import { useServicesStore } from "../../store/servicesStore";
 
 const Hero = ({ id }) => {
   const [show, setShow] = useState(false);
-  const { loadWorkDetails, workDetails, lang, loading } = useWorkStore();
+  const { loadServiceDetails, serviceDetails, lang, loading } =
+    useServicesStore();
 
   const numericId = id ? Number(id) : undefined;
 
   useEffect(() => {
     if (numericId) {
-      loadWorkDetails(numericId, lang);
+      loadServiceDetails(numericId, lang);
     }
-  }, [numericId, lang, loadWorkDetails]);
+  }, [numericId, lang, loadServiceDetails]);
 
-  const details = numericId ? workDetails?.[numericId] : undefined;
+  const details = numericId ? serviceDetails?.[numericId] : undefined;
   const heroImage = details?.media || image;
   const title = details?.title || "";
   const subtitle = details?.subtitle || "";

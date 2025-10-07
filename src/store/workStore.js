@@ -21,12 +21,10 @@ export const useWorkStore = create((set, get) => ({
 
   // Fetch list of works
   loadWorks: async (lang) => {
-    const effectiveLang = lang ?? get().lang;
+    const effectiveLang = lang ?? get().lang ?? "en";
     set({ loading: true, error: null });
     try {
-      const data = await fetchAllWorks(
-        effectiveLang ? { lang: effectiveLang } : {}
-      );
+      const data = await fetchAllWorks(effectiveLang);
       set({
         works: Array.isArray(data) ? data : data?.data ?? [],
         loading: false,
@@ -37,11 +35,12 @@ export const useWorkStore = create((set, get) => ({
   },
 
   // Fetch cases for a work id
-  loadCases: async (id) => {
+  loadCases: async (id, lang) => {
     if (!id) return;
+    const effectiveLang = lang ?? get().lang ?? "en";
     set({ loading: true, error: null });
     try {
-      const data = await fetchAllCases(id);
+      const data = await fetchAllCases(id, effectiveLang);
       set((state) => ({
         cases: {
           ...state.cases,

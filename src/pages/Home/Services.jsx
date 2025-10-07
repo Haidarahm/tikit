@@ -1,29 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FlowingMenu from "../../components/FlowingMenu";
+import { useServicesStore } from "../../store/servicesStore";
 
-const demoItems = [
-  {
-    link: "#",
-    text: "Mojave",
-    image: "https://picsum.photos/600/400?random=1",
-  },
-  {
-    link: "#",
-    text: "Sonoma",
-    image: "https://picsum.photos/600/400?random=2",
-  },
-  {
-    link: "#",
-    text: "Monterey",
-    image: "https://picsum.photos/600/400?random=3",
-  },
-  {
-    link: "#",
-    text: "Sequoia",
-    image: "https://picsum.photos/600/400?random=4",
-  },
-];
 const Services = () => {
+  const { services, loadServices } = useServicesStore();
+
+  useEffect(() => {
+    loadServices();
+  }, []);
+
+  const items = (services || []).map((s) => ({
+    link: `service-details/${s?.id}`,
+    text: s?.title,
+    image: s?.media,
+  }));
+
   return (
     <div className="section mt-16 relative font-hero-light flex flex-col mx-auto  md:h-[70vh]   z-10 w-full justify-center">
       <div className="headline mb-4 px-6 md:px-10 flex w-full justify-between items-center">
@@ -31,22 +22,22 @@ const Services = () => {
           What We Do Best
         </h1>
         <button className="bg-white hover:bg-transparent transition duration-75 ease-in hover:text-white border border-white px-2 h-8 md:h-10 text-[11px] text-black rounded-full uppercase">
-            Explore Projects
-          </button>
+          Explore Projects
+        </button>
       </div>
 
       <div
         className="hidden md:block"
         style={{ position: "relative", height: "100%" }}
       >
-        <FlowingMenu items={demoItems} />
+        <FlowingMenu items={items} />
       </div>
       <div className="mobile-view flex flex-col md:hidden">
-        {demoItems.map((item, index) => (
+        {items.map((item, index) => (
           <div
             key={index}
             className={`flex pb-4 justify-center text-[20px] mb-4 ${
-              index < demoItems.length - 1 ? "border-white border-b-2" : ""
+              index < items.length - 1 ? "border-white border-b-2" : ""
             }`}
             data-aos="flip-up"
             data-aos-delay={index * 150}

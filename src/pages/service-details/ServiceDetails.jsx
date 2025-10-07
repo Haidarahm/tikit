@@ -7,7 +7,7 @@ import "./details.css";
 import Content from "./Content";
 import ContactUs from "./ContactUs";
 import Footer from "../../components/Footer";
-const Details = () => {
+const ServiceDetails = () => {
   const scrollRef = useRef(null);
   const { id } = useParams();
 
@@ -37,4 +37,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default ServiceDetails;

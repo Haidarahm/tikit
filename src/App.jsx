@@ -11,6 +11,7 @@ import "aos/dist/aos.css";
 import Details from "./pages/details/Details"; // Add this import at the top
 import LogoIntro from "./components/LogoIntro";
 import TickLoader from "./components/TickLoader";
+import ServiceDetails from "./pages/service-details/ServiceDetails";
 
 // Lazy load components
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -55,6 +56,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/details/:id" element={<Details />} />
+            <Route path="/service-details/:id" element={<ServiceDetails />} />
           </Route>
         </Routes>
       </Suspense>
