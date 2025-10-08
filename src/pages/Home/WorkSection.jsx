@@ -32,7 +32,7 @@ export default function WorkSection() {
   return (
     <>
       <div className="relative hidden md:block z-10 w-full overflow-visible">
-        <StickyPinnedSection items={items} heightPerItemVh={200} />
+        <StickyPinnedSection items={items} heightPerItemVh={150} />
       </div>
       <div className="mobile-view gap-[30px] md:hidden relative text-white  flex flex-col w-full px-[20px]">
         <div className="headline sticky top-0 flex w-full justify-between mt-[40px]">

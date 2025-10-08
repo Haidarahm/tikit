@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
  */
 export default function StickyPinnedSection({
   items,
-  heightPerItemVh = 300,
+  heightPerItemVh = 150,
   className,
 }) {
   const sectionRef = useRef(null);
@@ -60,6 +60,10 @@ export default function StickyPinnedSection({
       const segment = 2.0; // per item span
       const textFadeDur = 0.25;
       const switchDelay = 0.02;
+
+      // Media easing
+      const inEase = "power3.out";
+      const outEase = "power2.inOut";
 
       for (let i = 0; i < count; i++) {
         const textNode = textRefs.current[i];
@@ -157,15 +161,30 @@ export default function StickyPinnedSection({
           tl.call(() => itemTl.restart(true), [], at + switchDelay);
         }
 
-        // --- MEDIA ---
+        // --- MEDIA (per-item transitions with reversible tweens) ---
         if (mediaNode) {
-          // start state
+          // initial state
           gsap.set(mediaNode, {
             opacity: 0,
             scale: 0.85,
             y: 30,
             filter: "blur(20px)",
+            willChange: "opacity, transform, filter",
+            pointerEvents: "none",
           });
+
+          // bring current to front, others behind
+          tl.call(
+            () => {
+              const all = mediaRefs.current || [];
+              all.forEach((n, idx) => {
+                if (!n) return;
+                gsap.set(n, { zIndex: idx === i ? 2 : 1 });
+              });
+            },
+            [],
+            at + switchDelay - 0.01
+          );
 
           // animate IN
           tl.to(
@@ -175,24 +194,32 @@ export default function StickyPinnedSection({
               scale: 1,
               y: 0,
               filter: "blur(0px)",
-              duration: segment * 0.6,
-              ease: "power3.out",
+              duration: segment * 0.35,
+              ease: inEase,
             },
             at + switchDelay
           );
 
-          // hold fully visible
-          tl.to(
-            mediaNode,
-            {
-              opacity: 1,
-              duration: segment * 0.2,
-              ease: "none",
-            },
-            at + switchDelay + segment * 0.6
-          );
+          // crossfade OUT previous with slight overlap
+          if (i > 0) {
+            const prev = mediaRefs.current[i - 1];
+            if (prev) {
+              tl.to(
+                prev,
+                {
+                  opacity: 0,
+                  scale: 0.94,
+                  y: -14,
+                  filter: "blur(8px)",
+                  duration: segment * 0.28,
+                  ease: outEase,
+                },
+                at + switchDelay + 0.04
+              );
+            }
+          }
 
-          // animate OUT
+          // animate OUT near end of segment (reversible on scroll back)
           tl.to(
             mediaNode,
             {
@@ -200,10 +227,10 @@ export default function StickyPinnedSection({
               scale: 0.9,
               y: -30,
               filter: "blur(12px)",
-              duration: segment * 0.2,
-              ease: "power2.inOut",
+              duration: segment * 0.25,
+              ease: outEase,
             },
-            at + segment - segment * 0.2
+            at + segment - 0.25
           );
         }
       }
