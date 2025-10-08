@@ -18,7 +18,7 @@ function Navbar() {
   const ticking = useRef(false);
   const hidden = useRef(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { language, setLanguage ,isRtl } = useI18nLanguage();
+  const { language, setLanguage, isRtl } = useI18nLanguage();
   const { t } = useTranslation();
   const [isLangOpen, setIsLangOpen] = useState(false);
 
@@ -299,12 +299,13 @@ function Navbar() {
         className={`fixed top-4 md:top-10 inset-x-0 z-50 gpu-transform ${
           language === "ar" ? "font-cairo" : ""
         }`}
-        data-aos="fade-down"
         style={{ transform: "translateY(0)" }}
         dir={language === "ar" ? "rtl" : "ltr"}
       >
         <div
-          className={`${isRtl ? "flex-row-reverse" : ""} w-[95%] md:w-6/7 mx-auto rounded-full h-14 md:h-16 justify-between flex items-center px-4 md:px-6 py-2 bg-white/5 backdrop-blur-md shadow-sm text-white`}
+          className={`${
+            isRtl ? "flex-row-reverse" : ""
+          } w-[95%] md:w-6/7 mx-auto rounded-full h-14 md:h-16 justify-between flex items-center px-4 md:px-6 py-2 bg-white/5 backdrop-blur-md shadow-sm text-white`}
         >
           {/* Logo */}
           <div
