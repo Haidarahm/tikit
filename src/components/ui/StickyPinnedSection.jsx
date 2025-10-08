@@ -170,7 +170,7 @@ export default function StickyPinnedSection({
             y: 30,
             filter: "blur(20px)",
             willChange: "opacity, transform, filter",
-            pointerEvents: "none",
+            pointerEvents: "auto",
           });
 
           // bring current to front, others behind
@@ -372,10 +372,35 @@ export default function StickyPinnedSection({
               <div
                 key={i}
                 ref={(el) => (mediaRefs.current[i] = el)}
-                className="absolute inset-0"
+                className="absolute inset-0 cursor-pointer transition-transform duration-300 ease-out"
                 style={{
                   opacity: 0,
                   willChange: "opacity, transform",
+                }}
+                onMouseEnter={(e) => {
+                  try {
+                    gsap.to(e.currentTarget, {
+                      scale: 1.1,
+                      duration: 0.25,
+                      ease: "power2.out",
+                    });
+                  } catch {}
+                }}
+                onMouseLeave={(e) => {
+                  try {
+                    gsap.to(e.currentTarget, {
+                      scale: 1.0,
+                      duration: 0.25,
+                      ease: "power2.out",
+                    });
+                  } catch {}
+                }}
+                onClick={() => {
+                  try {
+                    const id = items?.[i]?.id;
+                    if (id != null)
+                      navigate(`/details/${encodeURIComponent(id)}`);
+                  } catch {}
                 }}
               >
                 {it.media ?? null}
