@@ -20,8 +20,9 @@ function LogoIntro() {
           )
         : [];
 
-      // Hide everything instantly before animating
+      // Hide everything instantly before animating (prevent first paint flash)
       gsap.set(".intro-logo", {
+        visibility: "visible",
         opacity: 0,
         scale: 0.94,
         transformOrigin: "50% 50%",
@@ -94,7 +95,11 @@ function LogoIntro() {
       ref={wrapperRef}
       className="w-full h-screen flex items-center justify-center bg-transparent"
     >
-      <div className="intro-logo" aria-label="Brand logo">
+      <div
+        className="intro-logo"
+        aria-label="Brand logo"
+        style={{ opacity: 0, visibility: "hidden" }}
+      >
         <Logo width={260} height={80} />
       </div>
     </div>
