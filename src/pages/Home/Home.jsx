@@ -39,7 +39,6 @@ function Home() {
       top: isMobile ? "400px" : isTablet ? "600px" : "900px",
       left: isMobile ? "200px" : isTablet ? "500px" : "1000px",
       filter: "grayscale(100%)",
-      rotation: 100,
       duration: 1.5,
       ease: "power1.inOut",
       scrollTrigger: {
@@ -84,13 +83,13 @@ function Home() {
       <img
         src={element2}
         alt="Decorative element 1"
-        className="hidden md:block element1 fade-in-delay-1s pointer-events-none absolute top-2 left-4 z-10 w-auto h-auto max-w-[250px] max-h-[250px]"
+        className="hidden md:block rotate-50 element1 fade-in-delay-1s pointer-events-none absolute top-2 left-12 z-10 w-auto h-auto max-w-[250px] max-h-[250px] "
       />
       {/* Element 2 */}
       <img
         src={element1}
         alt="Decorative element 2"
-        className="element2 hidden md:block fade-in-delay-1s pointer-events-none absolute top-[50vh] right-6 rotate-90 z-10 w-auto h-auto max-w-[220px] max-h-[220px]"
+        className="element2 hidden md:block fade-in-delay-1s pointer-events-none absolute top-[60vh] right-6 rotate-90 z-10 w-auto h-auto max-w-[220px] max-h-[220px]"
       />
       <Hero />
       <Numbers />
